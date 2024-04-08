@@ -6,6 +6,7 @@ const SPEED = 1.0
 var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
 @onready var game = $"/root/Game"
+@onready var camera = $followcam
 
 func handleInput():
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

@@ -5,14 +5,18 @@ var keepShooting = false;
 @onready var audioPlayer = $AudioStreamPlayer2D
 @onready var weaponPivot = $weaponPivot
 @onready var shootSound = "res://art/shoot1911.mp3"
+@onready var game = $"/root/Game"
+
 func pointGun():
 	var aimPos = get_viewport().get_mouse_position()
 	var dir = weaponPivot.global_position.direction_to(aimPos)
+	var camera = game.player.camera
+	var cameraPos = camera.get_screen_center_position() - get_viewport().get_visible_rect().size/2
 	if dir.x < 0:
 		sprite.flip_v = true
 	else:
 		sprite.flip_v = false
-	look_at(aimPos)
+	look_at(aimPos + cameraPos)
 
 func _physics_process(delta):
 	pointGun()

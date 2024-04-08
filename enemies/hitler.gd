@@ -7,6 +7,7 @@ var isDead: bool = false
 @onready var death = $death
 @onready var deathAudio = $AudioStreamPlayer2D
 
+
 func updateAnimation():
 	if isDead:
 		animations.play("death")
@@ -41,8 +42,9 @@ func _on_timer_timeout():
 	makePath()
 
 func take_damage():
+	if !isDead: game.mob_killed()
 	isDead = true
-	game.mob_killed()
+	
 	walk.visible = false
 	death.visible = true
 	deathAudio.play()

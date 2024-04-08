@@ -2,17 +2,18 @@ extends Node
 
 @onready var current_level = $"."
 @onready var player = $player
+@onready var camera = $player/followcam
+
 var mapWidth
 var mapHeight
 const MAX_MOBS = 100
-const INITIAL_MOBS = 10
+const INITIAL_MOBS = 1
 var mobsKilled = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
 	init()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,8 +24,6 @@ func init():
 		spawn_mob()
 		
 func spawn_mob():
-	print_debug("spawn mob")
-	print_debug(mobsKilled)
 	var mob = preload("res://enemies/hitler.tscn").instantiate()
 	mob.global_position.x = mapWidth*randf()
 	mob.global_position.y = mapHeight*randf()
