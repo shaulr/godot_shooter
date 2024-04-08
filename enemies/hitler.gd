@@ -3,7 +3,10 @@ extends CharacterBody2D
 var isDead: bool = false
 @onready var game = $"/root/Game"
 @onready var navigation = $NavigationAgent2D
-	
+@onready var walk = $walk
+@onready var death = $death
+@onready var deathAudio = $AudioStreamPlayer2D
+
 func updateAnimation():
 	if isDead:
 		animations.play("death")
@@ -18,15 +21,14 @@ func updateAnimation():
 		elif velocity.y < 0: direction = "up"
 		animations.play("walk" + direction)
 	
-func hurt():
-	isDead = true
+
 
 func _physics_process(delta):
 	if isDead: return
-	#var direction = global_position.direction_to(game.player.global_position) 
-	#
-	var nextPosition = navigation.get_next_path_position()
-	var direction = global_position.direction_to(nextPosition)
+	var direction = global_position.direction_to(game.player.global_position) 
+	
+	#var nextPosition = navigation.get_next_path_position()
+	#var direction = global_position.direction_to(nextPosition)
 	velocity = direction * 30
 	move_and_slide()
 	updateAnimation()
@@ -37,3 +39,14 @@ func makePath():
 
 func _on_timer_timeout():
 	makePath()
+
+func take_damage():
+	isDead = true
+	game.mob_killed()
+	walk.visible = false
+	death.visible = true
+	deathAudio.play()
+	animations.play("death")
+	await animations.animation_finished
+	queue_free()
+

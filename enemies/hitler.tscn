@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=13 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/hitler.gd" id="1_5ybue"]
 [ext_resource type="Texture2D" uid="uid://b45kgbkjc65wj" path="res://art/hitler_walk.png" id="1_ey1a1"]
 [ext_resource type="Texture2D" uid="uid://cxagqrfacx6l" path="res://art/hitler_death.png" id="2_u2e2w"]
+[ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="4_v8xhg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5fy1"]
 size = Vector2(9, 9)
@@ -109,7 +110,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_tcfre"]
 resource_name = "death"
 length = 2.2
-loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -136,6 +136,8 @@ _data = {
 
 [node name="hitler" type="CharacterBody2D"]
 texture_filter = 1
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_5ybue")
 
 [node name="walk" type="Sprite2D" parent="."]
@@ -170,5 +172,9 @@ debug_path_custom_color = Color(1, 0.109804, 1, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_v8xhg")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

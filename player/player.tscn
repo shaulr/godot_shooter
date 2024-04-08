@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://qbvh6hu3w3wb"]
+[gd_scene load_steps=11 format=3 uid="uid://qbvh6hu3w3wb"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbln7"]
 [ext_resource type="Texture2D" uid="uid://cfml0uj7xry2y" path="res://art/partizanka.png" id="2_10twl"]
+[ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="3_ydtyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wogj1"]
 size = Vector2(9.5, 17.75)
@@ -126,3 +127,7 @@ shape = SubResource("RectangleShape2D_wogj1")
 libraries = {
 "": SubResource("AnimationLibrary_vxr2k")
 }
+
+[node name="gun" parent="." instance=ExtResource("3_ydtyk")]
+z_index = 1
+position = Vector2(-1, -9)
