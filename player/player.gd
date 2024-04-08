@@ -5,7 +5,7 @@ extends CharacterBody2D
 const SPEED = 1.0
 var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
-
+@onready var game = $"/root/Game"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -31,3 +31,6 @@ func updateAnimation():
 		elif velocity.y < 0: direction = "up"
 		animations.play("walk" + direction)
 		lastAnimDirection = direction
+
+func _ready():
+	game.player = self

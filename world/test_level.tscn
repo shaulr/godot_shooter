@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhmuoi7bmr3xr"]
+[gd_scene load_steps=10 format=3 uid="uid://bhmuoi7bmr3xr"]
 
 [ext_resource type="Texture2D" uid="uid://b07qgee3rqngd" path="res://art/TilesetFloor.png" id="1_g4las"]
 [ext_resource type="Texture2D" uid="uid://cvsqkluh7b47u" path="res://art/TilesetNature.png" id="2_63o0t"]
 [ext_resource type="PackedScene" uid="uid://qbvh6hu3w3wb" path="res://player/player.tscn" id="3_mo5us"]
 [ext_resource type="Script" path="res://world/followcam.gd" id="4_hff61"]
+[ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/hitler.tscn" id="5_hhqup"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ye60a"]
 texture = ExtResource("1_g4las")
@@ -3951,3 +3952,6 @@ limit_bottom = 240
 limit_smoothed = true
 script = ExtResource("4_hff61")
 tilemap = NodePath("../../TileMap")
+
+[node name="hitler" parent="." instance=ExtResource("5_hhqup")]
+position = Vector2(236, 70)
