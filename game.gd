@@ -31,6 +31,8 @@ func spawn_mob():
 
 func mob_killed():
 	mobsKilled += 1
+	if mobsKilled % 5 == 0:
+		player.doing_good()
 	if mobsKilled < MAX_MOBS:
 		spawn_mob()
 	else:

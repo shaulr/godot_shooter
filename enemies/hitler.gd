@@ -11,8 +11,11 @@ var speed = 30
 var acceleration = 7
 const MAX_HEALTH = 100
 var current_health = 100
+@export var lastVelocity: Vector2
+@export var knocbackPower = 50
 
 func updateAnimation():
+	lastVelocity = velocity
 	if isDead:
 		animations.play("death")
 		return
@@ -73,3 +76,7 @@ func update_health():
 func get_damage() -> int:
 	return 10
 
+func knockback(enemyVeocity: Vector2):
+	var knockbackDirection = enemyVeocity.normalized() * knocbackPower
+	velocity = knockbackDirection
+	move_and_slide()

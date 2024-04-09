@@ -9,6 +9,12 @@ var isAttacking: bool = false
 @onready var camera = $followcam
 const MAX_HEALTH = 100
 var current_health = MAX_HEALTH
+@export var knocbackPower = 1000
+@onready var audioPlayer = $AudioStreamPlayer2D
+@onready var effectsPlayer = $effects
+@onready var hurtimer = $hurttimer
+var hurting = false;
+
 
 func handleInput():
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -20,13 +26,20 @@ func _physics_process(delta):
 	updateAnimation()
 	handleInput()
 
+func look(direction: String):
+	self.direction = direction
+
 func updateAnimation():
 	if isAttacking: return
+	var direction = "down"
 	if velocity.length() == 0:
 		if animations.is_playing():
 			animations.stop()
+		if direction != lastAnimDirection:
+			animations.play("RESET")
+			lastAnimDirection = direction
+
 	else:
-		var direction = "down"
 		if velocity.x < 0: direction = "left"
 		elif velocity.x > 0: direction = "right"
 		elif velocity.y < 0: direction = "up"
@@ -54,4 +67,25 @@ func restart_application():
 	
 func _on_hurtbox_area_entered(area):
 	if area.get_parent().has_method("get_damage"):
+		if hurting: return
 		current_health -= area.get_parent().get_damage()
+		knockback(area.get_parent().lastVelocity)
+		effectsPlayer.play("hurtblink")
+		hurting = true
+		hurtimer.start()
+		$hurtsound.play()
+		await hurtimer.timeout
+		effectsPlayer.play("RESET")
+		hurting = false
+
+func doing_good():
+	$laugh.play()
+
+func knockback(enemyVeocity: Vector2):
+	var knockbackDirection = enemyVeocity.normalized() * knocbackPower
+	velocity = knockbackDirection
+	move_and_slide()
+
+
+
+
