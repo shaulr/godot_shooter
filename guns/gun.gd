@@ -12,10 +12,16 @@ func pointGun():
 	var dir = weaponPivot.global_position.direction_to(aimPos)
 	var camera = game.player.camera
 	var cameraPos = camera.get_screen_center_position() - get_viewport().get_visible_rect().size/2
-	if dir.x < 0:
+	if rotation_degrees > 270:
+		rotation_degrees = -90
+	elif rotation_degrees < -90:
+		rotation_degrees = 270
+	if rotation_degrees > 90:
 		sprite.flip_v = true
+		sprite.offset.y = -100
 	else:
 		sprite.flip_v = false
+		sprite.offset.y = 0
 	look_at(aimPos + cameraPos)
 
 func _physics_process(delta):

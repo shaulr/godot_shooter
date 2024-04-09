@@ -6,7 +6,8 @@ var isDead: bool = false
 @onready var walk = $walk
 @onready var death = $death
 @onready var deathAudio = $AudioStreamPlayer2D
-
+var speed = 30
+var acceleration = 7
 
 func updateAnimation():
 	if isDead:
@@ -26,15 +27,16 @@ func updateAnimation():
 
 func _physics_process(delta):
 	if isDead: return
-	var direction = global_position.direction_to(game.player.global_position) 
-	
+	#var direction = global_position.direction_to(game.player.global_position) 
+	var direction = Vector2.ZERO
+	direction = navigation.get_next_path_position() - global_position
+	direction = direction.normalized()
 	#var nextPosition = navigation.get_next_path_position()
 	#var direction = global_position.direction_to(nextPosition)
-	velocity = direction * 30
-	move_and_slide()
+	velocity = velocity.lerp(direction * speed, acceleration * delta)
 	updateAnimation()
+	move_and_slide()
 
-	
 func makePath():
 	navigation.target_position = game.player.global_position
 

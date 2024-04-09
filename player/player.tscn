@@ -7,11 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wogj1"]
 size = Vector2(9.5, 17.75)
 
-[sub_resource type="Animation" id="Animation_bisj5"]
-resource_name = "walkleft"
-length = 0.6
-loop_mode = 1
-step = 0.2
+[sub_resource type="Animation" id="Animation_1tiit"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,10 +16,10 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
+"values": [Vector2i(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oi05h"]
@@ -43,8 +40,11 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1tiit"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_bisj5"]
+resource_name = "walkleft"
+length = 0.6
+loop_mode = 1
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,10 +52,10 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(1, 0)]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_1rtf1"]
