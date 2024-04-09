@@ -54,9 +54,14 @@ func take_damage():
 
 	if current_health <= 0:
 		die()
+		
+func getIsDead() -> bool:
+	return isDead
 	
 func die():
 	if !isDead: game.mob_killed()
+	$CollisionShape2D.disabled = true
+	$hitbox/CollisionShape2D.disabled = true
 	update_health()
 	isDead = true
 	walk.visible = false

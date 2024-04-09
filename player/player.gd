@@ -68,6 +68,9 @@ func restart_application():
 func _on_hurtbox_area_entered(area):
 	if area.get_parent().has_method("get_damage"):
 		if hurting: return
+		if area.get_parent().has_method("getIsDead"):
+			if area.get_parent().getIsDead(): return
+
 		current_health -= area.get_parent().get_damage()
 		knockback(area.get_parent().lastVelocity)
 		effectsPlayer.play("hurtblink")
