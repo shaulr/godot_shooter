@@ -6,8 +6,11 @@ var isDead: bool = false
 @onready var walk = $walk
 @onready var death = $death
 @onready var deathAudio = $AudioStreamPlayer2D
+@onready var healthbar = $healthbar
 var speed = 30
 var acceleration = 7
+const MAX_HEALTH = 100
+var current_health = 100
 
 func updateAnimation():
 	if isDead:
@@ -27,13 +30,13 @@ func updateAnimation():
 
 func _physics_process(delta):
 	if isDead: return
-	#var direction = global_position.direction_to(game.player.global_position) 
+
 	var direction = Vector2.ZERO
 	direction = navigation.get_next_path_position() - global_position
 	direction = direction.normalized()
-	#var nextPosition = navigation.get_next_path_position()
-	#var direction = global_position.direction_to(nextPosition)
+
 	velocity = velocity.lerp(direction * speed, acceleration * delta)
+	update_health()
 	updateAnimation()
 	move_and_slide()
 
@@ -44,13 +47,29 @@ func _on_timer_timeout():
 	makePath()
 
 func take_damage():
-	if !isDead: game.mob_killed()
-	isDead = true
+	current_health -= 10
+
+	if current_health <= 0:
+		die()
 	
+func die():
+	if !isDead: game.mob_killed()
+	update_health()
+	isDead = true
 	walk.visible = false
 	death.visible = true
 	deathAudio.play()
 	animations.play("death")
 	await animations.animation_finished
 	queue_free()
+	
+func update_health():
+	healthbar.value = current_health
+	if current_health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+
+func get_damage() -> int:
+	return 10
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=14 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/hitler.gd" id="1_5ybue"]
 [ext_resource type="Texture2D" uid="uid://b45kgbkjc65wj" path="res://art/hitler_walk.png" id="1_ey1a1"]
@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="4_v8xhg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5fy1"]
-size = Vector2(11, 12)
+size = Vector2(11, 27)
 
 [sub_resource type="Animation" id="Animation_gsknv"]
 length = 0.001
@@ -134,12 +134,44 @@ _data = {
 "walkup": SubResource("Animation_jpepv")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywqus"]
+size = Vector2(15, 31)
+
 [node name="hitler" type="CharacterBody2D"]
 texture_filter = 1
-collision_layer = 2
+position = Vector2(-1, 0)
+collision_layer = 3
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_5ybue")
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 0, 1)
+light_mask = 0
+visibility_layer = 7
+z_index = 3
+z_as_relative = false
+y_sort_enabled = true
+custom_minimum_size = Vector2(15, 10)
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -34.0
+offset_right = 8.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.957861, 0.0874722)
+size_flags_horizontal = 4
+step = 10.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="walk" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
@@ -150,7 +182,7 @@ vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(-0.5, -7)
+position = Vector2(-0.5, -14.5)
 shape = SubResource("RectangleShape2D_w5fy1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -167,8 +199,6 @@ hframes = 4
 vframes = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-debug_use_custom = true
 debug_path_custom_color = Color(1, 0.109804, 1, 1)
 
 [node name="Timer" type="Timer" parent="."]
@@ -178,4 +208,11 @@ autostart = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_v8xhg")
 
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_ywqus")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

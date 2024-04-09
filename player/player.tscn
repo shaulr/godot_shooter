@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qbvh6hu3w3wb"]
+[gd_scene load_steps=12 format=3 uid="uid://qbvh6hu3w3wb"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbln7"]
 [ext_resource type="Texture2D" uid="uid://cfml0uj7xry2y" path="res://art/partizanka.png" id="2_10twl"]
@@ -103,11 +103,31 @@ _data = {
 "walkup": SubResource("Animation_r68rb")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcgqp"]
+size = Vector2(10, 16)
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 texture_filter = 1
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_cbln7")
+
+[node name="health_bar" type="ProgressBar" parent="."]
+modulate = Color(0.101961, 1, 0.105882, 1)
+visibility_layer = 7
+custom_minimum_size = Vector2(15, 10)
+offset_left = -8.0
+offset_top = -32.0
+offset_right = 7.0
+offset_bottom = -5.0
+scale = Vector2(1, 0.1)
+step = 10.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -131,3 +151,12 @@ libraries = {
 [node name="gun" parent="." instance=ExtResource("3_ydtyk")]
 z_index = 1
 position = Vector2(-1, -9)
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="hurtbox" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(-1, -9)
+shape = SubResource("RectangleShape2D_hcgqp")
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

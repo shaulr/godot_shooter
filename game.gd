@@ -33,6 +33,8 @@ func mob_killed():
 	mobsKilled += 1
 	if mobsKilled < MAX_MOBS:
 		spawn_mob()
+	else:
+		get_tree().reload_current_scene()
 
 func level_loaded(level: Node, map_size):
 	mapWidth = map_size.x
