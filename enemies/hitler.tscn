@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=16 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/hitler.gd" id="1_5ybue"]
 [ext_resource type="Texture2D" uid="uid://b45kgbkjc65wj" path="res://art/hitler_walk.png" id="1_ey1a1"]
 [ext_resource type="Texture2D" uid="uid://cxagqrfacx6l" path="res://art/hitler_death.png" id="2_u2e2w"]
 [ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="4_v8xhg"]
+[ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="5_lkjpx"]
+[ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="6_cq3rx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5fy1"]
 size = Vector2(11, 27)
@@ -214,5 +216,12 @@ stream = ExtResource("4_v8xhg")
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_ywqus")
 
+[node name="vision" parent="." instance=ExtResource("5_lkjpx")]
+position = Vector2(1, -19)
+
+[node name="gun" parent="." instance=ExtResource("6_cq3rx")]
+position = Vector2(1, -15)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="is_visible" from="vision" to="." method="_on_vision_is_visible"]

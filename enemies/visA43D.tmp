@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbdpa8nwvq3rk"]
+
+[ext_resource type="Script" path="res://enemies/vision.gd" id="1_1p31t"]
+[ext_resource type="Texture2D" uid="uid://mj58r0dfr5d0" path="res://art/light.png" id="1_iy38r"]
+
+[node name="vision" type="Node2D"]
+script = ExtResource("1_1p31t")
+
+[node name="pivot_point" type="Marker2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="pivot_point"]
+position = Vector2(56, 0)
+color = Color(1, 1, 0, 1)
+energy = 0.63
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("1_iy38r")
+texture_scale = 0.5
+
+[node name="RayCast2D" type="RayCast2D" parent="pivot_point"]
+collision_mask = 16
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

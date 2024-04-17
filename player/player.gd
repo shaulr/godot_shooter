@@ -13,6 +13,8 @@ var current_health = MAX_HEALTH
 @onready var audioPlayer = $AudioStreamPlayer2D
 @onready var effectsPlayer = $effects
 @onready var hurtimer = $hurttimer
+@onready var gun = $gun
+
 var hurting = false;
 
 
@@ -21,7 +23,11 @@ func handleInput():
 	velocity = moveDir * SPEED
 	move_and_collide(moveDir * SPEED)
 
+func take_damage(damage: int):
+	current_health -= damage
+	
 func _physics_process(delta):
+	gun.pointGun(get_viewport().get_mouse_position(), true)
 	update_health()
 	updateAnimation()
 	handleInput()
@@ -83,6 +89,13 @@ func _on_hurtbox_area_entered(area):
 
 func doing_good():
 	$laugh.play()
+
+func _unhandled_input(event):
+	if (event is InputEventMouseButton):
+		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+			gun.press_trigger()
+		elif  !event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+			gun.release_trigger()
 
 func knockback(enemyVeocity: Vector2):
 	var knockbackDirection = enemyVeocity.normalized() * knocbackPower

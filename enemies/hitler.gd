@@ -7,12 +7,16 @@ var isDead: bool = false
 @onready var death = $death
 @onready var deathAudio = $AudioStreamPlayer2D
 @onready var healthbar = $healthbar
+@onready var vision = $vision
+@onready var gun = $gun
+
 var speed = 30
 var acceleration = 7
 const MAX_HEALTH = 100
 var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
+var can_see_player = false
 
 func updateAnimation():
 	lastVelocity = velocity
@@ -29,11 +33,12 @@ func updateAnimation():
 		elif velocity.y < 0: direction = "up"
 		animations.play("walk" + direction)
 	
+func pointVision():
+	vision.look_at(vision.global_position + velocity)
 
 
 func _physics_process(delta):
 	if isDead: return
-
 	var direction = Vector2.ZERO
 	direction = navigation.get_next_path_position() - global_position
 	direction = direction.normalized()
@@ -41,6 +46,9 @@ func _physics_process(delta):
 	velocity = velocity.lerp(direction * speed, acceleration * delta)
 	update_health()
 	updateAnimation()
+	pointVision()
+	if can_see_player:
+		gun.pointGun(game.player.global_position, false)
 	move_and_slide()
 
 func makePath():
@@ -49,8 +57,8 @@ func makePath():
 func _on_timer_timeout():
 	makePath()
 
-func take_damage():
-	current_health -= 10
+func take_damage(damage: int):
+	current_health -= damage
 
 	if current_health <= 0:
 		die()
@@ -85,3 +93,16 @@ func knockback(enemyVeocity: Vector2):
 	var knockbackDirection = enemyVeocity.normalized() * knocbackPower
 	velocity = knockbackDirection
 	move_and_slide()
+	
+	
+func _on_vision_is_visible(is_visible: bool):
+	if is_visible:
+		print_debug("player visible")
+		can_see_player = true
+		gun.press_trigger()
+	else:
+		print_debug("player_invisible")
+		can_see_player = false
+		gun.release_trigger()
+
+

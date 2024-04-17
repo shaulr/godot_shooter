@@ -4,6 +4,7 @@ extends Area2D
 var travelled_distance = 0
 @export var lastVelocity: Vector2
 var hasHit = false
+var damage = 10
 
 func _physics_process(delta):
 	if hasHit: return
@@ -25,9 +26,8 @@ func _on_body_entered(body):
 	hasHit = true
 	await $bulletEffectPlayer.animation_finished
 	
-
 	if body.has_method("take_damage"):
-		body.take_damage()
+		body.take_damage(damage)
 	if body.has_method("knockback"):
 		body.knockback(lastVelocity)
 	queue_free()
