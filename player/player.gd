@@ -24,7 +24,15 @@ func handleInput():
 	move_and_collide(moveDir * SPEED)
 
 func take_damage(damage: int):
+	hurting = true
 	current_health -= damage
+	effectsPlayer.play("hurtblink")
+
+	hurtimer.start()
+	$hurtsound.play()
+	await hurtimer.timeout
+	effectsPlayer.play("RESET")
+	hurting = false
 	
 func _physics_process(delta):
 	gun.pointGun(get_viewport().get_mouse_position(), true)
@@ -72,20 +80,10 @@ func restart_application():
 	get_tree().reload_current_scene()
 	
 func _on_hurtbox_area_entered(area):
+	if area.get_parent().has_method("getIsDead"):
+		if area.get_parent().getIsDead(): return
 	if area.get_parent().has_method("get_damage"):
-		if hurting: return
-		if area.get_parent().has_method("getIsDead"):
-			if area.get_parent().getIsDead(): return
-
-		current_health -= area.get_parent().get_damage()
-		knockback(area.get_parent().lastVelocity)
-		effectsPlayer.play("hurtblink")
-		hurting = true
-		hurtimer.start()
-		$hurtsound.play()
-		await hurtimer.timeout
-		effectsPlayer.play("RESET")
-		hurting = false
+		take_damage(area.get_parent().get_damage())
 
 func doing_good():
 	$laugh.play()
