@@ -14,9 +14,7 @@ var current_health = MAX_HEALTH
 @onready var effectsPlayer = $effects
 @onready var hurtimer = $hurttimer
 @onready var gun = $gun
-
 var hurting = false;
-
 
 func handleInput():
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -27,7 +25,6 @@ func take_damage(damage: int):
 	hurting = true
 	current_health -= damage
 	effectsPlayer.play("hurtblink")
-
 	hurtimer.start()
 	$hurtsound.play()
 	await hurtimer.timeout
@@ -75,6 +72,7 @@ func die():
 	
 func _ready():
 	game.player = self
+	gun.gun_agros_enemies(true)
 	
 func restart_application():
 	get_tree().reload_current_scene()
@@ -94,8 +92,11 @@ func _unhandled_input(event):
 			gun.press_trigger()
 		elif  !event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 			gun.release_trigger()
-
+func getIsDead() -> bool:
+	return false
+	
 func knockback(enemyVeocity: Vector2):
+	if hurting: return
 	var knockbackDirection = enemyVeocity.normalized() * knocbackPower
 	velocity = knockbackDirection
 	move_and_slide()

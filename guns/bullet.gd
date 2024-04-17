@@ -24,10 +24,10 @@ func _physics_process(delta):
 	lastVelocity = velocity
 
 func _on_body_entered(body):
+	if body.has_method("knockback"):
+		body.knockback(lastVelocity/4)
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-	if body.has_method("knockback"):
-		body.knockback(lastVelocity/4)	
 	if body.has_method("getIsDead"):
 		sprite.visible = false
 		$bulletEffectPlayer.play("splat")

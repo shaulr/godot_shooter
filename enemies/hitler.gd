@@ -17,7 +17,12 @@ var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
 var can_see_player = false
+var is_agro = false
 
+func _ready(): 
+	game.player.gun.shooting_sound.connect(_on_shots_fired.bind())
+	gun.gun_agros_enemies(true)
+	
 func updateAnimation():
 	lastVelocity = velocity
 	if isDead:
@@ -42,8 +47,9 @@ func _physics_process(delta):
 	var direction = Vector2.ZERO
 	direction = navigation.get_next_path_position() - global_position
 	direction = direction.normalized()
-
-	velocity = velocity.lerp(direction * speed, acceleration * delta)
+	if is_agro:
+		velocity = velocity.lerp(direction * speed, acceleration * delta)
+	
 	update_health()
 	updateAnimation()
 	pointVision()
@@ -59,7 +65,7 @@ func _on_timer_timeout():
 
 func take_damage(damage: int):
 	current_health -= damage
-
+	is_agro = true
 	if current_health <= 0:
 		die()
 		
@@ -97,12 +103,25 @@ func knockback(enemyVeocity: Vector2):
 	
 func _on_vision_is_visible(is_visible: bool):
 	if is_visible:
-		print_debug("player visible")
 		can_see_player = true
 		gun.press_trigger()
+		is_agro = true
 	else:
-		print_debug("player_invisible")
 		can_see_player = false
 		gun.release_trigger()
 
+func sum_navpath(arr: Array):
+	var result = 0
+	var previous = Vector2.ZERO
+	if arr.size() == 0: return 0
+	for i in arr:
+		if previous != Vector2.ZERO:
+			result += previous.distance_to(i)
+		previous = i
+	return result
 
+func _on_shots_fired(loudness: int):
+	var navigation_distance = sum_navpath(navigation.get_current_navigation_path())
+	if navigation_distance != 0 and navigation_distance <= loudness:
+		is_agro = true
+	

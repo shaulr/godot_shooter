@@ -9,6 +9,12 @@ var trigger_pressed = false;
 @onready var muzzleflash = $"weaponPivot/mp-40/shootingPoint/muzzleflashplayer"
 var gun_direction = "down"
 @onready var knocback_anim = $knockbackPlayer
+var agros_enemies = false
+var gun_noise_level = 300
+signal shooting_sound(noise: int)
+	
+func gun_agros_enemies(agros: bool):
+	agros_enemies = agros
 
 func get_gun_rotation():
 	if rotation_degrees > 270:
@@ -38,6 +44,7 @@ func pointGun(aimPos: Vector2, correct_for_camera: bool):
 	look_at(aimPos + cameraPos)
 		
 func shoot():
+	emit_signal("shooting_sound", gun_noise_level)
 	muzzleflash.play("flash2")
 	gun_knock()
 	const BULLET = preload("res://guns/bullet.tscn")
