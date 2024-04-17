@@ -100,7 +100,6 @@ func knockback(enemyVeocity: Vector2):
 	velocity = knockbackDirection
 	move_and_slide()
 	
-	
 func _on_vision_is_visible(is_visible: bool):
 	if is_visible:
 		can_see_player = true
