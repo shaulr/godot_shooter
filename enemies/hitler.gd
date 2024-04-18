@@ -18,10 +18,12 @@ var current_health = 100
 @export var knocbackPower = 50
 var can_see_player = false
 var is_agro = false
+var lastDirection = "down"
 
 func _ready(): 
 	game.player.gun.shooting_sound.connect(_on_shots_fired.bind())
 	gun.gun_agros_enemies(true)
+	vision.look_at(vision.global_position + Vector2(0, 1))
 	
 func updateAnimation():
 	lastVelocity = velocity
@@ -36,11 +38,14 @@ func updateAnimation():
 		if velocity.x < 0: direction = "left"
 		elif velocity.x > 0: direction = "right"
 		elif velocity.y < 0: direction = "up"
+		lastDirection = direction
 		animations.play("walk" + direction)
 	
 func pointVision():
 	vision.look_at(vision.global_position + velocity)
 
+func get_direction() -> String:
+	return lastDirection
 
 func _physics_process(delta):
 	if isDead: return
@@ -64,7 +69,10 @@ func _on_timer_timeout():
 	makePath()
 
 func take_damage(damage: int):
-	current_health -= damage
+	if damage == -1:
+		current_health = 0
+	else:
+		current_health -= damage
 	is_agro = true
 	if current_health <= 0:
 		die()
@@ -123,4 +131,6 @@ func _on_shots_fired(loudness: int):
 	var navigation_distance = sum_navpath(navigation.get_current_navigation_path())
 	if navigation_distance != 0 and navigation_distance <= loudness:
 		is_agro = true
+	
+
 	

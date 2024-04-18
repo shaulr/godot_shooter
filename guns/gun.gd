@@ -24,7 +24,7 @@ func get_gun_rotation():
 	return rotation_degrees
 
 func pointGun(aimPos: Vector2, correct_for_camera: bool):
-	var dir = weaponPivot.global_position.direction_to(aimPos)
+
 	var cameraPos = Vector2.ZERO
 	if correct_for_camera:
 		var camera = game.player.camera

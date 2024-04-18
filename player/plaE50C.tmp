@@ -221,6 +221,8 @@ texture_filter = 1
 collision_layer = 19
 collision_mask = 3
 script = ExtResource("1_cbln7")
+lastAnimDirection = null
+knocbackPower = null
 
 [node name="health_bar" type="ProgressBar" parent="."]
 modulate = Color(0.101961, 1, 0.105882, 1)
@@ -290,7 +292,6 @@ libraries = {
 one_shot = true
 
 [node name="knife" parent="." instance=ExtResource("6_k7sc5")]
-visible = false
 position = Vector2(1, -9)
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

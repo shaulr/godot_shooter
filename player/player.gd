@@ -14,12 +14,29 @@ var current_health = MAX_HEALTH
 @onready var effectsPlayer = $effects
 @onready var hurtimer = $hurttimer
 @onready var gun = $gun
-var hurting = false;
+@onready var knife = $knife
+var hurting = false
+var isStabbing = false
 
+func _input(event):
+	if event.is_action_pressed("stab"):
+		stab()
+	handleInput()
+	
 func handleInput():
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDir * SPEED
 	move_and_collide(moveDir * SPEED)
+	
+func stab():
+	isStabbing = true
+	gun.visible = false
+	knife.visible = true
+	knife.stab(lastAnimDirection)
+	await knife.stabPlayer.animation_finished
+	knife.visible = false
+	gun.visible = true
+	isStabbing = false
 
 func take_damage(damage: int):
 	hurting = true
@@ -78,10 +95,20 @@ func restart_application():
 	get_tree().reload_current_scene()
 	
 func _on_hurtbox_area_entered(area):
-	if area.get_parent().has_method("getIsDead"):
-		if area.get_parent().getIsDead(): return
-	if area.get_parent().has_method("get_damage"):
-		take_damage(area.get_parent().get_damage())
+	if isStabbing:
+		if area.get_parent().has_method("get_direction"):
+			var body_dir = area.get_parent().get_direction()
+			if body_dir == lastAnimDirection:
+				print_debug("backstab")
+				area.get_parent().take_damage(-1) #backstab instakill
+			else:
+				print_debug("stab")
+				area.get_parent().take_damage(knife.get_damage())
+	else:
+		if area.get_parent().has_method("getIsDead"):
+			if area.get_parent().getIsDead(): return
+		if area.get_parent().has_method("get_damage"):
+			take_damage(area.get_parent().get_damage())
 
 func doing_good():
 	$laugh.play()
