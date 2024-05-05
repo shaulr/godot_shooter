@@ -15,6 +15,7 @@ var current_health = MAX_HEALTH
 @onready var hurtimer = $hurttimer
 @onready var gun = $gun
 @onready var knife = $knife
+@onready var sprite = $Sprite2D
 var hurting = false
 var isStabbing = false
 
@@ -128,6 +129,19 @@ func knockback(enemyVeocity: Vector2):
 	velocity = knockbackDirection
 	move_and_slide()
 
+func _draw():
+	pass
 
 
 
+
+
+
+#
+#
+#func _on_draw():
+	##if Input.is_action_pressed("dash"):
+	#var length = 100
+	#var normalized = (get_viewport().get_mouse_position() - position).normalized()
+	#var target = global_position + normalized * length
+	#draw_line(position, target, Color(255, 0, 0, 0.5), 3, true)

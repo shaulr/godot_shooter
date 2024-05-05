@@ -308,9 +308,6 @@ one_shot = true
 width = 5.0
 gradient = SubResource("Gradient_suwmn")
 
-[node name="dashRaycast" type="RayCast2D" parent="."]
-position = Vector2(0, -8)
-
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

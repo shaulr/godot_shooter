@@ -217,8 +217,8 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_suwmn"]
-offsets = PackedFloat32Array(0.00495049, 0.0891089, 0.960396, 0.965347)
-colors = PackedColorArray(1, 1, 1, 0.172549, 1, 0, 0, 0.701961, 1, 0.745098, 0.745098, 0.305882, 1, 0.373134, 0.373134, 0.813169)
+offsets = PackedFloat32Array(0.00495049, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0.701961)
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -305,14 +305,10 @@ script = ExtResource("7_7hp41")
 one_shot = true
 
 [node name="Line2D" type="Line2D" parent="dash"]
-width = 5.0
 gradient = SubResource("Gradient_suwmn")
 
-[node name="dashRaycast" type="RayCast2D" parent="."]
-position = Vector2(0, -8)
-
 [connection signal="draw" from="." to="." method="_on_draw"]
-[connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="hurttimer" to="." method="_on_hurttimer_timeout"]
 [connection signal="timeout" from="dash/Timer" to="dash" method="_on_timer_timeout"]
