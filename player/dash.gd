@@ -8,9 +8,10 @@ var inDash = false
 @onready var game = $"/root/Game"
 
 var dash_range = 100
-var skull_and_bones = Sprite2D.new()
+var skull_and_bones: Sprite2D
 
 func _ready():
+	skull_and_bones =  Sprite2D.new()
 	skull_and_bones.texture = skull_and_bones_texture
 	skull_and_bones.visible = false
 	skull_and_bones.scale = Vector2(0.5, 0.5)
@@ -43,6 +44,14 @@ func _process(delta):
 			if dash_raycast.get_collider().has_method("take_damage"):
 				skull_and_bones.position = dash_raycast.get_collision_point()
 				skull_and_bones.visible = true
+				if Input.is_action_just_pressed("stab"):
+					var tween = create_tween()
+					tween.tween_property(game.player, "position", dash_raycast.get_collider().global_position, 0.5 )
+					await tween.finished
+					player.stab()
+					
+					
+					
 		else:
 			dash_line.set_point_position(dash_line.points.size()-2, dash_raycast.global_position)
 			dash_line.set_point_position(dash_line.points.size()-1, end_point) 
