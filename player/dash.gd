@@ -14,7 +14,7 @@ func _ready():
 	skull_and_bones =  Sprite2D.new()
 	skull_and_bones.texture = skull_and_bones_texture
 	skull_and_bones.visible = false
-	skull_and_bones.scale = Vector2(0.5, 0.5)
+	skull_and_bones.scale = Vector2(0.3, 0.3)
 	skull_and_bones.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 	game.current_level.add_child(skull_and_bones)
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbdpa8nwvq3rk"]
+[gd_scene load_steps=4 format=3 uid="uid://cbdpa8nwvq3rk"]
 
 [ext_resource type="Script" path="res://enemies/vision.gd" id="1_1p31t"]
 [ext_resource type="Texture2D" uid="uid://mj58r0dfr5d0" path="res://art/light.png" id="1_iy38r"]
+[ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="3_nrldt"]
 
 [node name="vision" type="Node2D"]
 script = ExtResource("1_1p31t")
@@ -19,5 +20,9 @@ texture_scale = 0.5
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 autostart = true
+
+[node name="movement" type="Node2D" parent="."]
+
+[node name="Statemachine" parent="." instance=ExtResource("3_nrldt")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

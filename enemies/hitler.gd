@@ -9,6 +9,7 @@ var isDead: bool = false
 @onready var healthbar = $healthbar
 @onready var vision = $vision
 @onready var gun = $gun
+const  STEERING_FORCE = 0.1
 
 var speed = 30
 var acceleration = 7
@@ -19,12 +20,17 @@ var current_health = 100
 var can_see_player = false
 var is_agro = false
 var lastDirection = "down"
+var desired_direction = Vector2.ZERO
+@export var limit = 0.5
 
 func _ready(): 
 	game.player.gun.shooting_sound.connect(_on_shots_fired.bind())
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	
+func is_hostile_mob() -> bool:
+	return true	
+
 func updateAnimation():
 	lastVelocity = velocity
 	if isDead:
@@ -47,13 +53,24 @@ func pointVision():
 func get_direction() -> String:
 	return lastDirection
 
+#func get_desired_direction() -> Vector2:
+	#var direction = Vector2.ZERO
+	#direction = navigation.get_next_path_position() - global_position
+	#direction = direction.normalized()
+	#return direction
+
+#func set_desired_vector(desired: Vector2):
+	#desired_direction = desired
+
 func _physics_process(delta):
 	if isDead: return
-	var direction = Vector2.ZERO
-	direction = navigation.get_next_path_position() - global_position
-	direction = direction.normalized()
-	if is_agro:
-		velocity = velocity.lerp(direction * speed, acceleration * delta)
+	#var direction = Vector2.ZERO
+	#direction = navigation.get_next_path_position() - global_position
+	#direction = direction.normalized()
+	#if is_agro:
+		#velocity = velocity.lerp(direction * speed, acceleration * delta)
+	var steering_force = desired_direction*speed - velocity
+	velocity = velocity  + (steering_force * STEERING_FORCE)
 	
 	update_health()
 	updateAnimation()
@@ -61,6 +78,12 @@ func _physics_process(delta):
 	if can_see_player:
 		gun.pointGun(game.player.global_position, false)
 	move_and_slide()
+
+func update_velocity():
+	var moveDirection =  desired_direction - position
+	moveDirection = moveDirection.normalized()
+	velocity = moveDirection * speed
+
 
 func makePath():
 	navigation.target_position = game.player.global_position
@@ -133,4 +156,5 @@ func _on_shots_fired(loudness: int):
 		is_agro = true
 	
 
-	
+func _on_set_desired_direction(direction: Vector2):
+	desired_direction = direction
