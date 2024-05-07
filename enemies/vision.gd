@@ -11,7 +11,7 @@ var inVision = false;
 var desired_direction = Vector2.ZERO
 
 func _ready():
-	add_raycasts(30, -30, 6, 100, pivot_point, vision_raycasts)
+	add_raycasts(30, -30, 6, 200, pivot_point, vision_raycasts)
 	add_raycasts(90, 360 + 90, 8, 30, movement, danger_raycasts)
 	add_directions()
 	

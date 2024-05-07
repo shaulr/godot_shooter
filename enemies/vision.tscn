@@ -9,12 +9,11 @@ script = ExtResource("1_1p31t")
 [node name="pivot_point" type="Marker2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="pivot_point"]
-position = Vector2(56, 0)
+position = Vector2(120, 0)
 color = Color(1, 1, 0, 1)
 energy = 0.63
 shadow_enabled = true
 texture = ExtResource("1_iy38r")
-texture_scale = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
