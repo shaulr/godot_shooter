@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://nb4y328svfk2"]
+[gd_scene load_steps=5 format=3 uid="uid://nb4y328svfk2"]
 
 [ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="1_u5yrl"]
 [ext_resource type="Script" path="res://enemies/statemachine/patrolling.gd" id="2_455cx"]
+[ext_resource type="Script" path="res://enemies/statemachine/investigate.gd" id="3_1l2il"]
+[ext_resource type="Script" path="res://enemies/statemachine/chase.gd" id="4_us68y"]
 
 [node name="Statemachine" type="Node"]
 script = ExtResource("1_u5yrl")
 
 [node name="patrolling" type="Node" parent="."]
 script = ExtResource("2_455cx")
+
+[node name="investigate" type="Node" parent="."]
+script = ExtResource("3_1l2il")
+
+[node name="chase" type="Node" parent="."]
+script = ExtResource("4_us68y")

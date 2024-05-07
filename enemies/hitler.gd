@@ -22,7 +22,7 @@ var is_agro = false
 var lastDirection = "down"
 var desired_direction = Vector2.ZERO
 @export var limit = 0.5
-
+@onready var fsm = $Statemachine
 func _ready(): 
 	game.player.gun.shooting_sound.connect(_on_shots_fired.bind())
 	gun.gun_agros_enemies(true)
@@ -53,15 +53,6 @@ func pointVision():
 func get_direction() -> String:
 	return lastDirection
 
-#func get_desired_direction() -> Vector2:
-	#var direction = Vector2.ZERO
-	#direction = navigation.get_next_path_position() - global_position
-	#direction = direction.normalized()
-	#return direction
-
-#func set_desired_vector(desired: Vector2):
-	#desired_direction = desired
-
 func _physics_process(delta):
 	if isDead: return
 	#var direction = Vector2.ZERO
@@ -83,7 +74,6 @@ func update_velocity():
 	var moveDirection =  desired_direction - position
 	moveDirection = moveDirection.normalized()
 	velocity = moveDirection * speed
-
 
 func makePath():
 	navigation.target_position = game.player.global_position
@@ -136,6 +126,8 @@ func _on_vision_is_visible(is_visible: bool):
 		can_see_player = true
 		gun.press_trigger()
 		is_agro = true
+		if fsm.get_current_state() != "chase":
+			fsm.change_to("chase")
 	else:
 		can_see_player = false
 		gun.release_trigger()
@@ -151,10 +143,14 @@ func sum_navpath(arr: Array):
 	return result
 
 func _on_shots_fired(loudness: int):
+	navigation.get_next_path_position()
 	var navigation_distance = sum_navpath(navigation.get_current_navigation_path())
 	if navigation_distance != 0 and navigation_distance <= loudness:
-		is_agro = true
+		fsm.change_to("investigate")
 	
-
 func _on_set_desired_direction(direction: Vector2):
 	desired_direction = direction
+
+func _on_investigation_location_reached():
+	fsm.change_to("patrolling")
+

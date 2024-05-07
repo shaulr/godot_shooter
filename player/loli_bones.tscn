@@ -852,7 +852,7 @@ bone_angle = -164.323
 [node name="legLowerL" type="Bone2D" parent="Skeleton2D/torso/legUpperL"]
 position = Vector2(-27.0225, -6.91282)
 rotation = -3.17507
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.999993, 0.999993)
 rest = Transform2D(-0.938112, -0.346332, 0.346332, -0.938112, -29.9105, -8.68127)
 
 [node name="legUpperR" type="Bone2D" parent="Skeleton2D/torso"]
@@ -867,5 +867,5 @@ bone_angle = 0.0
 [node name="legLowerR" type="Bone2D" parent="Skeleton2D/torso/legUpperR"]
 position = Vector2(32.6863, 0.778029)
 rotation = -0.0225133
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.999993, 0.999993)
 rest = Transform2D(0.999802, -0.019874, 0.019874, 0.999802, 29.1701, -2.47117)
