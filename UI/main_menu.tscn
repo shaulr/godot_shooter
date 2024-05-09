@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_t0gcb"]
 [ext_resource type="Theme" uid="uid://cx2oiw205t1xm" path="res://UI/partisan_theme.tres" id="1_wtb0y"]
 [ext_resource type="Texture2D" uid="uid://csriqcjmo12gg" path="res://art/osmi-mart.jpg" id="3_ow8et"]
-[ext_resource type="AudioStream" uid="uid://cwrqmv2o60y7d" path="res://art/music/Po Šumama i Gorama   Instrumental   Partizanska.mp3" id="4_vuvkm"]
+[ext_resource type="AudioStream" uid="uid://cwrqmv2o60y7d" path="res://art/music/songs/Po Šumama i Gorama   Instrumental   Partizanska.mp3" id="4_vuvkm"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -72,3 +72,4 @@ volume_db = 2.713
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -13,6 +13,7 @@ func _ready():
 	center = Vector2(visible_rect.x/2, visible_rect.y/2)
 	audio_player.play()
 #
+
 #func _process(delta):
 	#var tween = node.create_tween()
 	#var offset = (center - get_global_mouse_position())* 0.1
@@ -22,3 +23,15 @@ func _ready():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+func play_random_song():
+	var music_list = []
+	game.get_all_files("res://art/music/", "mp3", music_list)
+	var current_song = music_list[randi()%music_list.size()]
+	audio_player.set_stream(load(current_song))
+	audio_player.play()
+	
+func _on_audio_stream_player_finished():
+	play_random_song()
+
+		
