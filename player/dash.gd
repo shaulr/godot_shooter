@@ -11,7 +11,7 @@ var dash_range = 100
 var skull_and_bones: Sprite2D
 
 func _ready():
-	skull_and_bones =  Sprite2D.new()
+	skull_and_bones = Sprite2D.new()
 	skull_and_bones.texture = skull_and_bones_texture
 	skull_and_bones.visible = false
 	skull_and_bones.scale = Vector2(0.3, 0.3)

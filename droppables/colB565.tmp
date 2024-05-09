@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcuh77qrh6qpg"]
+
+[ext_resource type="Script" path="res://droppables/collectible.gd" id="1_v2fm7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xd4a7"]
+resource_local_to_scene = true
+
+[node name="collectible" type="Area2D"]
+script = ExtResource("1_v2fm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xd4a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

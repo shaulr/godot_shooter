@@ -23,6 +23,9 @@ var lastDirection = "down"
 var desired_direction = Vector2.ZERO
 @export var limit = 0.5
 @onready var fsm = $Statemachine
+@onready var health_type = preload("res://droppables/health.tscn")
+var rng = RandomNumberGenerator.new()
+
 func _ready(): 
 	game.player.gun.shooting_sound.connect(_on_shots_fired.bind())
 	gun.gun_agros_enemies(true)
@@ -95,16 +98,24 @@ func getIsDead() -> bool:
 	
 func die():
 	if !isDead: game.mob_killed()
+
 	$CollisionShape2D.disabled = true
 	$hitbox/CollisionShape2D.disabled = true
 	update_health()
 	isDead = true
+	drop_loot()
 	walk.visible = false
 	death.visible = true
 	deathAudio.play()
 	animations.play("death")
 	await animations.animation_finished
 	queue_free()
+	
+func drop_loot():
+	var health = health_type.instantiate()
+	if rng.randf() <= health.get_drop_chance():
+		game.current_level.add_child(health)
+		health.global_position = global_position
 	
 func update_health():
 	healthbar.value = current_health
@@ -122,7 +133,7 @@ func knockback(enemyVeocity: Vector2):
 	move_and_slide()
 	
 func _on_vision_is_visible(is_visible: bool):
-	if is_visible:
+	if is_visible and !isDead:
 		can_see_player = true
 		gun.press_trigger()
 		is_agro = true

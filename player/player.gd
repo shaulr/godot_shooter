@@ -96,6 +96,13 @@ func restart_application():
 	get_tree().reload_current_scene()
 	
 func _on_hurtbox_area_entered(area):
+	if area.has_method("collect"):
+		if current_health < MAX_HEALTH and area.has_method("get_healing"):
+			current_health = current_health + area.get_healing()
+			if current_health > MAX_HEALTH:
+				current_health = MAX_HEALTH
+			area.collect()
+		
 	if isStabbing:
 		if area.get_parent().has_method("get_direction"):
 			var body_dir = area.get_parent().get_direction()
