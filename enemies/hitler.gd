@@ -69,7 +69,7 @@ func _physics_process(delta):
 	update_health()
 	updateAnimation()
 	pointVision()
-	if can_see_player:
+	if can_see_player and game.player:
 		gun.pointGun(game.player.global_position, false)
 	move_and_slide()
 
@@ -79,7 +79,8 @@ func update_velocity():
 	velocity = moveDirection * speed
 
 func makePath():
-	navigation.target_position = game.player.global_position
+	if game.player:
+		navigation.target_position = game.player.global_position
 
 func _on_timer_timeout():
 	makePath()

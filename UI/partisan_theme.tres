@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cx2oiw205t1xm"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cx2oiw205t1xm"]
 
 [ext_resource type="FontFile" uid="uid://d2wbfce7nhnai" path="res://UI/fonts/Stencil One/Stencil One.otf" id="1_bxx5i"]
+[ext_resource type="FontFile" uid="uid://c7qd2kydks24" path="res://UI/fonts/jmh_typewriter/JMH Typewriter-Black.otf" id="2_31dcg"]
+[ext_resource type="FontFile" uid="uid://fgdc1rvnxves" path="res://UI/fonts/jmh_typewriter/JMH Typewriter-Thin.otf" id="2_w0wd6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4laby"]
 
@@ -22,7 +24,7 @@
 
 [resource]
 default_font = ExtResource("1_bxx5i")
-Button/colors/font_color = Color(0.87451, 0, 0, 1)
+Button/colors/font_color = Color(1, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.87451, 0.254902, 0.266667, 0.858824)
 Button/colors/font_focus_color = Color(0.52549, 0, 0, 1)
 Button/colors/font_hover_color = Color(0.52549, 0, 0, 1)
@@ -47,3 +49,18 @@ Label/constants/shadow_offset_x = 5
 Label/constants/shadow_offset_y = 5
 Label/font_sizes/font_size = 128
 Label/fonts/font = ExtResource("1_bxx5i")
+MediumButton/base_type = &"Button"
+MediumButton/colors/font_color = Color(1, 0.176471, 0.129412, 1)
+MediumButton/colors/font_focus_color = Color(0.788235, 0, 0, 1)
+MediumButton/colors/font_hover_color = Color(0.584314, 0, 0, 1)
+MediumButton/colors/font_hover_pressed_color = Color(0.584314, 0, 0, 1)
+MediumButton/font_sizes/font_size = 16
+MediumButton/fonts/font = ExtResource("2_w0wd6")
+MediumLabel/base_type = &"Label"
+MediumLabel/colors/font_color = Color(0, 0, 0, 1)
+MediumLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
+MediumLabel/constants/shadow_offset_x = 0
+MediumLabel/constants/shadow_offset_y = 0
+MediumLabel/constants/shadow_outline_size = 0
+MediumLabel/font_sizes/font_size = 32
+MediumLabel/fonts/font = ExtResource("2_31dcg")

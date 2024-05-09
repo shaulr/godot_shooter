@@ -18,6 +18,7 @@ var current_health = MAX_HEALTH
 @onready var sprite = $Sprite2D
 var hurting = false
 var isStabbing = false
+var isDead = false 
 
 func _input(event):
 	if event.is_action_pressed("stab"):
@@ -50,6 +51,7 @@ func take_damage(damage: int):
 	hurting = false
 	
 func _physics_process(delta):
+	if isDead: return
 	gun.pointGun(get_viewport().get_mouse_position(), true)
 	update_health()
 	updateAnimation()
@@ -86,7 +88,9 @@ func update_health():
 		die()
 		
 func die():
-	restart_application()
+	isDead = true
+	game.game_over()
+	
 	
 func _ready():
 	game.player = self

@@ -9,7 +9,9 @@ var mapHeight
 const MAX_MOBS = 100
 const INITIAL_MOBS = 4
 var mobsKilled = 0
-
+@onready var game_over_node = preload("res://world/game_over.tscn")
+@onready var game_menu = "res://UI/main_menu.tscn"
+var music_player = AudioStreamPlayer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
@@ -22,23 +24,36 @@ func _process(delta):
 func load_level(level: String):
 	get_tree().change_scene_to_file(level)
 
-		
-func spawn_mob():
-	var mob = preload("res://enemies/hitler.tscn").instantiate()
-	mob.global_position.x = mapWidth*randf()
-	mob.global_position.y = mapHeight*randf()
-	current_level.add_child(mob)
+
+func play_random_song():
+	var music_list = []
+	get_all_files("res://art/music/songs/", "mp3", music_list)
+	var current_song = music_list[randi()%music_list.size()]
+	music_player.set_stream(load(current_song))
+	music_player.play()		
+
+func play_random_sad_song():
+	var music_list = []
+	get_all_files("res://art/music/death/", "mp3", music_list)
+	var current_song = music_list[randi()%music_list.size()]
+	music_player.set_stream(load(current_song))
+	music_player.play()		
 
 func mob_killed():
 	mobsKilled += 1
 	if mobsKilled % 5 == 0:
 		player.doing_good()
 	if mobsKilled < MAX_MOBS:
-		spawn_mob()
+		if current_level.has_method("spawn_mob"):
+			current_level.spawn_mob()
 	else:
 		mobsKilled = 0
 		get_tree().reload_current_scene()
-
+		
+func game_over():
+	var game_over = game_over_node.instantiate()
+	current_level.add_child(game_over)
+	
 func get_all_files(path: String, file_ext := "", files := []):
 	var dir = DirAccess.open(path)
 	if DirAccess.get_open_error() == OK:
@@ -63,6 +78,7 @@ func level_loaded(level: Node, map_size):
 	mapWidth = map_size.x
 	mapHeight = map_size.y
 	current_level = level
+	if music_player == null:
+		music_player = AudioStreamPlayer.new()
+	level.add_child(music_player)
 
-	for i in range(INITIAL_MOBS):
-		spawn_mob()
