@@ -16,7 +16,7 @@ func _ready():
 	skull_and_bones.visible = false
 	skull_and_bones.scale = Vector2(0.3, 0.3)
 	skull_and_bones.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
-	game.current_level.add_child(skull_and_bones)
+	player.add_child(skull_and_bones)
 	
 func dash():
 	inDash = true

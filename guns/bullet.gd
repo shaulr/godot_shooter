@@ -1,6 +1,6 @@
 extends Area2D
 @export var speed = 300.0
-@export var range = 1200
+@export var range = 200
 var travelled_distance = 0
 @export var lastVelocity: Vector2
 var hasHit = false
@@ -18,12 +18,16 @@ func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
 	var velocity = direction * speed * delta
 	position += velocity
-	travelled_distance = speed * delta
+	travelled_distance += speed * delta
 	if travelled_distance > range:
+		hasHit = true
+		$bulletEffectPlayer.play("boom")
+		await $bulletEffectPlayer.animation_finished
 		queue_free()
 	lastVelocity = velocity
 
 func _on_body_entered(body):
+	hasHit = true
 	if body.has_method("knockback"):
 		body.knockback(lastVelocity/4)
 	if body.has_method("take_damage"):
@@ -35,7 +39,7 @@ func _on_body_entered(body):
 	else:
 		sprite.visible = false
 		$bulletEffectPlayer.play("boom")
-	hasHit = true
+
 	await $bulletEffectPlayer.animation_finished
 	
 

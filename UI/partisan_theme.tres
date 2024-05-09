@@ -1,0 +1,49 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cx2oiw205t1xm"]
+
+[ext_resource type="FontFile" uid="uid://d2wbfce7nhnai" path="res://UI/fonts/Stencil One/Stencil One.otf" id="1_bxx5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4laby"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv2tq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwr4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7qct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hpitk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjrwq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7g71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lahgh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abtq3"]
+
+[resource]
+default_font = ExtResource("1_bxx5i")
+Button/colors/font_color = Color(0.87451, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.254902, 0.266667, 0.858824)
+Button/colors/font_focus_color = Color(0.52549, 0, 0, 1)
+Button/colors/font_hover_color = Color(0.52549, 0, 0, 1)
+Button/font_sizes/font_size = 64
+Button/styles/disabled = SubResource("StyleBoxEmpty_4laby")
+Button/styles/focus = SubResource("StyleBoxEmpty_bv2tq")
+Button/styles/hover = SubResource("StyleBoxEmpty_xwr4u")
+Button/styles/normal = SubResource("StyleBoxEmpty_i7qct")
+Button/styles/pressed = SubResource("StyleBoxEmpty_hpitk")
+Fonts/base_type = &"Button"
+Fonts/colors/font_color = Color(1, 0, 0, 1)
+Fonts/colors/font_focus_color = Color(0.858824, 0, 0, 1)
+Fonts/colors/font_hover_color = Color(0.858824, 0, 0, 1)
+Fonts/fonts/font = ExtResource("1_bxx5i")
+Fonts/styles/focus = SubResource("StyleBoxEmpty_sjrwq")
+Fonts/styles/hover = SubResource("StyleBoxEmpty_s7g71")
+Fonts/styles/normal = SubResource("StyleBoxEmpty_lahgh")
+Fonts/styles/pressed = SubResource("StyleBoxEmpty_abtq3")
+Label/colors/font_color = Color(1, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0.380392, 0.176471, 0.176471, 0.996078)
+Label/constants/shadow_offset_x = 5
+Label/constants/shadow_offset_y = 5
+Label/font_sizes/font_size = 128
+Label/fonts/font = ExtResource("1_bxx5i")

@@ -93,7 +93,7 @@ func _ready():
 	gun.gun_agros_enemies(true)
 	
 func restart_application():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 	
 func _on_hurtbox_area_entered(area):
 	if area.has_method("collect"):

@@ -7,21 +7,21 @@ extends Node
 var mapWidth
 var mapHeight
 const MAX_MOBS = 100
-const INITIAL_MOBS = 1
+const INITIAL_MOBS = 4
 var mobsKilled = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
-	init()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
-func init():
-	for i in range(INITIAL_MOBS):
-		spawn_mob()
+func load_level(level: String):
+	get_tree().change_scene_to_file(level)
+
 		
 func spawn_mob():
 	var mob = preload("res://enemies/hitler.tscn").instantiate()
@@ -43,4 +43,6 @@ func level_loaded(level: Node, map_size):
 	mapWidth = map_size.x
 	mapHeight = map_size.y
 	current_level = level
-	init()
+
+	for i in range(INITIAL_MOBS):
+		spawn_mob()
