@@ -7,8 +7,11 @@ var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
 @onready var game = $"/root/Game"
 @onready var camera = $followcam
-const MAX_HEALTH = 100
-var current_health = MAX_HEALTH
+@export var MAX_HEALTH = 100
+
+@onready var current_health = MAX_HEALTH
+
+
 @export var knocbackPower = 1000
 @onready var audioPlayer = $AudioStreamPlayer2D
 @onready var effectsPlayer = $effects
@@ -89,6 +92,8 @@ func update_health():
 		
 func die():
 	isDead = true
+
+	current_health = MAX_HEALTH
 	game.game_over()
 	
 	

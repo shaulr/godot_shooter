@@ -11,6 +11,8 @@ const INITIAL_MOBS = 4
 var mobsKilled = 0
 @onready var game_over_node = preload("res://world/game_over.tscn")
 @onready var game_menu = "res://UI/main_menu.tscn"
+@export var LIVES = 3
+var lives = LIVES
 var music_player = AudioStreamPlayer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,6 +55,8 @@ func mob_killed():
 func game_over():
 	var game_over = game_over_node.instantiate()
 	current_level.add_child(game_over)
+	get_tree().paused = true
+	lives -= 1
 	
 func get_all_files(path: String, file_ext := "", files := []):
 	var dir = DirAccess.open(path)
@@ -80,5 +84,6 @@ func level_loaded(level: Node, map_size):
 	current_level = level
 	if music_player == null:
 		music_player = AudioStreamPlayer.new()
+		music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	level.add_child(music_player)
 

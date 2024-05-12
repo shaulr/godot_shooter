@@ -1,13 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhmuoi7bmr3xr"]
+[gd_scene load_steps=20 format=3 uid="uid://bhmuoi7bmr3xr"]
 
 [ext_resource type="Texture2D" uid="uid://b07qgee3rqngd" path="res://art/TilesetFloor.png" id="1_g4las"]
 [ext_resource type="Script" path="res://world/test_level.gd" id="1_oemfp"]
 [ext_resource type="Texture2D" uid="uid://cvsqkluh7b47u" path="res://art/TilesetNature.png" id="2_63o0t"]
+[ext_resource type="PackedScene" uid="uid://bfm6rti8s6iak" path="res://UI/hearts.tscn" id="2_w4u7s"]
+[ext_resource type="Script" path="res://world/CanvasLayer.gd" id="2_xddks"]
 [ext_resource type="PackedScene" uid="uid://qbvh6hu3w3wb" path="res://player/player.tscn" id="3_mo5us"]
+[ext_resource type="Script" path="res://UI/hearts.gd" id="4_f1ku0"]
 [ext_resource type="Texture2D" uid="uid://ck7h3pnn3dqvv" path="res://art/TilesetHouse.png" id="4_fu5p6"]
 [ext_resource type="Script" path="res://world/followcam.gd" id="4_hff61"]
 [ext_resource type="PackedScene" uid="uid://cs621je87okau" path="res://droppables/health.tscn" id="5_o37f0"]
 [ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/hitler.tscn" id="7_6s27i"]
+[ext_resource type="PackedScene" uid="uid://dhgcoffq8l2yx" path="res://UI/inventory.tscn" id="9_7qu50"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tqiow"]
 vertices = PackedVector2Array(270, 528, 1137, 555, 5, 555, 119, 528, 398, 304, 1137, 32, 270, 492, 254, 476, 288, 304, 254, 492, 398, 224, 190, 448, 228, 288, 288, 272, 232, 476, 228, 256, 247, 256, 229, 112, 230, 112, 229, 128, 230, 128, 229, 144, 230, 144, 229, 160, 230, 160, 229, 176, 230, 176, 229, 192, 230, 192, 229, 208, 167, 256, 230, 208, 229, 224, 311, 256, 374, 256, 373, 272, 165, 304, 166, 304, 165, 320, 78, 332, 166, 320, 165, 336, 166, 336, 165, 352, 166, 352, 165, 368, 94, 368, 166, 368, 165, 384, 166, 384, 165, 400, 166, 400, 165, 416, 160, 416, 48, 400, 70, 400, 69, 416, 70, 416, 69, 432, 70, 432, 69, 448, 71, 464, 86, 464, 85, 480, 334, 224, 334, 208, 279, 208, 279, 224, 270, 224, 270, 208, 254, 208, 254, 76, 231, 224, 231, 240, 247, 240, 302, 256, 302, 240, 311, 240, 190, 288, 230, 496, 142, 496, 142, 480, 160, 448, 126, 480, 126, 464, 110, 464, 110, 432, 94, 432, 78, 368, 71, 448, 87, 480, 87, 496, 103, 496, 103, 512, 119, 512, 56, 332, 53, 368, 48, 368, 7, 32, 167, 277, 232, 76)
@@ -5968,6 +5972,33 @@ texture_filter = 1
 position = Vector2(5, -23)
 script = ExtResource("1_oemfp")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("2_xddks")
+
+[node name="hearts" parent="CanvasLayer" instance=ExtResource("2_w4u7s")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_right = 0.0
+grow_horizontal = 0
+script = ExtResource("4_f1ku0")
+
+[node name="inventory" parent="CanvasLayer" instance=ExtResource("9_7qu50")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -41.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_tqiow")
 
@@ -5996,6 +6027,7 @@ position = Vector2(62, 57)
 
 [node name="followcam" type="Camera2D" parent="player" node_paths=PackedStringArray("tilemap")]
 position = Vector2(80, 24)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 480
@@ -6014,3 +6046,6 @@ vertical_alignment = 1
 
 [node name="hitler" parent="." instance=ExtResource("7_6s27i")]
 position = Vector2(312, 137)
+
+[connection signal="inventory_closed" from="CanvasLayer/inventory" to="." method="_on_inventory_inventory_closed"]
+[connection signal="inventory_opened" from="CanvasLayer/inventory" to="." method="_on_inventory_inventory_opened"]

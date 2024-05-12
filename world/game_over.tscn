@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://cx2oiw205t1xm" path="res://UI/partisan_theme.tres" id="1_uaurc"]
 
 [node name="game_over" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_s1w6g")
 
 [node name="you_died" type="Label" parent="."]
@@ -31,7 +32,7 @@ anchor_bottom = 0.5
 offset_left = -509.0
 offset_top = 87.0
 offset_right = 513.0
-offset_bottom = 128.0
+offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -39,6 +40,7 @@ theme = ExtResource("1_uaurc")
 theme_type_variation = &"MediumLabel"
 text = "Another defat for the proletariat..."
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 7
