@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=18 format=3 uid="uid://dwy78cxjty42m"]
+
+[ext_resource type="Script" path="res://inventory/inventory_slot.gd" id="2_og1t1"]
+[ext_resource type="Script" path="res://inventory/inventory.gd" id="3_tq1ac"]
+
+[sub_resource type="Resource" id="Resource_fp57c"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_68mdh"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_7tda0"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_6w54d"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_qkx8q"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_m12oc"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_a5nb0"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_fyp4o"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_c40on"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ryqli"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ld086"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_fu8mo"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_py8d0"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_7aoow"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_otocs"]
+script = ExtResource("2_og1t1")
+amount = 0
+
+[resource]
+script = ExtResource("3_tq1ac")
+slots = Array[ExtResource("2_og1t1")]([SubResource("Resource_fp57c"), SubResource("Resource_68mdh"), SubResource("Resource_7tda0"), SubResource("Resource_6w54d"), SubResource("Resource_qkx8q"), SubResource("Resource_m12oc"), SubResource("Resource_a5nb0"), SubResource("Resource_fyp4o"), SubResource("Resource_c40on"), SubResource("Resource_ryqli"), SubResource("Resource_ld086"), SubResource("Resource_fu8mo"), SubResource("Resource_py8d0"), SubResource("Resource_7aoow"), SubResource("Resource_otocs")])

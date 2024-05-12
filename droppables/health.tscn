@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs621je87okau"]
+[gd_scene load_steps=5 format=3 uid="uid://cs621je87okau"]
 
 [ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="1_drjmg"]
 [ext_resource type="PackedScene" uid="uid://dcuh77qrh6qpg" path="res://droppables/collectible.tscn" id="1_mbuj1"]
+[ext_resource type="Resource" uid="uid://3hf8rd72vmb8" path="res://inventory/inventory_items/first_aid.tres" id="2_e86re"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htah4"]
 resource_local_to_scene = true
@@ -9,6 +10,7 @@ size = Vector2(12, 12)
 
 [node name="health" instance=ExtResource("1_mbuj1")]
 healing = 20.0
+item_res = ExtResource("2_e86re")
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_htah4")

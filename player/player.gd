@@ -19,6 +19,7 @@ var isAttacking: bool = false
 @onready var gun = $gun
 @onready var knife = $knife
 @onready var sprite = $Sprite2D
+@export var inventory: Inventory
 var hurting = false
 var isStabbing = false
 var isDead = false 
@@ -110,8 +111,9 @@ func _on_hurtbox_area_entered(area):
 			current_health = current_health + area.get_healing()
 			if current_health > MAX_HEALTH:
 				current_health = MAX_HEALTH
-			area.collect()
-		
+			area.collect(inventory)
+		else:
+			area.collect(inventory)
 	if isStabbing:
 		if area.get_parent().has_method("get_direction"):
 			var body_dir = area.get_parent().get_direction()
