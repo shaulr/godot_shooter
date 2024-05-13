@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=18 format=3 uid="uid://dwy78cxjty42m"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=20 format=3 uid="uid://dwy78cxjty42m"]
 
 [ext_resource type="Script" path="res://inventory/inventory_slot.gd" id="2_og1t1"]
 [ext_resource type="Script" path="res://inventory/inventory.gd" id="3_tq1ac"]
+[ext_resource type="Resource" uid="uid://3hf8rd72vmb8" path="res://inventory/inventory_items/first_aid.tres" id="3_wr2mr"]
+[ext_resource type="Resource" uid="uid://b1cxm2r5860ek" path="res://inventory/inventory_items/mp40.tres" id="4_d4iue"]
 
 [sub_resource type="Resource" id="Resource_fp57c"]
 script = ExtResource("2_og1t1")
@@ -9,7 +11,8 @@ amount = 0
 
 [sub_resource type="Resource" id="Resource_68mdh"]
 script = ExtResource("2_og1t1")
-amount = 0
+item = ExtResource("3_wr2mr")
+amount = 4
 
 [sub_resource type="Resource" id="Resource_7tda0"]
 script = ExtResource("2_og1t1")
@@ -21,7 +24,8 @@ amount = 0
 
 [sub_resource type="Resource" id="Resource_qkx8q"]
 script = ExtResource("2_og1t1")
-amount = 0
+item = ExtResource("3_wr2mr")
+amount = 2
 
 [sub_resource type="Resource" id="Resource_m12oc"]
 script = ExtResource("2_og1t1")
@@ -33,7 +37,8 @@ amount = 0
 
 [sub_resource type="Resource" id="Resource_fyp4o"]
 script = ExtResource("2_og1t1")
-amount = 0
+item = ExtResource("4_d4iue")
+amount = 3
 
 [sub_resource type="Resource" id="Resource_c40on"]
 script = ExtResource("2_og1t1")
@@ -41,7 +46,8 @@ amount = 0
 
 [sub_resource type="Resource" id="Resource_ryqli"]
 script = ExtResource("2_og1t1")
-amount = 0
+item = ExtResource("4_d4iue")
+amount = 2
 
 [sub_resource type="Resource" id="Resource_ld086"]
 script = ExtResource("2_og1t1")

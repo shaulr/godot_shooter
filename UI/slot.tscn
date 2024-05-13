@@ -1,10 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://82n8p8da2gct"]
+[gd_scene load_steps=3 format=3 uid="uid://82n8p8da2gct"]
 
 [ext_resource type="Script" path="res://UI/slot.gd" id="1_ffpj3"]
 [ext_resource type="Texture2D" uid="uid://cdxxgoowhs8fs" path="res://art/inventorySlot.png" id="1_xwvri"]
-[ext_resource type="Theme" uid="uid://cx2oiw205t1xm" path="res://UI/partisan_theme.tres" id="3_ofd13"]
 
-[node name="slot" type="Panel"]
+[node name="slot" type="Button"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 20)
 offset_right = 20.0
@@ -22,19 +21,3 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
 offset_right = 20.0
 offset_bottom = 20.0
-
-[node name="Panel" type="Panel" parent="CenterContainer"]
-layout_mode = 2
-
-[node name="item" type="Sprite2D" parent="CenterContainer/Panel"]
-texture_filter = 1
-
-[node name="amount_label" type="Label" parent="CenterContainer/Panel"]
-texture_filter = 1
-layout_mode = 0
-offset_right = 9.0
-offset_bottom = 11.0
-theme = ExtResource("3_ofd13")
-theme_type_variation = &"TinyLabel"
-text = "99"
-horizontal_alignment = 2

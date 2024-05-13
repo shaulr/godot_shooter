@@ -112,8 +112,10 @@ func _on_hurtbox_area_entered(area):
 			if current_health > MAX_HEALTH:
 				current_health = MAX_HEALTH
 			area.collect(inventory)
+			return
 		else:
 			area.collect(inventory)
+			return
 	if isStabbing:
 		if area.get_parent().has_method("get_direction"):
 			var body_dir = area.get_parent().get_direction()
