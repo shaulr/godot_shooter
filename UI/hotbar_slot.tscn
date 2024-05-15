@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceqn0ue5nl36k"]
+
+[ext_resource type="Script" path="res://UI/hotbar_slot.gd" id="1_etv8m"]
+[ext_resource type="Texture2D" uid="uid://cdxxgoowhs8fs" path="res://art/inventorySlot.png" id="2_umg0m"]
+[ext_resource type="PackedScene" uid="uid://cwvqbd13li72k" path="res://UI/item_stack.tscn" id="3_uoowy"]
+
+[node name="hotbar_slot" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("1_etv8m")
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_umg0m")
+centered = false
+vframes = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Panel" parent="CenterContainer" instance=ExtResource("3_uoowy")]
+layout_mode = 2
