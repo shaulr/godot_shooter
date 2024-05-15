@@ -34,7 +34,7 @@ func give_mob_investigate_direction():
 	if fsm.mob.global_position.distance_to(investigation_position) < fsm.mob.limit:
 		emit_signal("investigation_location_reached")
 	emit_signal("set_desired_direction", desired_direction)
-	print("desired direction (%f, %f)" % [desired_direction.x, desired_direction.y])
+
 
 func exit(next_state):
 	fsm.change_to(next_state)

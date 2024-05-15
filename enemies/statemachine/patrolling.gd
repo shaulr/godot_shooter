@@ -26,7 +26,7 @@ func give_mob_patrol_direction():
 	var patrol_towards = (patrol_position + random_vector())
 	var desired_direction = (patrol_towards - fsm.mob.global_position).normalized()
 	emit_signal("set_desired_direction", desired_direction)
-	print("desired direction (%f, %f)" % [desired_direction.x, desired_direction.y])
+
 	
 func random_vector() -> Vector2:
 	return Vector2(randf_range(-patrol_range, patrol_range), randf_range(-patrol_range, patrol_range))
