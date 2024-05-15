@@ -236,7 +236,7 @@ texture = ExtResource("2_nxe2a")
 
 [node name="shootingPoint" type="Marker2D" parent="weaponPivot/mp-40"]
 unique_name_in_owner = true
-position = Vector2(199.986, -60.0476)
+position = Vector2(219.986, -60.0524)
 
 [node name="Sprite2D" type="Sprite2D" parent="weaponPivot/mp-40/shootingPoint"]
 visible = false
