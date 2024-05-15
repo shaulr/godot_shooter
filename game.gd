@@ -1,8 +1,8 @@
 extends Node
 
 @onready var current_level = $"."
-@onready var player = $player
-@onready var camera = $player/followcam
+var player
+var camera
 
 var mapWidth
 var mapHeight

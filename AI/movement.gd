@@ -21,11 +21,10 @@ func _ready():
 		raycast.exclude_parent = true
 		raycast.collide_with_bodies = true
 		raycast.collide_with_areas = false
-		parent.add_child(raycast)
+		parent.add_child.call_deferred(raycast)
 		raycasts.append(raycast)
 
 
-func _on_timer_timeout():
-	for raycast in raycasts:
-		if raycast.is_colliding():
-			print_debug("collided at " + raycast.get_collider().global_position)
+#func _on_timer_timeout():
+	#for raycast in raycasts:
+		#if raycast.is_colliding():

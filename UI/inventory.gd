@@ -3,7 +3,9 @@ var is_open: bool = false
 signal inventory_opened 
 signal inventory_closed
 @onready var inventory: Inventory = preload("res://inventory/inventory.tres")
-@onready var slots: Array = $NinePatchRect/GridContainer.get_children()
+
+@onready var hotbar_slots: Array = $NinePatchRect/HBoxContainer.get_children()
+@onready var slots: Array = hotbar_slots + $NinePatchRect/GridContainer.get_children()
 @onready var item_stack_gui_class = preload("res://UI/item_stack.tscn")
 
 var item_in_hand: ItemStack
@@ -16,7 +18,10 @@ func update():
 	for i in range(min(inventory.slots.size(), slots.size())):
 		var inventory_slot: InventorySlot = inventory.slots[i]
 		
-		if !inventory_slot.item: continue
+		if !inventory_slot.item: 
+			slots[i].clear
+			continue
+			
 		var item_stack_gui: ItemStack = slots[i].item_stack
 		if !item_stack_gui: 
 			item_stack_gui = item_stack_gui_class.instantiate()

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 @onready var animations = $AnimationPlayer
 
 const SPEED = 1.0
@@ -54,6 +54,14 @@ func take_damage(damage: int):
 	effectsPlayer.play("RESET")
 	hurting = false
 	
+func heal(amount: int):
+	current_health += amount
+	current_health = min(current_health, MAX_HEALTH)
+	update_health()
+	
+func use_item(item: InventoryItem):
+	item.use(self)
+	
 func _physics_process(delta):
 	if isDead: return
 	gun.pointGun(get_viewport().get_mouse_position(), true)
@@ -99,6 +107,7 @@ func die():
 	
 	
 func _ready():
+	inventory.use_item.connect(use_item)
 	game.player = self
 	gun.gun_agros_enemies(true)
 	

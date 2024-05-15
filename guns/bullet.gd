@@ -27,6 +27,7 @@ func _physics_process(delta):
 	lastVelocity = velocity
 
 func _on_body_entered(body):
+	if hasHit: return
 	hasHit = true
 	if body.has_method("knockback"):
 		body.knockback(lastVelocity/4)
@@ -35,12 +36,13 @@ func _on_body_entered(body):
 	if body.has_method("getIsDead"):
 		sprite.visible = false
 		$bulletEffectPlayer.play("splat")
-		if body.getIsDead(): return
+		if body.getIsDead(): 
+			queue_free()
+			return
 	else:
 		sprite.visible = false
 		$bulletEffectPlayer.play("boom")
 
 	await $bulletEffectPlayer.animation_finished
-	
-
 	queue_free()
+

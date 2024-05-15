@@ -7,6 +7,7 @@ extends Button
 
 var item_stack: ItemStack
 var index: int
+
 func insert(isg: ItemStack):
 	item_stack = isg
 	background.frame = 1
@@ -18,14 +19,20 @@ func insert(isg: ItemStack):
 	
 func take_item():
 	var item = item_stack
-	inventory.remove_slot(item_stack.inventory_slot)
-	center_container.remove_child(item_stack)
-	item_stack = null
 	background.frame = 0
+	inventory.remove_slot(item_stack.inventory_slot)
+	center_container.remove_child(item)
+	item_stack = null
 	return item
 
 func is_empty() -> bool:
-	return !item_stack
+	return !item_stack || !item_stack.item
+
+func clear():
+	if item_stack:
+		center_container.remove_child(item_stack)
+		item_stack = null
+	background.frame = 0
 	
 func scale():
 	var area_size = background.texture.get_size() * 3/4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhmuoi7bmr3xr"]
+[gd_scene load_steps=22 format=3 uid="uid://bhmuoi7bmr3xr"]
 
 [ext_resource type="Texture2D" uid="uid://b07qgee3rqngd" path="res://art/TilesetFloor.png" id="1_g4las"]
 [ext_resource type="Script" path="res://world/test_level.gd" id="1_oemfp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ck7h3pnn3dqvv" path="res://art/TilesetHouse.png" id="4_fu5p6"]
 [ext_resource type="Script" path="res://world/followcam.gd" id="4_hff61"]
 [ext_resource type="PackedScene" uid="uid://cs621je87okau" path="res://droppables/health.tscn" id="5_o37f0"]
+[ext_resource type="PackedScene" uid="uid://dttfrn41qpi0d" path="res://UI/hotbar.tscn" id="6_32yop"]
 [ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/hitler.tscn" id="7_6s27i"]
 [ext_resource type="PackedScene" uid="uid://dhgcoffq8l2yx" path="res://UI/inventory.tscn" id="9_7qu50"]
 [ext_resource type="PackedScene" uid="uid://dbrrs2ryyppx8" path="res://droppables/mp40.tscn" id="10_wnqc6"]
@@ -5999,6 +6000,19 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="hotbar" parent="CanvasLayer" instance=ExtResource("6_32yop")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -40.0
+offset_right = 58.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_tqiow")
