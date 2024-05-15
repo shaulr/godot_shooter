@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_biivu")
-health_increase = 100
+health_increase = 10
 max_amount_per_stack = 10
 name = "first_aid"
 texture = ExtResource("2_krsvu")
