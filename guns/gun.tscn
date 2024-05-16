@@ -220,6 +220,7 @@ _data = {
 }
 
 [node name="gun" type="Area2D"]
+y_sort_enabled = true
 rotation = 0.00023824
 script = ExtResource("1_beq65")
 
