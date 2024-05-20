@@ -226,7 +226,7 @@ z_index = 1
 z_as_relative = false
 y_sort_enabled = true
 texture_filter = 1
-collision_layer = 19
+collision_layer = 23
 collision_mask = 3
 script = ExtResource("1_cbln7")
 inventory = ExtResource("2_h4t14")
@@ -319,7 +319,7 @@ gradient = SubResource("Gradient_suwmn")
 position = Vector2(0, -8)
 
 [connection signal="draw" from="." to="." method="_on_draw"]
-[connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="hurttimer" to="." method="_on_hurttimer_timeout"]
 [connection signal="timeout" from="dash/Timer" to="dash" method="_on_timer_timeout"]

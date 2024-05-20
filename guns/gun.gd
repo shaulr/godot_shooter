@@ -5,7 +5,6 @@ var trigger_pressed = false;
 @onready var audioPlayer = $AudioStreamPlayer2D
 @onready var weaponPivot = $weaponPivot
 @onready var shootSound = "res://art/shoot1911.mp3"
-@onready var game = $"/root/Game"
 @onready var muzzleflash = $"weaponPivot/mp-40/shootingPoint/muzzleflashplayer"
 var gun_direction = "down"
 @onready var knocback_anim = $knockbackPlayer
@@ -24,10 +23,9 @@ func get_gun_rotation():
 	return rotation_degrees
 
 func pointGun(aimPos: Vector2, correct_for_camera: bool):
-
 	var cameraPos = Vector2.ZERO
-	if correct_for_camera:
-		var camera = game.player.camera
+	if correct_for_camera && Game.level_has_camera():
+		var camera = Game.current_level.camera
 		cameraPos = camera.get_screen_center_position() - get_viewport().get_visible_rect().size/2
 
 	var current_rotation = get_gun_rotation()

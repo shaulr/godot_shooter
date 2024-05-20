@@ -1,17 +1,16 @@
 extends CanvasLayer
-@onready var game = $"/root/Game"
 @onready var subtitle = $subtitle
 @onready var restart = $HBoxContainer/restart
 
 func _ready():
-	game.play_random_sad_song()
+	Game.play_random_sad_song()
 	subtitle.text = get_random_subtitle()
-	if game.lives == 0:
+	if Game.lives == 0:
 		restart.visible = false
 	
 func _on_menu_pressed():
 	get_tree().paused = false
-	game.load_level(game.game_menu)
+	Game.load_level(Game.game_menu)
 
 func _on_restart_pressed():
 	get_tree().paused = false

@@ -5,7 +5,7 @@ class_name Player
 const SPEED = 1.0
 var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
-@onready var game = $"/root/Game"
+
 @onready var camera = $followcam
 @export var MAX_HEALTH = 100
 
@@ -13,7 +13,7 @@ var isAttacking: bool = false
 
 
 @export var knocbackPower = 1000
-@onready var audioPlayer = $AudioStreamPlayer2D
+
 @onready var effectsPlayer = $effects
 @onready var hurtimer = $hurttimer
 @onready var gun = $gun
@@ -24,6 +24,14 @@ var hurting = false
 var isStabbing = false
 var isDead = false 
 
+
+func _enter_tree():
+	print_debug("_enter_tree")
+	Game.set_player(self)
+	
+func _exit_tree():
+	print_debug("_exit_tree")
+	
 func _input(event):
 	if event.is_action_pressed("stab"):
 		stab()
@@ -103,13 +111,16 @@ func die():
 	isDead = true
 
 	current_health = MAX_HEALTH
-	game.game_over()
+	Game.game_over()
 	
 	
 func _ready():
+	print_debug("_ready")
 	inventory.use_item.connect(use_item)
-	game.player = self
+
+
 	gun.gun_agros_enemies(true)
+
 	
 func restart_application():
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var animations = $AnimationPlayer
 var isDead: bool = false
-@onready var game = $"/root/Game"
+
 @onready var navigation = $NavigationAgent2D
 @onready var walk = $walk
 @onready var death = $death
@@ -27,7 +27,7 @@ var desired_direction = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 
 func _ready(): 
-	game.player.gun.shooting_sound.connect(_on_shots_fired.bind())
+	scene_manager.player.gun.shooting_sound.connect(_on_shots_fired.bind())
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	
@@ -69,8 +69,8 @@ func _physics_process(delta):
 	update_health()
 	updateAnimation()
 	pointVision()
-	if can_see_player and game.player:
-		gun.pointGun(game.player.global_position, false)
+	if can_see_player and Game.player:
+		gun.pointGun(Game.player.global_position, false)
 	move_and_slide()
 
 func update_velocity():
@@ -79,8 +79,9 @@ func update_velocity():
 	velocity = moveDirection * speed
 
 func makePath():
-	if game.player:
-		navigation.target_position = game.player.global_position
+	if scene_manager.player:
+		navigation.target_position = Game.get_player().global_position
+
 
 func _on_timer_timeout():
 	makePath()
@@ -98,7 +99,7 @@ func getIsDead() -> bool:
 	return isDead
 	
 func die():
-	if !isDead: game.mob_killed()
+	if !isDead: Game.mob_killed()
 
 	$CollisionShape2D.disabled = true
 	$hitbox/CollisionShape2D.disabled = true
@@ -115,7 +116,7 @@ func die():
 func drop_loot():
 	var health = health_type.instantiate()
 	if rng.randf() <= health.get_drop_chance():
-		game.current_level.add_child(health)
+		Game.current_level.add_child(health)
 		health.global_position = global_position
 	
 func update_health():

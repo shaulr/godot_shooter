@@ -4,7 +4,6 @@ var fsm: StateMachine
 signal set_desired_direction
 @export var chase_update_period = 0.1
 
-@onready var game = $"/root/Game"
 var navigation: NavigationAgent2D
 
 func enter():
@@ -24,7 +23,7 @@ func start_chasing():
 	
 func give_mob_chase_direction():
 	var desired_direction = Vector2.ZERO
-	navigation.target_position = game.player.global_position
+	navigation.target_position = Game.player.global_position
 	desired_direction = navigation.get_next_path_position() - fsm.mob.global_position
 	desired_direction = desired_direction.normalized()
 

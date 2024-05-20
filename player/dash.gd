@@ -5,7 +5,6 @@ var inDash = false
 @onready var dash_line = $Line2D
 @onready var dash_raycast = $"../dashRaycast"
 @onready var skull_and_bones_texture = preload("res://art/skull_and_bones.png")
-@onready var game = $"/root/Game"
 
 var dash_range = 100
 var skull_and_bones: Sprite2D
@@ -46,7 +45,7 @@ func _process(delta):
 				skull_and_bones.visible = true
 				if Input.is_action_just_pressed("stab"):
 					var tween = create_tween()
-					tween.tween_property(game.player, "position", dash_raycast.get_collider().global_position, 0.5 )
+					tween.tween_property(Game.player, "position", dash_raycast.get_collider().global_position, 0.5 )
 					await tween.finished
 					player.stab()
 					
@@ -60,7 +59,7 @@ func _process(delta):
 	
 	if Input.is_action_just_released("dash"):
 		skull_and_bones.visible = false
-		game.current_level.remove_child(skull_and_bones)
+		Game.current_level.remove_child(skull_and_bones)
 		dash_raycast.enabled = false
 		dash_line.clear_points()
 

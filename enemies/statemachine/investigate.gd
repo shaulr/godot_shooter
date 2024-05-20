@@ -6,7 +6,6 @@ signal investigation_location_reached
 signal set_desired_direction
 @export var investigate_pos_period = 0.1
 
-@onready var game = $"/root/Game"
 var investigation_position: Vector2 = Vector2.ZERO
 var navigation: NavigationAgent2D
 
@@ -14,12 +13,12 @@ func enter():
 	set_desired_direction.connect(fsm.mob._on_set_desired_direction)
 	navigation = NavigationAgent2D.new()
 	fsm.mob.add_child(navigation)
-	investigation_position = game.player.global_position
+	investigation_position = Game.player.global_position
 	start_investigating()
 	investigation_location_reached.connect(fsm.mob._on_investigation_location_reached)
 	
 func start_investigating():
-	navigation.target_position = game.player.global_position
+	navigation.target_position = Game.player.global_position
 	var timer: Timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = false

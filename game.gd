@@ -1,9 +1,9 @@
 extends Node
 
 @onready var current_level = $"."
-var player
-var camera
 
+var camera
+@onready  var _player: Player 
 var mapWidth
 var mapHeight
 const MAX_MOBS = 100
@@ -14,6 +14,8 @@ var mobsKilled = 0
 @export var LIVES = 3
 var lives = LIVES
 var music_player = AudioStreamPlayer.new()
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
@@ -25,7 +27,6 @@ func _process(delta):
 	
 func load_level(level: String):
 	get_tree().change_scene_to_file(level)
-
 
 func play_random_song():
 	var music_list = []
@@ -44,7 +45,7 @@ func play_random_sad_song():
 func mob_killed():
 	mobsKilled += 1
 	if mobsKilled % 5 == 0:
-		player.doing_good()
+		scene_manager.player.doing_good()
 	if mobsKilled < MAX_MOBS:
 		if current_level.has_method("spawn_mob"):
 			current_level.spawn_mob()
@@ -87,3 +88,18 @@ func level_loaded(level: Node, map_size):
 		music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	level.add_child(music_player)
 
+func set_player(thePlayer: Player):
+	scene_manager.player = thePlayer
+	_player = thePlayer
+	if !current_level: return 
+	#if current_level.has_node("camera"):
+		#current_level.camera.follow_node = thePlayer
+
+func level_has_camera() -> bool:
+	if current_level:
+		var camera = current_level.find_child("followcam")
+		if camera: return true
+	return false
+
+func get_player() -> Player:
+	return _player

@@ -1,5 +1,4 @@
 extends Node2D
-@onready var game = $"/root/Game"
 @onready var pivot_point = $pivot_point
 @onready var movement = $movement
 var directions: Array[Vector2]
@@ -78,7 +77,7 @@ func _on_timer_timeout():
 	for raycast in $pivot_point.get_children():
 		if !raycast.has_method("is_colliding"): continue
 		if raycast.is_colliding():
-			if raycast.get_collider() == game.player:
+			if raycast.get_collider() == Game.get_player():
 				if !inVision: 
 					inVision = true
 					emit_signal("is_visible", true)

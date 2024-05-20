@@ -1,5 +1,7 @@
 extends Camera2D
 @export var tilemap: TileMap
+@export var follow_node: Node2D
+var inited = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var mapRect = tilemap.get_used_rect()
@@ -7,4 +9,10 @@ func _ready():
 	var worldSizeInPixels = mapRect.size * titleSize
 	limit_right = worldSizeInPixels.x
 	limit_bottom = worldSizeInPixels.y
+	follow_node = Game.get_player()
+	inited = true
 
+func _process(delta):
+	if inited:
+		var player = Game.get_player()
+		if player: global_position = player.global_position
