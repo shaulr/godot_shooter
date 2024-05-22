@@ -10,6 +10,7 @@ const MAX_MOBS = 100
 const INITIAL_MOBS = 4
 var mobsKilled = 0
 @onready var game_over_node = preload("res://world/game_over.tscn")
+@onready var ingame_menu_node = preload("res://UI/in_game_menu.tscn")
 @onready var game_menu = "res://UI/main_menu.tscn"
 @export var LIVES = 3
 var lives = LIVES
@@ -58,6 +59,11 @@ func game_over():
 	current_level.add_child(game_over)
 	get_tree().paused = true
 	lives -= 1
+	
+func in_game_menu():
+	var in_game_menu = ingame_menu_node.instantiate()
+	current_level.add_child(in_game_menu)
+	get_tree().paused = true
 	
 func get_all_files(path: String, file_ext := "", files := []):
 	var dir = DirAccess.open(path)

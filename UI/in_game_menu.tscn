@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://28a47j6d2ary"]
+
+[ext_resource type="Script" path="res://UI/in_game_menu.gd" id="1_b3bb5"]
+
+[node name="in_game_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_b3bb5")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -134.0
+offset_right = 132.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="resume" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="load" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="save" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="main_menu" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU
+"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="HBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="HBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]

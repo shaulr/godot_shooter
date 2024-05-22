@@ -6057,7 +6057,7 @@ tilemap = NodePath("../NavigationRegion2D/TileMap")
 [node name="entrance_markers" type="Node2D" parent="."]
 
 [node name="house_scene" type="Marker2D" parent="entrance_markers"]
-position = Vector2(202, 201)
+position = Vector2(201, 216)
 
 [node name="hitler" parent="." instance=ExtResource("15_nhhik")]
 position = Vector2(301, 113)

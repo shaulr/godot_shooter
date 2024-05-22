@@ -842,6 +842,7 @@ sources/4 = SubResource("TileSetAtlasSource_7fhft")
 size = Vector2(17, 13)
 
 [node name="house_scene" type="Node2D"]
+position = Vector2(5, 2)
 script = ExtResource("1_1883s")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -870,3 +871,7 @@ scene_to_load = "res://world/test_level.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(1.5, 3.5)
 shape = SubResource("RectangleShape2D_psult")
+
+[node name="followcam" type="Camera2D" parent="."]
+position = Vector2(106, 65)
+zoom = Vector2(2, 2)

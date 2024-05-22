@@ -26,11 +26,9 @@ var isDead = false
 
 
 func _enter_tree():
-	print_debug("_enter_tree")
 	Game.set_player(self)
 	
-func _exit_tree():
-	print_debug("_exit_tree")
+
 	
 func _input(event):
 	if event.is_action_pressed("stab"):
@@ -113,15 +111,10 @@ func die():
 
 	current_health = MAX_HEALTH
 	Game.game_over()
-	
-	
+
 func _ready():
-	print_debug("_ready")
 	inventory.use_item.connect(use_item)
-
-
 	gun.gun_agros_enemies(true)
-
 	
 func restart_application():
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")

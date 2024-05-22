@@ -3,7 +3,7 @@ extends BaseScene
 
 @onready var tilemap = $NavigationRegion2D/TileMap
 @onready var hearts_container = $CanvasLayer/hearts
-@onready var camera = $followcam
+
 const INITIAL_MOBS = 1
 
 func _ready():
