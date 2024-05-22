@@ -45,7 +45,7 @@ func _process(delta):
 				skull_and_bones.visible = true
 				if Input.is_action_just_pressed("stab"):
 					var tween = create_tween()
-					tween.tween_property(Game.player, "position", dash_raycast.get_collider().global_position, 0.5 )
+					tween.tween_property(Game.get_player(), "position", dash_raycast.get_collider().global_position, 0.5 )
 					await tween.finished
 					player.stab()
 					

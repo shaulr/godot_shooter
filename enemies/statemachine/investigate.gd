@@ -13,12 +13,12 @@ func enter():
 	set_desired_direction.connect(fsm.mob._on_set_desired_direction)
 	navigation = NavigationAgent2D.new()
 	fsm.mob.add_child(navigation)
-	investigation_position = Game.player.global_position
+	investigation_position = Game.get_player().global_position
 	start_investigating()
 	investigation_location_reached.connect(fsm.mob._on_investigation_location_reached)
 	
 func start_investigating():
-	navigation.target_position = Game.player.global_position
+	navigation.target_position = Game.get_player().global_position
 	var timer: Timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = false

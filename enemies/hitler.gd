@@ -69,8 +69,8 @@ func _physics_process(delta):
 	update_health()
 	updateAnimation()
 	pointVision()
-	if can_see_player and Game.player:
-		gun.pointGun(Game.player.global_position, false)
+	if can_see_player and Game.get_player():
+		gun.pointGun(Game.get_player().global_position, false)
 	move_and_slide()
 
 func update_velocity():

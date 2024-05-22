@@ -68,7 +68,8 @@ func heal(amount: int):
 	update_health()
 	
 func use_item(item: InventoryItem):
-	item.use(self)
+	if item:
+		item.use(self)
 	
 func _physics_process(delta):
 	if isDead: return

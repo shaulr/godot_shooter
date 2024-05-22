@@ -23,7 +23,7 @@ func start_chasing():
 	
 func give_mob_chase_direction():
 	var desired_direction = Vector2.ZERO
-	navigation.target_position = Game.player.global_position
+	navigation.target_position = Game.get_player().global_position
 	desired_direction = navigation.get_next_path_position() - fsm.mob.global_position
 	desired_direction = desired_direction.normalized()
 
