@@ -6,7 +6,7 @@ class_name Inventory
 signal updated
 signal use_item
 
-func insert(item: InventoryItem):
+func insert(item: Item):
 	var item_slots = slots.filter(func(slot): return slot.item == item)
 	if !item_slots.is_empty(): item_slots[0].amount += 1
 	else: 

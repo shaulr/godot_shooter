@@ -27,9 +27,10 @@ var desired_direction = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 func _enter_tree():
 	add_to_group("game_events")
+	Game.current_level.shooting_sound.connect(_on_shots_fired.bind())
 	
 func _ready(): 
-	gun.shooting_sound.connect(_on_shots_fired.bind())
+
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 
@@ -191,7 +192,8 @@ func sum_navpath(arr: Array):
 		previous = i
 	return result
 
-func _on_shots_fired(loudness: int):
+func _on_shots_fired(loudness: int, sound_pos: Vector2):
+	navigation.target_position = sound_pos
 	navigation.get_next_path_position()
 	var navigation_distance = sum_navpath(navigation.get_current_navigation_path())
 	if navigation_distance != 0 and navigation_distance <= loudness:

@@ -3,12 +3,16 @@ class_name BaseScene extends Node
 var player: Player
 @onready var entrance_markers: Node2D = $entrance_markers
 @onready var camera = $followcam
+signal shooting_sound(noise: int, sound_pos: Vector2)
 
 func _enter_tree():
 	print_debug("_enter_tree")
 	#await get_tree().create_timer(1).timeout
 	#Game.saver_loader.scene_loaded_callback()
 	Game.current_level = self
+
+func sound(level: int, pos: Vector2):
+	shooting_sound.emit(level, pos)
 
 func _ready():
 	Game.current_level = self

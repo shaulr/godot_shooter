@@ -1,10 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqrp0uplcicmw"]
+[gd_scene load_steps=10 format=3 uid="uid://cesvqyo684lnf"]
 
-[ext_resource type="Script" path="res://guns/gun.gd" id="1_beq65"]
-[ext_resource type="Texture2D" uid="uid://bvomximw6ud2i" path="res://art/mp-40.png" id="2_nxe2a"]
-[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="2_xjlxn"]
-[ext_resource type="Texture2D" uid="uid://bii5tj25qre50" path="res://art/muzzle_flash.png" id="3_b1wrm"]
-[ext_resource type="AudioStream" uid="uid://b3wiwwpbknu8o" path="res://art/shoot1911.mp3" id="3_rxcwr"]
+[ext_resource type="Texture2D" uid="uid://bvomximw6ud2i" path="res://art/mp-40.png" id="1_plxrj"]
+[ext_resource type="Texture2D" uid="uid://bii5tj25qre50" path="res://art/muzzle_flash.png" id="2_tbywe"]
 
 [sub_resource type="Animation" id="Animation_gxaah"]
 length = 0.001
@@ -183,90 +180,31 @@ _data = {
 "flash5": SubResource("Animation_dlrcs")
 }
 
-[sub_resource type="Animation" id="Animation_nmria"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%shootingPoint/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(139, -0.033)]
-}
-
-[sub_resource type="Animation" id="Animation_ctjki"]
-resource_name = "knocback"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%shootingPoint/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(139, -0.033), Vector2(139, -0.033), Vector2(138, -0.033)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4n0o"]
-_data = {
-"RESET": SubResource("Animation_nmria"),
-"knocback": SubResource("Animation_ctjki")
-}
-
-[node name="gun" type="Area2D"]
+[node name="mp-40" type="Sprite2D"]
+z_as_relative = false
 y_sort_enabled = true
 texture_filter = 1
-script = ExtResource("1_beq65")
-item = ExtResource("2_xjlxn")
+position = Vector2(10, -0.0023824)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_plxrj")
 
-[node name="weaponPivot" type="Marker2D" parent="."]
-position = Vector2(0.00023824, 1)
-
-[node name="sprite" type="Sprite2D" parent="weaponPivot"]
-texture_filter = 1
-position = Vector2(11.0002, 0.997379)
-texture = ExtResource("2_nxe2a")
-
-[node name="shootingPoint" type="Marker2D" parent="weaponPivot/sprite"]
+[node name="shootingPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(17.9995, -3.99738)
+position = Vector2(219.986, -60.0524)
 
-[node name="Sprite2D" type="Sprite2D" parent="weaponPivot/sprite/shootingPoint"]
+[node name="Sprite2D" type="Sprite2D" parent="shootingPoint"]
 visible = false
 z_as_relative = false
 texture_filter = 1
-position = Vector2(9.99976, -1.00238)
-scale = Vector2(0.226448, 0.225242)
-texture = ExtResource("3_b1wrm")
+position = Vector2(139, -0.033)
+scale = Vector2(3.55029, 2.48275)
+texture = ExtResource("2_tbywe")
 hframes = 4
 vframes = 5
 frame = 4
 
-[node name="muzzleflashplayer" type="AnimationPlayer" parent="weaponPivot/sprite/shootingPoint"]
+[node name="muzzleflashplayer" type="AnimationPlayer" parent="shootingPoint"]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_vf7hh")
 }
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("3_rxcwr")
-
-[node name="knockbackPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
-libraries = {
-"": SubResource("AnimationLibrary_l4n0o")
-}
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

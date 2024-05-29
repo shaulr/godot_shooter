@@ -2,7 +2,7 @@ extends Area2D
 @export var healing: float = 0
 @export var drop_chance: float = 0.2
 @export var is_consumable: bool = true
-@export var item_res: InventoryItem
+@export var item: Item
 
 func _enter_tree():
 	add_to_group("game_events")
@@ -14,7 +14,7 @@ func on_save_data(saved_data:Array[SavedData]):
 	data.healing = healing
 	data.drop_chance = drop_chance
 	data.is_consumable = is_consumable
-	data.item_res = item_res
+	data.item = item
 	saved_data.append(data)
 	
 func on_pre_load():
@@ -28,10 +28,10 @@ func on_load(savedData: SavedData):
 		healing = data.healing
 		drop_chance = data.drop_chance
 		is_consumable = data.is_consumable
-		item_res = data.item_res		
+		item = data.item		
 
 func collect(inventory: Inventory):
-	inventory.insert(item_res)
+	inventory.insert(item)
 	queue_free()
 	
 func get_healing():
