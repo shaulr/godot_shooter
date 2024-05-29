@@ -5,12 +5,8 @@ class_name Player
 const SPEED = 1.0
 var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
-
-@onready var camera = $followcam
 @export var MAX_HEALTH = 100
-
 @onready var current_health = MAX_HEALTH
-
 
 @export var knocbackPower = 1000
 
@@ -20,6 +16,7 @@ var isAttacking: bool = false
 @onready var knife = $knife
 @onready var sprite = $Sprite2D
 @export var inventory: Inventory
+
 var hurting = false
 var isStabbing = false
 var isDead = false 
@@ -27,8 +24,28 @@ var isDead = false
 
 func _enter_tree():
 	Game.set_player(self)
+	Game.saver_loader.player_loaded_callback(self)
+	print_debug("_enter_tree")
+func _exit_tree():
+	print_debug("_exit_tree")
 	
+func on_pre_load():
+	print_debug("on_pre_load")
+	get_parent().remove_child(self)
+	queue_free()
 
+static func deserialize_player(data: PlayerData, player: Player):
+	player.global_position = data.position
+	player.current_health = data.current_health
+
+	
+func serialize_player() -> PlayerData:
+	var data = PlayerData.new()
+	data.position = global_position
+	data.scene_path = scene_file_path
+	data.current_health = current_health
+	
+	return data
 	
 func _input(event):
 	if event.is_action_pressed("stab"):

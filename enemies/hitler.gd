@@ -25,12 +25,48 @@ var desired_direction = Vector2.ZERO
 @onready var fsm = $Statemachine
 @onready var health_type = preload("res://droppables/health.tscn")
 var rng = RandomNumberGenerator.new()
-
+func _enter_tree():
+	add_to_group("game_events")
+	
 func _ready(): 
-	scene_manager.player.gun.shooting_sound.connect(_on_shots_fired.bind())
+	gun.shooting_sound.connect(_on_shots_fired.bind())
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
+
 	
+func on_save_data(saved_data:Array[SavedData]):
+	print_debug("on_save_data")
+	var data = MobData.new() as MobData
+	data.position = global_position
+	data.scene_path = scene_file_path
+	data.speed = speed
+	data.acceleration = acceleration
+	data.current_health = current_health
+	data.lastVelocity = lastVelocity
+	data.can_see_player = can_see_player
+	data.is_agro = is_agro
+	data.lastDirection = lastDirection
+	data.desired_direction = desired_direction
+	saved_data.append(data)
+	
+func on_pre_load():
+	print_debug("on_pre_load")
+	get_parent().remove_child(self)
+	queue_free()
+	
+func on_load(savedData: SavedData):
+	if savedData is SavedCollectibleData:
+		var data = savedData as SavedCollectibleData
+		global_position = data.position
+		speed = data.speed
+		acceleration = data.acceleration
+		current_health = data.current_health
+		lastVelocity = data.lastVelocity
+		can_see_player = data.can_see_player
+		is_agro = data.is_agro
+		lastDirection = data.lastDirection
+		desired_direction = data.desired_direction	
+
 func is_hostile_mob() -> bool:
 	return true	
 

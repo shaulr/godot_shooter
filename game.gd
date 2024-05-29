@@ -15,13 +15,15 @@ var mobsKilled = 0
 @export var LIVES = 3
 var lives = LIVES
 var music_player = AudioStreamPlayer.new()
-
-
+var saver_loader:  SaverLoader = SaverLoader.new()
+var saved_game: SavedGame
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
 	
-
+func set_saved_data(save: SavedGame):
+	saved_game = save
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -109,3 +111,7 @@ func level_has_camera() -> bool:
 
 func get_player() -> Player:
 	return _player
+	
+func save():
+	var mobs = get_tree().get_nodes_in_group("mobs")
+	var collectibles = get_tree().get_nodes_in_group("collectibles")

@@ -23,6 +23,7 @@ func spawn_mob():
 	mob.global_position.x = Game.mapWidth*randf()
 	mob.global_position.y = Game.mapHeight*randf()
 	add_child(mob)
+	
 
 
 func _on_inventory_inventory_opened():

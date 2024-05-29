@@ -4,6 +4,32 @@ extends Area2D
 @export var is_consumable: bool = true
 @export var item_res: InventoryItem
 
+func _enter_tree():
+	add_to_group("game_events")
+
+func on_save_data(saved_data:Array[SavedData]):
+	var data = SavedCollectibleData.new() as SavedCollectibleData
+	data.position = global_position
+	data.scene_path = scene_file_path
+	data.healing = healing
+	data.drop_chance = drop_chance
+	data.is_consumable = is_consumable
+	data.item_res = item_res
+	saved_data.append(data)
+	
+func on_pre_load():
+	get_parent().remove_child(self)
+	queue_free()
+	
+func on_load(savedData: SavedData):
+	if savedData is SavedCollectibleData:
+		var data = savedData as SavedCollectibleData
+		global_position = data.position
+		healing = data.healing
+		drop_chance = data.drop_chance
+		is_consumable = data.is_consumable
+		item_res = data.item_res		
+
 func collect(inventory: Inventory):
 	inventory.insert(item_res)
 	queue_free()

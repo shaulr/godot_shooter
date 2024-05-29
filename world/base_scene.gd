@@ -1,17 +1,30 @@
 class_name BaseScene extends Node
-@onready var game = $"/root/Game"
-@onready var player: Player = $player
+
+var player: Player
 @onready var entrance_markers: Node2D = $entrance_markers
 @onready var camera = $followcam
 
+func _enter_tree():
+	print_debug("_enter_tree")
+	#await get_tree().create_timer(1).timeout
+	#Game.saver_loader.scene_loaded_callback()
+	Game.current_level = self
+
 func _ready():
-	game.current_level = self
-	if scene_manager.player:
-		if scene_manager.player.get_parent():
-			scene_manager.player.get_parent().remove_child(player)
-		player = scene_manager.player
-		add_child(player)
-	position_player()
+	Game.current_level = self
+
+	
+	for child in get_children():
+		if child is Player: player = child
+	if Game.saver_loader.saved_game:
+		return		
+	if is_instance_valid(player):
+		if player.get_parent() != self:
+			player.get_parent().remove_child(player)
+			add_child(player)
+		position_player()
+
+
 
 func position_player():
 	for entrance in entrance_markers.get_children():

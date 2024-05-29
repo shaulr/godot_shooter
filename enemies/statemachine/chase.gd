@@ -3,7 +3,6 @@ extends Node
 var fsm: StateMachine
 signal set_desired_direction
 @export var chase_update_period = 0.1
-
 var navigation: NavigationAgent2D
 
 func enter():

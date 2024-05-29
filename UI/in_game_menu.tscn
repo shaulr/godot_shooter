@@ -45,4 +45,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="pressed" from="HBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="HBoxContainer/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="HBoxContainer/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="HBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
