@@ -151,8 +151,10 @@ func die():
 	queue_free()
 	
 func drop_loot():
+	if isDead: return
 	var health = health_type.instantiate()
 	if rng.randf() <= health.get_drop_chance():
+
 		Game.current_level.add_child(health)
 		health.global_position = global_position
 	

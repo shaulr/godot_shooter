@@ -3,7 +3,10 @@ extends Area2D
 @export var drop_chance: float = 0.2
 @export var is_consumable: bool = true
 @export var item: Item
-
+@onready var sprite = %Sprite2D
+func _ready():
+	sprite.texture = item.texture
+	
 func _enter_tree():
 	add_to_group("game_events")
 
