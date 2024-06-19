@@ -26,6 +26,7 @@ func _enter_tree():
 	Game.set_player(self)
 	Game.saver_loader.player_loaded_callback(self)
 	print_debug("_enter_tree")
+	
 func _exit_tree():
 	print_debug("_exit_tree")
 	
@@ -50,9 +51,9 @@ func serialize_player() -> PlayerData:
 func _input(event):
 	if event.is_action_pressed("stab"):
 		stab()
-	handleInput()
+	#handleInput()
 	
-func handleInput():
+func handleInput(delta: float):
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDir * SPEED
 	move_and_collide(moveDir * SPEED)
@@ -91,7 +92,7 @@ func _physics_process(delta):
 	gun.pointGun(get_viewport().get_mouse_position(), true)
 	update_health()
 	updateAnimation()
-	handleInput()
+	handleInput(delta)
 
 func look(direction: String):
 	self.direction = direction
