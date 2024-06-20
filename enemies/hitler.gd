@@ -25,6 +25,7 @@ var desired_direction = Vector2.ZERO
 @onready var fsm = $Statemachine
 @onready var health_type = preload("res://droppables/health.tscn")
 var rng = RandomNumberGenerator.new()
+var dropped = false
 func _enter_tree():
 	add_to_group("game_events")
 	Game.current_level.shooting_sound.connect(_on_shots_fired.bind())
@@ -151,7 +152,8 @@ func die():
 	queue_free()
 	
 func drop_loot():
-	if isDead: return
+	if isDead and dropped: return
+	dropped = true
 	var health = health_type.instantiate()
 	if rng.randf() <= health.get_drop_chance():
 

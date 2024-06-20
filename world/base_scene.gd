@@ -16,8 +16,6 @@ func sound(level: int, pos: Vector2):
 
 func _ready():
 	Game.current_level = self
-
-	
 	for child in get_children():
 		if child is Player: player = child
 	if Game.saver_loader.saved_game:

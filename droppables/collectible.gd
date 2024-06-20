@@ -3,10 +3,21 @@ extends Area2D
 @export var drop_chance: float = 0.2
 @export var is_consumable: bool = true
 @export var item: Item
-@onready var sprite = %Sprite2D
+@onready var sprite = $Sprite2D
+
 func _ready():
 	sprite.texture = item.texture
+	scale()
 	
+func scale():
+	var area_size = item.maxTextureSize * 3/4
+	var texture_size = item.texture.get_size()
+	var sx = area_size.x / texture_size.x
+	var sy = area_size.y / texture_size.y
+	var sprite_scale_factor = min(sx, sy)
+	sprite.scale = Vector2(sprite_scale_factor, sprite_scale_factor)
+	
+		
 func _enter_tree():
 	add_to_group("game_events")
 
