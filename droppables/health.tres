@@ -9,3 +9,5 @@ script = ExtResource("1_cbjjv")
 name = "Health"
 texture = ExtResource("2_h8btd")
 maxTextureSize = Vector2(20, 20)
+drop_weight = 0.3
+scene_path = "res://droppables/health.tscn"

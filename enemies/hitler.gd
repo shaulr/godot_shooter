@@ -24,6 +24,8 @@ var desired_direction = Vector2.ZERO
 @export var limit = 0.5
 @onready var fsm = $Statemachine
 @onready var health_type = preload("res://droppables/health.tscn")
+@export var drop_table: Array[Item]
+
 var rng = RandomNumberGenerator.new()
 var dropped = false
 func _enter_tree():
@@ -154,11 +156,20 @@ func die():
 func drop_loot():
 	if isDead and dropped: return
 	dropped = true
-	var health = health_type.instantiate()
-	if rng.randf() <= health.get_drop_chance():
+	var total_weight: int
+	for item in drop_table:
+		total_weight += item.drop_weight
+	if total_weight < 1: total_weight = 1
+	var rng = randi() % total_weight
+	for item in drop_table:
+		if rng <= item.drop_weight && item.scene_path != null:
+			var scene = load(item.scene_path)
+			var node = scene.instantiate()
+			Game.current_level.add_child(node)
+			node.global_position = global_position	
 
-		Game.current_level.add_child(health)
-		health.global_position = global_position
+
+	
 	
 func update_health():
 	healthbar.value = current_health
