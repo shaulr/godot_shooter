@@ -7,7 +7,7 @@ var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
 @export var MAX_HEALTH = 100
 @onready var current_health = MAX_HEALTH
-
+ 
 @export var knocbackPower = 1000
 
 @onready var effectsPlayer = $effects
@@ -116,7 +116,7 @@ func updateAnimation():
 		
 func update_health():
 	var healthbar = $health_bar
-	healthbar.value = current_health
+	healthbar.value = current_health  
 	if current_health == 100:
 		healthbar.visible = false
 	else:
@@ -139,13 +139,16 @@ func restart_application():
 	
 func _on_hurtbox_area_entered(area):
 	if area.has_method("collect"):
-		if current_health < MAX_HEALTH and area.has_method("get_healing"):
-			current_health = current_health + area.get_healing()
-			if current_health > MAX_HEALTH:
-				current_health = MAX_HEALTH
-			area.collect(inventory)
-			return
-		else:
+		if area.is_consumable:
+			if area.has_method("get_healing") and current_health < MAX_HEALTH:
+				current_health = current_health + area.get_healing()
+				if current_health > MAX_HEALTH:
+					current_health = MAX_HEALTH
+				#area.collect(inventory)
+				get_parent().remove_child(area)
+				area.queue_free()
+				return
+		elif area.is_collectible:
 			area.collect(inventory)
 			return
 	if isStabbing:

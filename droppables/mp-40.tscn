@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://clk41jld8wq2v"]
+
+[ext_resource type="PackedScene" uid="uid://dcuh77qrh6qpg" path="res://droppables/collectible.tscn" id="1_eulgq"]
+[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="2_wyh6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg6xm"]
+resource_local_to_scene = true
+
+[node name="collectible" instance=ExtResource("1_eulgq")]
+is_consumable = false
+is_collectible = true
+item = ExtResource("2_wyh6x")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_pg6xm")
