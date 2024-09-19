@@ -25,6 +25,7 @@ var desired_direction = Vector2.ZERO
 @onready var fsm = $Statemachine
 @onready var health_type = preload("res://droppables/health.tscn")
 @export var drop_table: Array[Item]
+@export var gun_table: Array[Item]
 
 var rng = RandomNumberGenerator.new()
 var dropped = false
@@ -153,20 +154,29 @@ func die():
 	await animations.animation_finished
 	queue_free()
 	
-func drop_loot():
-	if isDead and dropped: return
-	dropped = true
+func get_item_from_table(table: Array[Item]) -> Node: 
 	var total_weight: int
-	for item in drop_table:
+	for item in table:
 		total_weight += item.drop_weight
 	if total_weight < 1: total_weight = 1
 	var rng = randi() % total_weight
-	for item in drop_table:
-		if rng <= item.drop_weight && item.scene_path != null:
+	var current_weight = 0
+	for item in table:
+		current_weight += item.drop_weight
+		if rng <= current_weight && item.scene_path != null:
 			var scene = load(item.scene_path)
 			var node = scene.instantiate()
-			Game.current_level.add_child(node)
-			node.global_position = global_position	
+			return node
+			
+	return null
+	
+func drop_loot():
+	if isDead and dropped: return
+	dropped = true
+	
+	var node = get_item_from_table(drop_table)
+	Game.current_level.add_child(node)
+	node.global_position = global_position	
 
 
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=22 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/hitler.gd" id="1_5ybue"]
 [ext_resource type="Texture2D" uid="uid://b45kgbkjc65wj" path="res://art/hitler_walk.png" id="1_ey1a1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxagqrfacx6l" path="res://art/hitler_death.png" id="2_u2e2w"]
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="3_ck2oi"]
 [ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="4_v8xhg"]
+[ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="4_yxbed"]
 [ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="5_lkjpx"]
 [ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="6_cq3rx"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="8_ey6mn"]
@@ -154,7 +155,8 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_5ybue")
-drop_table = Array[Resource("res://droppables/item.gd")]([ExtResource("2_jcxyj"), ExtResource("3_ck2oi")])
+drop_table = Array[Resource("res://droppables/item.gd")]([ExtResource("2_jcxyj"), ExtResource("3_ck2oi"), ExtResource("4_yxbed")])
+gun_table = Array[Resource("res://droppables/item.gd")]([ExtResource("4_yxbed"), ExtResource("3_ck2oi")])
 
 [node name="Movement" parent="." instance=ExtResource("2_lq8pl")]
 

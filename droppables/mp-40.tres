@@ -8,5 +8,5 @@ script = ExtResource("1_som6b")
 name = "MP-40 Schmeiser"
 texture = ExtResource("3_j4e0j")
 maxTextureSize = Vector2(20, 20)
-drop_weight = 0.1
+drop_weight = 4.0
 scene_path = "res://droppables/mp-40.tscn"

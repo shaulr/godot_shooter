@@ -90,7 +90,7 @@ func use_item(item: InventoryItem):
 func _physics_process(delta):
 	if isDead: return
 	gun.pointGun(get_viewport().get_mouse_position(), true)
-	update_health()
+	update_health() 
 	updateAnimation()
 	handleInput(delta)
 

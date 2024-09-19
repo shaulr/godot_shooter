@@ -12,8 +12,6 @@ var gun_noise_level = 300
 @export var item: Item
 var sprite_scale_factor: float
 var muzzle_position: Vector2
-
-
 	
 func _ready():
 	sprite.texture = item.texture
@@ -28,7 +26,6 @@ func scale():
 	sprite_scale_factor = min(sx, sy)
 	sprite.scale = Vector2(sprite_scale_factor, sprite_scale_factor)
 	
-	
 func find_muzzle():
 	var image = sprite.texture.get_image()
 	for column in range(image.get_width() - 1, -1, -1):
@@ -42,8 +39,7 @@ func find_muzzle():
 			#if image.get_pixel(column, row).a8 == 0:
 				#print("found non-opaque at (%d, %d)" % [column, row])
 				#return
-	
-	
+				
 func gun_agros_enemies(agros: bool):
 	agros_enemies = agros
 
