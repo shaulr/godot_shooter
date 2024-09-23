@@ -48,7 +48,7 @@ func on_load(savedData: SavedData):
 		item = data.item		
 
 func collect(inventory: Inventory):
-	inventory.insert(item)
+	inventory.insert(self)
 	queue_free()
 	
 func get_healing():

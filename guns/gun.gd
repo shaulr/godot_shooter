@@ -83,7 +83,6 @@ func shoot():
 	new_bullet.global_position = shootingPoint.global_position
 	new_bullet.global_rotation = shootingPoint.global_rotation	
 	shootingPoint.add_child(new_bullet)
-
 		
 func press_trigger():
 	shoot()

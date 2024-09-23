@@ -6,7 +6,7 @@ const SPEED = 1.0
 var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
 @export var MAX_HEALTH = 100
-@onready var current_health = MAX_HEALTH
+@onready var current_health
  
 @export var knocbackPower = 1000
 
@@ -83,9 +83,11 @@ func heal(amount: int):
 	current_health = min(current_health, MAX_HEALTH)
 	update_health()
 	
-func use_item(item: Item):
-	if item:
-		item.use(self)
+func use_item(item: Collectible):
+	if item.is_equipable:
+		equip(item)
+	elif item.is_consumable:
+		heal(item.get_healing())
 	
 func _physics_process(delta):
 	if isDead: return
@@ -131,6 +133,7 @@ func die():
 	Game.game_over()
 
 func _ready():
+	current_health = MAX_HEALTH
 	inventory.use_item.connect(use_item)
 	gun.gun_agros_enemies(true)
 	
