@@ -4,6 +4,7 @@ extends Area2D
 @export var drop_chance: float = 0.2
 @export var is_consumable: bool = true
 @export var is_collectible: bool = false
+@export var is_equipable: bool = false
 @export var item: Item
 @onready var sprite = $Sprite2D
 

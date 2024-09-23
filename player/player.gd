@@ -83,7 +83,7 @@ func heal(amount: int):
 	current_health = min(current_health, MAX_HEALTH)
 	update_health()
 	
-func use_item(item: InventoryItem):
+func use_item(item: Item):
 	if item:
 		item.use(self)
 	
@@ -187,7 +187,9 @@ func knockback(enemyVeocity: Vector2):
 func _draw():
 	pass
 
-
+func equip(item: Collectible):
+	gun.equip(item.item)
+	
 
 
 

@@ -94,6 +94,14 @@ func release_trigger():
 
 func gun_knock():
 	knocback_anim.play("knocback")
+	
+func equip(item_to_equip: Item):
+	item = item_to_equip
+	sprite.texture = item.texture
+	scale()
+	find_muzzle()
+	find_muzzle()
+
 
 func _on_timer_timeout():
 	if(trigger_pressed):

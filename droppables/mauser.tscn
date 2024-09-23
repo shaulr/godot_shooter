@@ -9,6 +9,7 @@ resource_local_to_scene = true
 [node name="collectible" instance=ExtResource("1_sqegf")]
 is_consumable = false
 is_collectible = true
+is_equipable = true
 item = ExtResource("2_l5cof")
 
 [node name="CollisionShape2D" parent="." index="0"]
