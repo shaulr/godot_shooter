@@ -10,6 +10,8 @@ resource_local_to_scene = true
 is_consumable = false
 is_collectible = true
 is_equipable = true
+gun_type = 2
+calliber = 1
 item = ExtResource("2_l5cof")
 
 [node name="CollisionShape2D" parent="." index="0"]

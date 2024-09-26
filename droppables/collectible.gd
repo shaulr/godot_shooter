@@ -1,10 +1,13 @@
 class_name Collectible
 extends Area2D
+
 @export var healing: float = 2
 @export var drop_chance: float = 0.2
 @export var is_consumable: bool = true
 @export var is_collectible: bool = false
 @export var is_equipable: bool = false
+@export var gun_type: Constants.GunType
+@export var calliber: Constants.Calliber
 @export var item: Item
 @onready var sprite = $Sprite2D
 

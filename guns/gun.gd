@@ -2,25 +2,28 @@ extends Area2D
 @onready var sprite = $"weaponPivot/sprite"
 @onready var shootingPoint = %shootingPoint
 var trigger_pressed = false;
-@onready var audio_player = %AudioStreamPlayer2D
+@onready var shoot_player = %ShootAudio
+@onready var repeat_player = %RepeatAudio
 @onready var shootSound = "res://art/shoot1911.mp3"
+@onready var repeatSound = "res://art/reload_kever_action.mp3"
 @onready var muzzleflash = %muzzleflashplayer
 var gun_direction = "down"
 @onready var knocback_anim = $knockbackPlayer
+@onready var timer = %Timer
 var agros_enemies = false
 var gun_noise_level = 300
-@export var item: Item
+@export var item: Collectible
 var sprite_scale_factor: float
 var muzzle_position: Vector2
+var shooting: bool = false
 	
 func _ready():
-	sprite.texture = item.texture
-	scale()
-	find_muzzle()
+	item = preload("res://droppables/mp-40.tscn").instantiate()
+	equip_item(item)
 	
 func scale():
-	var area_size = item.maxTextureSize * 3/4
-	var texture_size = item.texture.get_size()
+	var area_size = item.item.maxTextureSize * 3/4
+	var texture_size = item.item.texture.get_size()
 	var sx = area_size.x / texture_size.x
 	var sy = area_size.y / texture_size.y
 	sprite_scale_factor = min(sx, sy)
@@ -72,20 +75,27 @@ func pointGun(aimPos: Vector2, correct_for_camera: bool):
 	look_at(aimPos + cameraPos)
 		
 func shoot():
+	shooting = true
 	#Game.current_level.emit_signal("shooting_sound", gun_noise_level, global_position)
 	Game.current_level.sound(gun_noise_level, global_position)
 
 	%muzzleflashplayer.play("flash2")
-	audio_player.play()
+	shoot_player.play()
 	gun_knock()
 	const BULLET = preload("res://guns/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = shootingPoint.global_position
 	new_bullet.global_rotation = shootingPoint.global_rotation	
+	new_bullet.set_bullet_calliber(item.calliber)
 	shootingPoint.add_child(new_bullet)
+	if item.gun_type == Constants.GunType.REPEATING:
+		repeat_player.play()
+		await repeat_player.finished
+	shooting = false
 		
 func press_trigger():
-	shoot()
+	if !shooting: 
+		shoot()
 	trigger_pressed = true
 	
 func release_trigger():
@@ -94,14 +104,19 @@ func release_trigger():
 func gun_knock():
 	knocback_anim.play("knocback")
 	
-func equip(item_to_equip: Item):
+func equip(item_to_equip: Collectible):
 	item = item_to_equip
-	sprite.texture = item.texture
+	if item.gun_type == Constants.GunType.REPEATING:
+		timer.wait_time = 2
+	elif item.gun_type == Constants.GunType.FULL_AUTO:
+		timer.wait_time = 0.1
+	equip_item(item)
+
+func equip_item(item_to_equip: Collectible):
+	sprite.texture = item_to_equip.item.texture
 	scale()
 	find_muzzle()
-	find_muzzle()
-
-
+	
 func _on_timer_timeout():
 	if(trigger_pressed):
 		shoot()

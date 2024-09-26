@@ -191,7 +191,7 @@ func _draw():
 	pass
 
 func equip(item: Collectible):
-	gun.equip(item.item)
+	gun.equip(item)
 	
 
 

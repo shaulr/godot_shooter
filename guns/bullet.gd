@@ -10,6 +10,16 @@ var damage = 10
 func _ready():
 	sprite.visible = true
 	
+func set_bullet_calliber(calliber: Constants.Calliber):
+	if calliber == Constants.Calliber.SEVEN_SIX_TWO:
+		range = 300
+		speed = 400
+		damage = 100
+	elif calliber == Constants.Calliber.NINE_MM:
+		range = 200
+		speed = 300
+		damage = 10
+	
 func get_damage() -> int:
 	return damage 	
 	
