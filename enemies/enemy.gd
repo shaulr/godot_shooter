@@ -77,9 +77,7 @@ func is_hostile_mob() -> bool:
 
 func updateAnimation():
 	lastVelocity = velocity
-	if isDead:
-		animations.play("death")
-		return
+	
 	if velocity.length() == 0:
 		if animations.is_playing():
 			animations.stop()
@@ -141,17 +139,20 @@ func getIsDead() -> bool:
 	
 func die():
 	if !isDead: Game.mob_killed()
-
-	$CollisionShape2D.disabled = true
-	$hitbox/CollisionShape2D.disabled = true
+	else: return
+	$CollisionShape2D.set_deferred("disabled", true)         
+	$hitbox/CollisionShape2D.set_deferred("disabled", true)         
+	
 	update_health()
 	isDead = true
-	drop_loot()
-	walk.visible = false
-	death.visible = true
+
+	#walk.visible = false
+	#death.visible = true
 	deathAudio.play()
+	
 	animations.play("death")
 	await animations.animation_finished
+	drop_loot()
 	queue_free()
 	
 func get_item_from_table(table: Array[Item]) -> Node: 

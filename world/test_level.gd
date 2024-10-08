@@ -19,7 +19,7 @@ func _ready():
 
 
 func spawn_mob():
-	var mob = preload("res://enemies/hitler.tscn").instantiate()
+	var mob = preload("res://enemies/ustasa.tscn").instantiate()
 	mob.global_position.x = Game.mapWidth*randf()
 	mob.global_position.y = Game.mapHeight*randf()
 	add_child(mob)
