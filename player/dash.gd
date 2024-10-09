@@ -21,7 +21,7 @@ func dash():
 	inDash = true
 	timer.start()
 
-func _process(delta):
+func _process(_delta):
 	var direction = dash_line.get_global_mouse_position() - player.global_position
 	direction = direction.normalized()
 	var end_point = player.global_position.direction_to(player.get_global_mouse_position())

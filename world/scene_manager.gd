@@ -16,7 +16,7 @@ func serialize_scene() -> Array[SavedData]:
 	return saved_data
 	
 func deserialize_scene(savedDataArray: Array[SavedData]):
-	var game_event_nodes = get_tree().get_nodes_in_group("game_events")
+	#var game_event_nodes = get_tree().get_nodes_in_group("game_events")
 	
 	Game.current_level.get_tree().call_group("game_events", "on_pre_load")
 	for item in savedDataArray:

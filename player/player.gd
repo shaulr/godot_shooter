@@ -35,7 +35,7 @@ func on_pre_load():
 	get_parent().remove_child(self)
 	queue_free()
 
-static func deserialize_player(data: PlayerData, player: Player):
+func deserialize_player(data: PlayerData, player: Player):
 	player.global_position = data.position
 	player.current_health = data.current_health
 
@@ -53,7 +53,7 @@ func _input(event):
 		stab()
 	#handleInput()
 	
-func handleInput(delta: float):
+func handleInput(_delta: float):
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDir * SPEED
 	move_and_collide(moveDir * SPEED)

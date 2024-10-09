@@ -1,6 +1,6 @@
 extends Area2D
 @export var speed = 300.0
-@export var range = 200
+@export var bullet_range = 200
 var travelled_distance = 0
 @export var lastVelocity: Vector2
 var hasHit = false
@@ -12,11 +12,11 @@ func _ready():
 	
 func set_bullet_calliber(calliber: Constants.Calliber):
 	if calliber == Constants.Calliber.SEVEN_SIX_TWO:
-		range = 300
+		bullet_range = 300
 		speed = 400
 		damage = 100
 	elif calliber == Constants.Calliber.NINE_MM:
-		range = 200
+		bullet_range = 200
 		speed = 300
 		damage = 10
 	
@@ -29,7 +29,7 @@ func _physics_process(delta):
 	var velocity = direction * speed * delta
 	position += velocity
 	travelled_distance += speed * delta
-	if travelled_distance > range:
+	if travelled_distance > bullet_range:
 		hasHit = true
 		$bulletEffectPlayer.play("boom")
 		await $bulletEffectPlayer.animation_finished

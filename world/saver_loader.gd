@@ -4,11 +4,11 @@ var saved_game: SavedGame = null
 var scene_nodes: Dictionary = {}
 
 func save_game():
-	var saved_game:SavedGame = SavedGame.new()
-	saved_game.level_path = Game.current_level.scene_file_path
-	saved_game.player_data = Game.get_player().serialize_player()
-	saved_game.saved_data_array = scene_manager.serialize_scene()
-	ResourceSaver.save(saved_game, "user://savegame.tres")
+	var game_to_save:SavedGame = SavedGame.new()
+	game_to_save.level_path = Game.current_level.scene_file_path
+	game_to_save.player_data = Game.get_player().serialize_player()
+	game_to_save.saved_data_array = scene_manager.serialize_scene()
+	ResourceSaver.save(game_to_save, "user://savegame.tres")
 	
 func load_game():
 	saved_game = load("user://savegame.tres") as SavedGame

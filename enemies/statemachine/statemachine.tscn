@@ -11,6 +11,9 @@ script = ExtResource("1_u5yrl")
 [node name="patrolling" type="Node" parent="."]
 script = ExtResource("2_455cx")
 
+[node name="idle" type="Node" parent="."]
+script = ExtResource("2_455cx")
+
 [node name="investigate" type="Node" parent="."]
 script = ExtResource("3_1l2il")
 

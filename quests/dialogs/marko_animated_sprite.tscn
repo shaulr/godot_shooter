@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://2beohv1wskhc"]
+
+[ext_resource type="Texture2D" uid="uid://cjux34l5rmmla" path="res://art/marko_portrait_sprite_sheet.png" id="2_3tsf0"]
+[ext_resource type="Script" path="res://quests/dialogs/animated_sprite.gd" id="2_dlfj2"]
+
+[sub_resource type="GDScript" id="GDScript_122hh"]
+script/source = "@tool
+extends DialogicPortrait
+
+# If the custom portrait accepts a change, then accept it here
+func _update_portrait(passed_character:DialogicCharacter, passed_portrait:String) -> void:
+	if passed_portrait == \"\":
+		passed_portrait = passed_character['default_portrait']
+
+	if $Sprite.sprite_frames.has_animation(passed_portrait):
+		$Sprite.play(passed_portrait)
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	$Sprite.frame = randi()%$Sprite.sprite_frames.get_frame_count($Sprite.animation)
+	$Sprite.play()
+
+
+func _get_covered_rect() -> Rect2:
+	return Rect2($Sprite.position, $Sprite.sprite_frames.get_frame_texture($Sprite.animation, 0).get_size()*$Sprite.scale)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngfxn"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(0, 156, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wthk4"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(165, 156, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bpgl"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(330, 156, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwva0"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(0, 0, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y68a"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(0, 0, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygxd8"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(165, 0, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xper"]
+atlas = ExtResource("2_3tsf0")
+region = Rect2(330, 0, 165, 156)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yaycq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngfxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wthk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bpgl")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwva0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y68a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygxd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xper")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}]
+
+[node name="CustomCharacterScene" type="Node2D"]
+script = SubResource("GDScript_122hh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-81, -156)
+sprite_frames = SubResource("SpriteFrames_yaycq")
+animation = &"happy"
+frame_progress = 0.632049
+centered = false
+script = ExtResource("2_dlfj2")
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]

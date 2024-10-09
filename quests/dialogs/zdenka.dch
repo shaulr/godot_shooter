@@ -1,0 +1,39 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(1, 1, 1, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "dialog_style"
+},
+"default_portrait": "default",
+"description": "",
+"display_name": "Zdenka",
+"mirror": false,
+"nicknames": [""],
+"offset": Vector2(0, 10),
+"portraits": {
+"default": {
+"export_overrides": {
+"image": ""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://quests/dialogs/zdenka_animated_sprite.tscn"
+},
+"happy": {
+"export_overrides": {
+"image": ""
+},
+"ignore_char_scale": false,
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://quests/dialogs/zdenka_animated_sprite.tscn"
+}
+},
+"scale": 1.0
+}

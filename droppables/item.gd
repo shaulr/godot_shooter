@@ -7,6 +7,6 @@ extends Resource
 @export var drop_weight: float
 @export var scene_path: String
 
-func use(player: Player):
+func use(_player: Player):
 	pass
 

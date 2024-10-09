@@ -20,12 +20,13 @@ var saved_game: SavedGame
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
+	Dialogic.start("zdenka_marko")
 	
-func set_saved_data(save: SavedGame):
-	saved_game = save
+func set_saved_data(game_to_save: SavedGame):
+	saved_game = game_to_save
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
 func load_level(level: String):
@@ -57,14 +58,14 @@ func mob_killed():
 		get_tree().reload_current_scene()
 		
 func game_over():
-	var game_over = game_over_node.instantiate()
-	current_level.add_child(game_over)
+	var game_over_instance = game_over_node.instantiate()
+	current_level.add_child(game_over_instance)
 	get_tree().paused = true
 	lives -= 1
 	
 func in_game_menu():
-	var in_game_menu = ingame_menu_node.instantiate()
-	current_level.add_child(in_game_menu)
+	var in_game_menu_instance = ingame_menu_node.instantiate()
+	current_level.add_child(in_game_menu_instance)
 	get_tree().paused = true
 	
 func get_all_files(path: String, file_ext := "", files := []):
@@ -105,13 +106,14 @@ func set_player(thePlayer: Player):
 
 func level_has_camera() -> bool:
 	if current_level:
-		var camera = current_level.find_child("followcam")
-		if camera: return true
+		var camera_instance = current_level.find_child("followcam")
+		if camera_instance: return true
 	return false
 
 func get_player() -> Player:
 	return _player
 	
 func save():
-	var mobs = get_tree().get_nodes_in_group("mobs")
-	var collectibles = get_tree().get_nodes_in_group("collectibles")
+	#var mobs = get_tree().get_nodes_in_group("mobs")
+	#var collectibles = get_tree().get_nodes_in_group("collectibles")
+	pass

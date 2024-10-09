@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://bicec8hb8mw6o"]
+
+[ext_resource type="Script" path="res://quests/dialogs/animated_sprite.gd" id="1_3npfm"]
+[ext_resource type="Texture2D" uid="uid://ocef1c6bjuk" path="res://art/zdenka_portrait_spritesheet_anim.png" id="2_25wri"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfhcp"]
+atlas = ExtResource("2_25wri")
+region = Rect2(0, 0, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyhn2"]
+atlas = ExtResource("2_25wri")
+region = Rect2(0, 0, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3j0e"]
+atlas = ExtResource("2_25wri")
+region = Rect2(165, 0, 165, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3s7m"]
+atlas = ExtResource("2_25wri")
+region = Rect2(330, 0, 165, 156)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yaycq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfhcp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_qyhn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3j0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3s7m")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}]
+
+[node name="CustomCharacterScene" type="Node2D"]
+position = Vector2(-121, -58)
+script = ExtResource("1_3npfm")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-80, -162)
+sprite_frames = SubResource("SpriteFrames_yaycq")
+animation = &"happy"
+frame_progress = 0.834585
+centered = false
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
