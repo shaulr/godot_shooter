@@ -17,6 +17,7 @@ const MAX_HEALTH = 100
 var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
+@export var is_friendly: bool
 var can_see_player = false
 var is_agro = false
 var lastDirection = "down"
@@ -50,6 +51,7 @@ func on_save_data(saved_data:Array[SavedData]):
 	data.lastVelocity = lastVelocity
 	data.can_see_player = can_see_player
 	data.is_agro = is_agro
+	data.is_friendly = is_friendly
 	data.lastDirection = lastDirection
 	data.desired_direction = desired_direction
 	saved_data.append(data)
@@ -69,11 +71,12 @@ func on_load(savedData: SavedData):
 		lastVelocity = data.lastVelocity
 		can_see_player = data.can_see_player
 		is_agro = data.is_agro
+		is_friendly = data.is_friendly
 		lastDirection = data.lastDirection
 		desired_direction = data.desired_direction	
 
 func is_hostile_mob() -> bool:
-	return true	
+	return is_friendly	
 
 func updateAnimation():
 	lastVelocity = velocity

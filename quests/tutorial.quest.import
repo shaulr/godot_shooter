@@ -1,0 +1,15 @@
+[remap]
+
+importer="quest_importer"
+type="Resource"
+uid="uid://ddbnuq8h74ie0"
+path="res://.godot/imported/tutorial.quest-1cfca3e21759c3fe3eaacd1a1ef62e80.tres"
+
+[deps]
+
+source_file="res://quests/tutorial.quest"
+dest_files=["res://.godot/imported/tutorial.quest-1cfca3e21759c3fe3eaacd1a1ef62e80.tres"]
+
+[params]
+
+defaults=true

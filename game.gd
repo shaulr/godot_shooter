@@ -20,7 +20,7 @@ var saved_game: SavedGame
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
-	Dialogic.start("zdenka_marko")
+
 	
 func set_saved_data(game_to_save: SavedGame):
 	saved_game = game_to_save
@@ -96,6 +96,7 @@ func level_loaded(level: Node, map_size):
 		music_player = AudioStreamPlayer.new()
 		music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	level.add_child(music_player)
+	CampaignManager.level_loaded(level)
 
 func set_player(thePlayer: Player):
 	scene_manager.player = thePlayer
@@ -117,3 +118,6 @@ func save():
 	#var mobs = get_tree().get_nodes_in_group("mobs")
 	#var collectibles = get_tree().get_nodes_in_group("collectibles")
 	pass
+
+func start():
+	CampaignManager.start("Tutorial")

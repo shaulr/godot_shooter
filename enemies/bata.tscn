@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsc3i44wvy0fi"]
+
+[ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/enemy.tscn" id="1_7ep27"]
+[ext_resource type="Texture2D" uid="uid://weipvqoamiqs" path="res://art/bata_anim.png.png" id="2_gptw5"]
+
+[node name="bata" instance=ExtResource("1_7ep27")]
+is_friendly = true
+
+[node name="walk" parent="." index="3"]
+texture = ExtResource("2_gptw5")
+hframes = 3
+vframes = 6

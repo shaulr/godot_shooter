@@ -8,6 +8,9 @@
 
 config_version=5
 
+recent_projects=["res://quests/tutorial.quest", "res://addons/quest_manager/Examples/ExampleQuests.quest"]
+quest_file_path="res://quests/tutorial.quest"
+
 [application]
 
 config/name="Shooter"
@@ -20,11 +23,17 @@ config/icon="res://icon.svg"
 Game="*res://game.gd"
 scene_manager="*res://world/scene_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+QuestManager="*res://addons/quest_manager/QuestManager.gd"
+CampaignManager="*res://quests/campaign_manager.gd"
 
 [dialogic]
 
 directories/dch_directory={
+"Bata": "res://quests/dialogs/Bata.dch",
 "Marko": "res://quests/dialogs/Marko.dch",
+"Tito": "res://quests/dialogs/Tito.dch",
+"bosko_buha": "res://quests/dialogs/bosko_buha.dch",
+"stanojlo": "res://quests/dialogs/stanojlo.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch",
 "zdenka": "res://quests/dialogs/zdenka.dch"
 }
@@ -77,7 +86,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/quest_manager/plugin.cfg")
 
 [gui]
 

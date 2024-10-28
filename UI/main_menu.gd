@@ -4,8 +4,9 @@ extends Control
 var center : Vector2
 @onready var node = $TextureRect
 @onready var audio_player = $AudioStreamPlayer
+
 func _on_start_pressed():
-	Game.load_level(first_level)
+	Game.start()
 
 func _ready():
 	var visible_rect = get_viewport().get_visible_rect().size
