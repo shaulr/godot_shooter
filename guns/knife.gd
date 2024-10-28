@@ -14,6 +14,7 @@ func get_damage() -> int:
 
 
 func _on_area_2d_body_entered(body):
+	if !visible: return
 	if body.has_method("get_direction") and body.has_method("get_damage"):
 		var body_dir = body.get_direction()
 		if body_dir == lastDirection:

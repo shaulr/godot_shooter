@@ -9,6 +9,7 @@ signal is_visible(visible: bool)
 var inVision = false;
 var desired_direction = Vector2.ZERO
 
+
 func _ready():
 	add_raycasts(30, -30, 6, 200, pivot_point, vision_raycasts)
 	add_raycasts(90, 360 + 90, 8, 30, movement, danger_raycasts)
@@ -74,18 +75,24 @@ func calculate_direction():
 		
 func _on_timer_timeout():
 	calculate_direction()
+	var objects_collide = []
 	for raycast in $pivot_point.get_children():
 		if !raycast.has_method("is_colliding"): continue
 		if raycast.is_colliding():
-			if raycast.get_collider() == Game.get_player():
+			var collider = raycast.get_collider()
+
+			if collider == Game.get_player() || collider.has_method("is_friendly"):
+				objects_collide.append(collider)
 				if !inVision: 
 					inVision = true
-					emit_signal("is_visible", true)
-					return
-
+					
+	if objects_collide.size() > 0:
+		emit_signal("is_visible", true, objects_collide)
+		return
+		
 	if inVision:
 		inVision = false
-		emit_signal("is_visible", false)
+		emit_signal("is_visible", false, null)
 
 func set_desired_location(location: Vector2):
 	desired_direction = (global_position - location).normalized()

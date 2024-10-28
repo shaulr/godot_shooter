@@ -10,13 +10,13 @@ enum {
 	WIN
 }
 var state = START
-
+var current_step: Dictionary
 func _ready():
 	quest_resource = ResourceLoader.load("res://quests/tutorial.quest")
 	#Connect quest manager needed signals
 	QuestManager.step_updated.connect(step_updated)
 	QuestManager.step_complete.connect(step_complete)
-	QuestManager.next_step.connect(update_ui)
+	QuestManager.next_step.connect(next_step)
 	QuestManager.quest_completed.connect(quest_complete)
 	QuestManager.quest_failed.connect(quest_failed)
 
@@ -35,7 +35,7 @@ func quest_complete(quest):
 	state = WIN
 	$Complete.text += "\n Money " + str(quest.quest_rewards.money)
 	$Complete.show()
-	
+	print_debug("quest_complete" + quest)
 	#get_tree().paused = true
 	
 func quest_failed(n):
@@ -43,7 +43,9 @@ func quest_failed(n):
 	$GameOver.show()
 	#get_tree().paused = true
 	
-func update_ui(step):
+func next_step(step):
+	print_debug("next_step" + step.details)
+	current_step = step
 	match step.step_type:
 		QuestManager.INCREMENTAL_STEP:
 			var text = "%s %02d/%02d" % [step.details,step.collected,step.required]
@@ -54,9 +56,20 @@ func update_ui(step):
 		QuestManager.CALLABLE_STEP:
 			print(step)
 			QuestManager.progress_quest(step.quest_id,step.id)
+		QuestManager.ACTION_STEP:
+			print(step)
 
 func step_updated(step):
-	print(step)
+	print_debug("step_updated" + step.details)
 	QuestManager.progress_quest(step.quest_id,step.id)
+	
 func step_complete(step):
-	print(step)
+	print_debug("step complete" + step.details)
+	
+func player_met(mob):
+	if "mob_name" in mob:
+		print_debug(mob.mob_name)
+		var meta_data = current_step.meta_data
+		
+		if meta_data.quest_type == "meet" and meta_data.who == mob.mob_name:
+			QuestManager.progress_quest(current_step.quest_id,current_step.id)

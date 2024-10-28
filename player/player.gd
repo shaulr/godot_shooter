@@ -6,7 +6,7 @@ const SPEED = 1.0
 var isAttacking: bool = false
 @export var lastAnimDirection: String = "down"
 @export var MAX_HEALTH = 100
-@onready var current_health
+@onready var current_health = 100
  
 @export var knocbackPower = 1000
 
@@ -141,6 +141,10 @@ func restart_application():
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 	
 func _on_hurtbox_area_entered(area):
+	if "is_friendly" in area.get_parent():
+		if area.get_parent().is_friendly:
+			CampaignManager.player_met(area.get_parent())
+			return
 	if area.has_method("collect"):
 		if area.is_consumable:
 			if area.has_method("get_healing") and current_health < MAX_HEALTH:
@@ -205,3 +209,9 @@ func equip(item: Collectible):
 	#var normalized = (get_viewport().get_mouse_position() - position).normalized()
 	#var target = global_position + normalized * length
 	#draw_line(position, target, Color(255, 0, 0, 0.5), 3, true)
+
+
+
+func _on_hitbox_body_entered(body):
+	if "is_friendly" in body && body.is_friendly:
+		CampaignManager.player_met(body)# Replace with function body.

@@ -9,6 +9,7 @@ var isDead: bool = false
 @onready var healthbar = $healthbar
 @onready var vision = $vision
 @onready var gun = $gun
+@onready var collision_shape = %CollisionShape2D
 const  STEERING_FORCE = 0.1
 
 var speed = 30
@@ -18,24 +19,26 @@ var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
 @export var is_friendly: bool
-var can_see_player = false
+var can_see_enemy = false
 var is_agro = false
 var lastDirection = "down"
 var desired_direction = Vector2.ZERO
 @export var limit = 0.5
+@export var mob_name = "enemy"
 @onready var fsm = $Statemachine
 @onready var health_type = preload("res://droppables/health.tscn")
+
 @export var drop_table: Array[Item]
 @export var gun_table: Array[Item]
 
 var rng = RandomNumberGenerator.new()
 var dropped = false
+
 func _enter_tree():
 	add_to_group("game_events")
 	Game.current_level.shooting_sound.connect(_on_shots_fired.bind())
 	
 func _ready(): 
-
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 
@@ -49,7 +52,7 @@ func on_save_data(saved_data:Array[SavedData]):
 	data.acceleration = acceleration
 	data.current_health = current_health
 	data.lastVelocity = lastVelocity
-	data.can_see_player = can_see_player
+	data.can_see_enemy = can_see_enemy
 	data.is_agro = is_agro
 	data.is_friendly = is_friendly
 	data.lastDirection = lastDirection
@@ -69,7 +72,7 @@ func on_load(savedData: SavedData):
 		acceleration = data.acceleration
 		current_health = data.current_health
 		lastVelocity = data.lastVelocity
-		can_see_player = data.can_see_player
+		can_see_enemy = data.can_see_enemy
 		is_agro = data.is_agro
 		is_friendly = data.is_friendly
 		lastDirection = data.lastDirection
@@ -111,7 +114,7 @@ func _physics_process(delta):
 	update_health()
 	updateAnimation()
 	pointVision()
-	if can_see_player and Game.get_player():
+	if can_see_enemy and Game.get_player():
 		gun.pointGun(Game.get_player().global_position, false)
 	move_and_slide()
 
@@ -181,9 +184,6 @@ func drop_loot():
 	var node = get_item_from_table(drop_table)
 	Game.current_level.add_child(node)
 	node.global_position = global_position	
-
-
-	
 	
 func update_health():
 	healthbar.value = current_health
@@ -200,17 +200,29 @@ func knockback(enemyVeocity: Vector2):
 	velocity = knockbackDirection
 	move_and_slide()
 	
-func _on_vision_is_visible(is_visible: bool):
+func _on_vision_is_visible(is_visible: bool, mobs: Array):
 	if is_visible and !isDead:
-		can_see_player = true
-		gun.press_trigger()
-		is_agro = true
-		if fsm.get_current_state() != "chase":
-			fsm.change_to("chase")
+		for mob in mobs:
+			if is_enemy(mob):
+				can_see_enemy = true
+				gun.press_trigger()
+				is_agro = true
+				if fsm.get_current_state() != "chase":
+					fsm.change_to("chase")
 	else:
-		can_see_player = false
+		can_see_enemy = false
 		gun.release_trigger()
 
+func is_enemy(mob: Object) -> bool:
+	if !is_friendly:
+		if mob == Game._player || mob.is_friendly:
+			return true
+		return false
+	else:
+		if mob == Game._player || !mob.is_friendly:
+			return false
+		return true
+		
 func sum_navpath(arr: Array):
 	var result = 0
 	var previous = Vector2.ZERO
@@ -234,3 +246,6 @@ func _on_set_desired_direction(direction: Vector2):
 func _on_investigation_location_reached():
 	fsm.change_to("patrolling")
 
+func _on_hurtbox_area_entered(area):
+	if is_friendly and area == Game._player:
+		CampaignManager.player_met(self)

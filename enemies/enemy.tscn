@@ -145,7 +145,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywqus"]
-size = Vector2(15, 31)
+size = Vector2(27, 42)
 
 [node name="enemy" type="CharacterBody2D" groups=["game_events"]]
 texture_filter = 1
@@ -200,6 +200,7 @@ hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
 position = Vector2(-0.5, -14.5)
 shape = SubResource("RectangleShape2D_w5fy1")
@@ -229,6 +230,7 @@ autostart = true
 stream = ExtResource("8_f43mc")
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, -14)
