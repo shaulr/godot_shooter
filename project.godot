@@ -38,6 +38,7 @@ directories/dch_directory={
 "zdenka": "res://quests/dialogs/zdenka.dch"
 }
 directories/dtl_directory={
+"bata_zdenka_intro": "res://quests/dialogs/bata_zdenka_intro.dtl",
 "zdenka_marko": "res://quests/dialogs/zdenka_marko.dtl"
 }
 glossary/default_case_sensitive=true

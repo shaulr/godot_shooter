@@ -212,7 +212,10 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 	else:
 		can_see_enemy = false
 		gun.release_trigger()
-
+		
+func talk_to_player():
+	fsm.change_to("talking")
+	
 func is_enemy(mob: Object) -> bool:
 	if !is_friendly:
 		if mob == Game._player || mob.is_friendly:
