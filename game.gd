@@ -20,7 +20,6 @@ var saved_game: SavedGame
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
-
 	
 func set_saved_data(game_to_save: SavedGame):
 	saved_game = game_to_save

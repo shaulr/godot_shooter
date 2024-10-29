@@ -313,6 +313,8 @@ func testfunc(v:Array=[]):
 func call_function(autoloadfunction:String,params:Array) -> void:
 	#split function from autoload script name
 	var autofuncsplit = autoloadfunction.split(".")
+	var extracted_params = extract_params(autoloadfunction)
+
 	var singleton_name = autofuncsplit[0]
 	var function = autofuncsplit[1]
 	#get only function name without ()
@@ -321,7 +323,28 @@ func call_function(autoloadfunction:String,params:Array) -> void:
 	assert(Engine.has_singleton(singleton_name)==false, "Singleton %s Not Loaded or invalid" % singleton_name)
 	var auto_load = get_tree().root.get_node(singleton_name)
 	#if array has values pass array otherwise call function normally
+	if extracted_params.size() > 0:
+		auto_load.propagate_call(callable,extracted_params)
 	if params.size()>0:
 		auto_load.propagate_call(callable,params)
 	else:
 		auto_load.propagate_call(callable)
+
+func extract_params(command: String) -> Array:
+	var packed_array: PackedStringArray
+	var delimiter: String
+	if command.find("\"") >= 0:
+		delimiter = "\""
+	elif command.find("\'") >= 0:
+		delimiter = "\'"
+	else:
+		return []
+	var first = command.find(delimiter)
+	var end = command.rfind(delimiter)
+	var len = end - first
+	var params = command.substr(first + delimiter.length(), len - delimiter.length())
+	var ret =  Array(params.split(","))
+	for i in range(ret.size()):
+		ret[i] = ret[i].strip_edges(true, true)
+
+	return ret
