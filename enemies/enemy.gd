@@ -36,7 +36,8 @@ var dropped = false
 
 func _enter_tree():
 	add_to_group("game_events")
-	Game.current_level.shooting_sound.connect(_on_shots_fired.bind())
+	if Game.current_level && "shooting_sound" in Game.current_level:
+		Game.current_level.shooting_sound.connect(_on_shots_fired.bind())
 	
 func _ready(): 
 	gun.gun_agros_enemies(true)

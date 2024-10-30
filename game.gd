@@ -29,7 +29,11 @@ func _process(_delta):
 	pass
 	
 func load_level(level: String):
-	get_tree().change_scene_to_file(level)
+	#if Game._player:
+		#Game._player.get_parent().remove_child(Game._player)
+	#get_tree().change_scene_to_file(level)
+	scene_manager.change_scene(Game.current_level, level)
+
 
 func play_random_song():
 	var music_list = []

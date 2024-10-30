@@ -3,12 +3,19 @@ class_name SceneManager extends Node
 @export var last_scene: String
 	
 
-func change_scene(from, to_scene_name: String):
+func change_scene(from, to_scene_name: String, is_door = false):
+
 	last_scene = from.name.get_file().split('.', true, 2)[0]
-	player = from.player
-	player.get_parent().remove_child(player)
-	Game.set_player(player)
+
+			
+	if Game._player && Game._player.get_parent():
+		player = Game._player
+		Game._player.get_parent().remove_child(player)
+
 	get_tree().call_deferred("change_scene_to_file", to_scene_name)
+
+func exit_scene():
+	change_scene(Game.current_level, last_scene)
 
 func serialize_scene() -> Array[SavedData]:
 	var saved_data:Array[SavedData] = []

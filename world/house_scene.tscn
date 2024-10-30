@@ -859,14 +859,14 @@ layer_1/tile_data = PackedInt32Array(1, 196610, 0, 2, 196610, 0, 3, 196610, 0, 4
 [node name="entrance_markers" type="Node2D" parent="."]
 
 [node name="any" type="Marker2D" parent="entrance_markers"]
-position = Vector2(104, 107)
+position = Vector2(108, 91)
 
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(102, 122)
 collision_layer = 0
 collision_mask = 15
 script = ExtResource("7_hj5yv")
-scene_to_load = "res://world/test_level.tscn"
+scene_to_load = "res://world/tutorial_level.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(1.5, 3.5)

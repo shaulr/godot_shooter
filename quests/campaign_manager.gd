@@ -83,5 +83,6 @@ func player_met(mob):
 			QuestManager.progress_quest(current_step.quest_id,current_step.id)
 
 func _on_dialogic_timeline_ended():
-	if current_step.current_step.meta_data.quest_type == "meet" && in_conversation:
-		QuestManager.progress_quest(current_step.quest_id,current_step.id)
+	if current_step.item_name == "conversation" && in_conversation:
+		QuestManager.progress_quest(current_step.quest_id,"conversation")
+		in_conversation = false

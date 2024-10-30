@@ -1,6 +1,6 @@
 class_name BaseScene extends Node
 
-var player: Player
+
 @onready var entrance_markers: Node2D = $entrance_markers
 @onready var camera = $followcam
 signal shooting_sound(noise: int, sound_pos: Vector2)
@@ -9,7 +9,7 @@ func _enter_tree():
 	print_debug("_enter_tree")
 	#await get_tree().create_timer(1).timeout
 	#Game.saver_loader.scene_loaded_callback()
-	Game.current_level = self
+	#Game.current_level = self
 
 func sound(level: int, pos: Vector2):
 	shooting_sound.emit(level, pos)
@@ -17,13 +17,14 @@ func sound(level: int, pos: Vector2):
 func _ready():
 	Game.current_level = self
 	for child in get_children():
-		if child is Player: player = child
+		if child is Player: 
+			Game._player = child
 	if Game.saver_loader.saved_game:
 		return		
-	if is_instance_valid(player):
-		if player.get_parent() != self:
-			player.get_parent().remove_child(player)
-			add_child(player)
+	if is_instance_valid(Game._player):
+		if Game._player.get_parent() != self:
+
+			add_child(Game._player)
 		position_player()
 
 
@@ -31,9 +32,9 @@ func _ready():
 func position_player():
 	for entrance in entrance_markers.get_children():
 		if entrance is Marker2D and entrance.name == scene_manager.last_scene:
-			player.global_position = entrance.global_position
+			Game._player.global_position = entrance.global_position
 		elif entrance is Marker2D and entrance.name == "any": 
-			player.global_position = entrance.global_position
+			Game._player.global_position = entrance.global_position
 
 func _unhandled_input(event):
 	if event.is_action("in_game_menu"):
