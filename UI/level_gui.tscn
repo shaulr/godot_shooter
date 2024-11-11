@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://yweyss3buugs"]
+
+[ext_resource type="Script" path="res://world/CanvasLayer.gd" id="1_7auu5"]
+[ext_resource type="PackedScene" uid="uid://bfm6rti8s6iak" path="res://UI/hearts.tscn" id="2_a0lfd"]
+[ext_resource type="Script" path="res://UI/hearts.gd" id="3_mmkfy"]
+[ext_resource type="PackedScene" uid="uid://dhgcoffq8l2yx" path="res://UI/inventory.tscn" id="4_0di5k"]
+[ext_resource type="PackedScene" uid="uid://dttfrn41qpi0d" path="res://UI/hotbar.tscn" id="5_p68j1"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7auu5")
+
+[node name="hearts" parent="." instance=ExtResource("2_a0lfd")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+grow_horizontal = 0
+script = ExtResource("3_mmkfy")
+
+[node name="inventory" parent="." instance=ExtResource("4_0di5k")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -41.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hotbar" parent="." instance=ExtResource("5_p68j1")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -40.0
+offset_right = 58.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="info_label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 128.0

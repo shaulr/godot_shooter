@@ -76,11 +76,12 @@ func player_met(mob):
 	if "mob_name" in mob:
 		print_debug(mob.mob_name)
 		mob.talk_to_player()
-		var meta_data = current_step.meta_data
-		if ! "quest_type" in meta_data:
-			return
-		if meta_data.quest_type == "meet" and meta_data.who == mob.mob_name:
-			QuestManager.progress_quest(current_step.quest_id,current_step.id)
+		if current_step:
+			var meta_data = current_step.meta_data
+			if ! "quest_type" in meta_data:
+				return
+			if meta_data.quest_type == "meet" and meta_data.who == mob.mob_name:
+				QuestManager.progress_quest(current_step.quest_id,current_step.id)
 
 func _on_dialogic_timeline_ended():
 	if current_step.item_name == "conversation" && in_conversation:

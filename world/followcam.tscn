@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bffuddqty3e6o"]
+
+[ext_resource type="Script" path="res://world/followcam.gd" id="1_18b2h"]
+
+[node name="followcam" type="Camera2D" node_paths=PackedStringArray("tilemap")]
+position = Vector2(173, 125)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 240
+limit_smoothed = true
+script = ExtResource("1_18b2h")
+tilemap = NodePath("")

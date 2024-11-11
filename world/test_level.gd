@@ -1,8 +1,8 @@
 extends BaseScene
 
 
-@onready var tilemap = $NavigationRegion2D/TileMap
-@onready var hearts_container = $CanvasLayer/hearts
+
+
 @onready var info_label = %info_label
 const INITIAL_MOBS = 1
 
@@ -14,8 +14,8 @@ func _ready():
 	Game.level_loaded(self, worldSizeInPixels)
 	#for i in range(INITIAL_MOBS):
 		#spawn_mob()
-	hearts_container.set_max_hearts(Game.LIVES)
-	hearts_container.set_current_lives(Game.lives)
+	level_gui.hearts.set_max_hearts(Game.LIVES)
+	level_gui.hearts.set_current_lives(Game.lives)
 
 func update_label(text: String):
 	info_label.text = text
