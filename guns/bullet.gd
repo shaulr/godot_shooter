@@ -55,4 +55,3 @@ func _on_body_entered(body):
 
 	await $bulletEffectPlayer.animation_finished
 	queue_free()
-

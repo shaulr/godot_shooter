@@ -9,4 +9,3 @@ func _ready():
 func _on_body_entered(body):
 	if body is Player:
 		scene_manager.change_scene(Game.current_level, scene_to_load)
-

@@ -33,4 +33,3 @@ func random_vector() -> Vector2:
 	
 func exit(next_state):
 	fsm.change_to(next_state)
-

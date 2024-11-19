@@ -46,4 +46,3 @@ func _get_all_descendants(node:Node) -> Dictionary:
 	for child in children:
 		scene_nodes.merge(_get_all_descendants(child))
 	return scene_nodes
-

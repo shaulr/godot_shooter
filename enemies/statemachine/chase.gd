@@ -32,4 +32,3 @@ func give_mob_chase_direction():
 
 func exit(next_state):
 	fsm.change_to(next_state)
-

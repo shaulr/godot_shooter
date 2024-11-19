@@ -97,4 +97,3 @@ func _on_timer_timeout():
 func set_desired_location(location: Vector2):
 	desired_direction = (global_position - location).normalized()
 	
-

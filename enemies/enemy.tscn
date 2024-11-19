@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=23 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_ii8wy"]
+[ext_resource type="Script" path="res://droppables/item.gd" id="2_3tvbs"]
 [ext_resource type="Resource" uid="uid://dta6htxpdbjg1" path="res://droppables/health.tres" id="2_xlq1x"]
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="3_i2sxh"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="4_vnoff"]
@@ -155,8 +156,8 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
-drop_table = Array[Resource("res://droppables/item.gd")]([ExtResource("2_xlq1x"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
-gun_table = Array[Resource("res://droppables/item.gd")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
+drop_table = Array[ExtResource("2_3tvbs")]([ExtResource("2_xlq1x"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
+gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
 
 [node name="Movement" parent="." instance=ExtResource("5_vavk2")]
 

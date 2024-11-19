@@ -9,4 +9,3 @@ extends Resource
 
 func use(_player: Player):
 	pass
-

@@ -8,4 +8,3 @@ class_name InventoryItem
 func use(player: Player):
 	pass
 	
-

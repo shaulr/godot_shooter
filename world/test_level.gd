@@ -9,7 +9,7 @@ const INITIAL_MOBS = 1
 func _ready():
 	super()
 	var mapRect = tilemap.get_used_rect()
-	var titleSize = tilemap.cell_quadrant_size
+	var titleSize = tilemap.tile_set.tile_size
 	var worldSizeInPixels = mapRect.size * titleSize
 	Game.level_loaded(self, worldSizeInPixels)
 	#for i in range(INITIAL_MOBS):

@@ -3,7 +3,7 @@ class_name BaseScene extends Node
 
 @onready var entrance_markers: Node = $entrance_markers
 @onready var camera = $followcam
-@onready var tilemap = $NavigationRegion2D/TileMap
+@onready var tilemap = $NavigationRegion2D/TileMap/ground
 signal shooting_sound(noise: int, sound_pos: Vector2)
 var level_gui: CanvasLayer
 

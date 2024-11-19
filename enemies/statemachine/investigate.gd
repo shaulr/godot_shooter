@@ -20,4 +20,3 @@ func start_dialog():
 
 func exit(next_state):
 	fsm.change_to(next_state)
-

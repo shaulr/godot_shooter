@@ -24,5 +24,3 @@ func _unhandled_input(event):
 		
 	if event.is_action_pressed("move_selector"):
 		move_selector()
-
-
