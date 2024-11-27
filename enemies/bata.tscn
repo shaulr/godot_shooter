@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsc3i44wvy0fi"]
+[gd_scene load_steps=8 format=3 uid="uid://bsc3i44wvy0fi"]
 
 [ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/enemy.tscn" id="1_7ep27"]
 [ext_resource type="Texture2D" uid="uid://weipvqoamiqs" path="res://art/bata_anim.png.png" id="2_gptw5"]
+[ext_resource type="Script" path="res://droppables/item.gd" id="2_m0rul"]
+[ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_op7u7"]
+[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_etgbd"]
+[ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_dlnit"]
+
+[sub_resource type="Resource" id="Resource_kcs2j"]
+resource_local_to_scene = true
+script = ExtResource("2_m0rul")
+name = "Health"
+texture = ExtResource("3_op7u7")
+maxTextureSize = Vector2(20, 20)
+drop_weight = 5.0
+scene_path = "res://droppables/health.tscn"
 
 [node name="bata" instance=ExtResource("1_7ep27")]
 is_friendly = true
 mob_name = "Bata"
+drop_table = Array[ExtResource("2_m0rul")]([SubResource("Resource_kcs2j"), ExtResource("4_etgbd"), ExtResource("5_dlnit")])
 
 [node name="walk" parent="." index="3"]
 texture = ExtResource("2_gptw5")

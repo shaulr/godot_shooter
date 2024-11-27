@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Mob extends CharacterBody2D
 @onready var animations = $AnimationPlayer
 var isDead: bool = false
 
@@ -11,7 +11,7 @@ var isDead: bool = false
 @onready var gun = $gun
 @onready var collision_shape = %CollisionShape2D
 const  STEERING_FORCE = 0.1
-
+var to_follow
 var speed = 30
 var acceleration = 7
 const MAX_HEALTH = 100
@@ -19,6 +19,8 @@ var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
 @export var is_friendly: bool
+enum WarSide {allied, axis, neutral}
+@export var belongs: WarSide
 var can_see_enemy = false
 var is_agro = false
 var lastDirection = "down"
@@ -30,7 +32,7 @@ var desired_direction = Vector2.ZERO
 
 @export var drop_table: Array[Item]
 @export var gun_table: Array[Item]
-
+var met_player: bool = false
 var rng = RandomNumberGenerator.new()
 var dropped = false
 
@@ -38,6 +40,8 @@ func _enter_tree():
 	add_to_group("game_events")
 	if Game.current_level && "shooting_sound" in Game.current_level:
 		Game.current_level.shooting_sound.connect(_on_shots_fired.bind())
+	if mob_name == "bosko":
+		Game.set_bosko(self)
 	
 func _ready(): 
 	gun.gun_agros_enemies(true)
@@ -215,7 +219,18 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 		gun.release_trigger()
 		
 func talk_to_player():
+	if fsm.get_current_state() == "follow":
+		return
 	fsm.change_to("talking")
+	if is_friendly && !met_player:
+		CampaignManager.introduce_player_to(self)
+	
+func follow(who_to_follow):
+	to_follow = 	who_to_follow
+	fsm.change_to("follow")
+	
+func get_follow():
+	return to_follow
 	
 func is_enemy(mob: Object) -> bool:
 	if !is_friendly:

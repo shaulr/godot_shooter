@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1axmrpcvvycj"]
+
+[ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/enemy.tscn" id="1_x2opx"]
+[ext_resource type="Script" path="res://droppables/item.gd" id="2_0at5w"]
+[ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_7jr4j"]
+[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_igunq"]
+[ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_44olj"]
+
+[sub_resource type="Resource" id="Resource_1n1lu"]
+resource_local_to_scene = true
+script = ExtResource("2_0at5w")
+name = "Health"
+texture = ExtResource("3_7jr4j")
+maxTextureSize = Vector2(20, 20)
+drop_weight = 5.0
+scene_path = "res://droppables/health.tscn"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_udx3o"]
+load_path = "res://.godot/imported/bosko_anim.png-c015a8fdb76c4f679ffeb06bdfdb9e07.ctex"
+
+[node name="bosko_buha" instance=ExtResource("1_x2opx")]
+is_friendly = true
+mob_name = "bosko"
+drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_1n1lu"), ExtResource("4_igunq"), ExtResource("5_44olj")])
+
+[node name="walk" parent="." index="3"]
+texture = SubResource("CompressedTexture2D_udx3o")
+hframes = 3
+vframes = 6

@@ -325,7 +325,7 @@ func call_function(autoloadfunction:String,params:Array) -> void:
 	#if array has values pass array otherwise call function normally
 	if extracted_params.size() > 0:
 		auto_load.propagate_call(callable,extracted_params)
-	if params.size()>0:
+	elif params.size()>0:
 		auto_load.propagate_call(callable,params)
 	else:
 		auto_load.propagate_call(callable)

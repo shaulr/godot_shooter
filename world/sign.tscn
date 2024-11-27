@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccg05escdhvap"]
+
+[ext_resource type="Script" path="res://world/sign.gd" id="1_8ma52"]
+[ext_resource type="Texture2D" uid="uid://wye6tpos0yeb" path="res://art/signs/signpost_crossroads.png" id="2_7ivuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o3ot"]
+size = Vector2(14, 23)
+
+[node name="sign" type="Area2D"]
+position = Vector2(601, 401)
+script = ExtResource("1_8ma52")
+sign_text = "⇑ 		Ustasa base
+⇓ 		Big forrest
+⇐ 	Fields
+⇒ 	Another village
+"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_5o3ot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+position = Vector2(-1, -1)
+texture = ExtResource("2_7ivuu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

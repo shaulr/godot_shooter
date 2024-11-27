@@ -84,6 +84,13 @@ func player_met(mob):
 				QuestManager.progress_quest(current_step.quest_id,current_step.id)
 
 func _on_dialogic_timeline_ended():
+	if !current_step.has('item_name'):
+		return
 	if current_step.item_name == "conversation" && in_conversation:
 		QuestManager.progress_quest(current_step.quest_id,"conversation")
 		in_conversation = false
+
+
+func introduce_player_to(mob: Mob):
+	if mob.mob_name == "bosko":
+		Dialogic.start("zdenka_bosko_intro")

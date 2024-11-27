@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=25 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_ii8wy"]
 [ext_resource type="Script" path="res://droppables/item.gd" id="2_3tvbs"]
-[ext_resource type="Resource" uid="uid://dta6htxpdbjg1" path="res://droppables/health.tres" id="2_xlq1x"]
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="3_i2sxh"]
+[ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_t5iu1"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="4_vnoff"]
 [ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="5_vavk2"]
 [ext_resource type="Texture2D" uid="uid://b45kgbkjc65wj" path="res://art/hitler_walk.png" id="6_tkiwy"]
@@ -12,6 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="9_mt60k"]
 [ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="10_ds0ea"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_nac6r"]
+[ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="13_ywhos"]
+
+[sub_resource type="Resource" id="Resource_kcs2j"]
+resource_local_to_scene = true
+script = ExtResource("2_3tvbs")
+name = "Health"
+texture = ExtResource("3_t5iu1")
+maxTextureSize = Vector2(20, 20)
+drop_weight = 5.0
+scene_path = "res://droppables/health.tscn"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nguij"]
 size = Vector2(23, 43)
@@ -48,7 +58,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_um28d"]
 resource_name = "death"
-length = 2.2
+length = 1.2
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -65,7 +75,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jh06j"]
 resource_name = "walkdown"
-length = 0.8
+length = 0.6
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -83,7 +93,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_a8fsh"]
 resource_name = "walkleft"
-length = 0.8
+length = 0.6
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -101,7 +111,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qdx6f"]
 resource_name = "walkright"
-length = 0.8
+length = 0.6
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -119,7 +129,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jpepv"]
 resource_name = "walkup"
-length = 0.8
+length = 0.6
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -156,7 +166,7 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
-drop_table = Array[ExtResource("2_3tvbs")]([ExtResource("2_xlq1x"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
+drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_kcs2j"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
 gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
 
 [node name="Movement" parent="." instance=ExtResource("5_vavk2")]
@@ -244,6 +254,7 @@ position = Vector2(1, -19)
 position = Vector2(1, -15)
 
 [node name="Statemachine" parent="." instance=ExtResource("11_nac6r")]
+script = ExtResource("13_ywhos")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

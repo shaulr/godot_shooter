@@ -16,7 +16,7 @@ var isAttacking: bool = false
 @onready var knife = $knife
 @onready var sprite = $Sprite2D
 @export var inventory: Inventory
-
+@onready var collider = $CollisionShape2D
 var hurting = false
 var isStabbing = false
 var isDead = false 
@@ -57,6 +57,9 @@ func handleInput(_delta: float):
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDir * SPEED
 	move_and_collide(moveDir * SPEED)
+
+func get_size() -> Vector2:
+	return collider.shape.size
 	
 func stab():
 	isStabbing = true

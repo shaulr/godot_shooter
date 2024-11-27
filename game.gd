@@ -17,6 +17,7 @@ var lives = LIVES
 var music_player = AudioStreamPlayer.new()
 var saver_loader:  SaverLoader = SaverLoader.new()
 var saved_game: SavedGame
+var bosko: Mob
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
@@ -107,6 +108,8 @@ func set_player(thePlayer: Player):
 	if !current_level: return 
 	#if current_level.has_node("camera"):
 		#current_level.camera.follow_node = thePlayer
+func set_bosko(bosko: Mob):
+	self.bosko = bosko
 
 func level_has_camera() -> bool:
 	if current_level:
@@ -124,3 +127,8 @@ func save():
 
 func start():
 	CampaignManager.start("Tutorial")
+	
+	
+func bosko_joins():
+	if bosko:
+		bosko.follow(_player)

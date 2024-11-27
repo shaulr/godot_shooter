@@ -1,7 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://duit1mans11qt"]
+[gd_scene load_steps=15 format=3 uid="uid://duit1mans11qt"]
 
 [ext_resource type="PackedScene" uid="uid://dwpqdm50ftu1j" path="res://enemies/enemy.tscn" id="1_dshxn"]
+[ext_resource type="Script" path="res://droppables/item.gd" id="2_3kihx"]
 [ext_resource type="Texture2D" uid="uid://jhhowcjgku4j" path="res://art/marko.png" id="2_xu3vg"]
+[ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_nnuuu"]
+[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_56j1g"]
+[ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_ossgv"]
+
+[sub_resource type="Resource" id="Resource_kcs2j"]
+resource_local_to_scene = true
+script = ExtResource("2_3kihx")
+name = "Health"
+texture = ExtResource("3_nnuuu")
+maxTextureSize = Vector2(20, 20)
+drop_weight = 5.0
+scene_path = "res://droppables/health.tscn"
 
 [sub_resource type="Animation" id="Animation_r33f6"]
 length = 0.001
@@ -118,6 +131,7 @@ _data = {
 }
 
 [node name="enemy" instance=ExtResource("1_dshxn")]
+drop_table = Array[ExtResource("2_3kihx")]([SubResource("Resource_kcs2j"), ExtResource("4_56j1g"), ExtResource("5_ossgv")])
 
 [node name="hurtbox" parent="." index="1"]
 position = Vector2(-2.5, -18.5)

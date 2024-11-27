@@ -2,10 +2,10 @@ class_name BaseScene extends Node
 
 
 @onready var entrance_markers: Node = $entrance_markers
-@onready var camera = $followcam
+var camera: Camera2D
 @onready var tilemap = $NavigationRegion2D/TileMap/ground
 signal shooting_sound(noise: int, sound_pos: Vector2)
-var level_gui: CanvasLayer
+var level_gui: LevelGui
 
 func _enter_tree():
 	print_debug("_enter_tree")
@@ -20,6 +20,10 @@ func sound(level: int, pos: Vector2):
 func _ready():
 	level_gui = load("res://UI/level_gui.tscn").instantiate()
 	add_child(level_gui)
+
+	camera = load("res://world/followcam.tscn").instantiate()
+	add_child(camera)
+
 	camera.init(tilemap)
 	Game.current_level = self
 	for child in get_children():
@@ -36,12 +40,24 @@ func _ready():
 
 
 func position_player():
+	if scene_manager.last_scene:
+		var door = find_door(self, scene_manager.last_scene)
+		if door:
+			door.position_player()
+			return
 	for entrance in entrance_markers.get_children():
 		if entrance is Marker2D and entrance.name == scene_manager.last_scene:
 			Game._player.global_position = entrance.global_position
 		elif entrance is Marker2D and entrance.name == "any": 
 			Game._player.global_position = entrance.global_position
-
+func find_door(node: Node, level: String) -> Door:
+	for N in node.get_children():
+		if N is Door && N.scene_to_load == level:
+			return N
+		elif N.get_child_count() > 0:
+			find_door(N, level)
+	return null
+			
 func _unhandled_input(event):
 	if event.is_action("in_game_menu"):
 		Game.in_game_menu()

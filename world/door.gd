@@ -1,11 +1,50 @@
 class_name Door extends Area2D
 @onready var game = $"/root/Game"
-@export var scene_to_load: String
-
+@export_file("*.tscn") var scene_to_load: String = "res://world/"
+var rect_size = Vector2(32, 32) # example size.
+var collider: CollisionShape2D
 
 func _ready():
+	collider = $CollisionShape2D	
 	body_entered.connect(_on_body_entered)
-
+	
 func _on_body_entered(body):
 	if body is Player:
 		scene_manager.change_scene(Game.current_level, scene_to_load)
+
+func position_player():
+	Game.get_player().global_position = global_position
+	var bodies_in_area = get_overlapping_bodies()
+	if (bodies_in_area.size() > 0):
+		move_out_of_range(bodies_in_area)
+	else: 
+		Game.get_player().global_position.y += Game.get_player().get_size().y * 2
+		
+func get_rect_of_collider() -> Vector2:
+	if collider.shape is RectangleShape2D:
+		return collider.shape.size
+	elif collider.shape is CapsuleShape2D:
+		return Vector2(collider.shape.height, collider.shape.radius)
+	elif collider.shape is CircleShape2D:
+		return Vector2(collider.shape.radius, collider.shape.radius)
+	else:
+		return rect_size
+
+	
+	
+func move_out_of_range(bodies):
+	var current_position = global_position
+	var distance_to_add: float = 0.0
+	for body in bodies:
+		var direction_from_body_to_self = (current_position- body.global_position)
+		# check distance on the X
+		if (abs(direction_from_body_to_self.x) < rect_size.x):
+			distance_to_add += (get_rect_of_collider().x - abs(direction_from_body_to_self.x))
+			distance_to_add = distance_to_add * sign(direction_from_body_to_self.x)
+			current_position.x += distance_to_add
+		# check distance on the Y
+		if (abs(direction_from_body_to_self.y) < rect_size.y):
+			distance_to_add += (get_rect_of_collider().y - abs(direction_from_body_to_self.y))
+			distance_to_add = distance_to_add * sign(direction_from_body_to_self.y)
+			current_position.y += distance_to_add
+	Game.get_player().global_position = current_position

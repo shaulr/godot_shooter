@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://yweyss3buugs"]
+[gd_scene load_steps=8 format=3 uid="uid://yweyss3buugs"]
 
 [ext_resource type="Script" path="res://world/CanvasLayer.gd" id="1_7auu5"]
 [ext_resource type="PackedScene" uid="uid://bfm6rti8s6iak" path="res://UI/hearts.tscn" id="2_a0lfd"]
 [ext_resource type="Script" path="res://UI/hearts.gd" id="3_mmkfy"]
 [ext_resource type="PackedScene" uid="uid://dhgcoffq8l2yx" path="res://UI/inventory.tscn" id="4_0di5k"]
 [ext_resource type="PackedScene" uid="uid://dttfrn41qpi0d" path="res://UI/hotbar.tscn" id="5_p68j1"]
+[ext_resource type="Theme" uid="uid://cx2oiw205t1xm" path="res://UI/partisan_theme.tres" id="6_0h08k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k65ta"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -47,5 +50,12 @@ grow_vertical = 0
 
 [node name="info_label" type="Label" parent="."]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 128.0
+offset_left = 382.0
+offset_top = 26.0
+offset_right = 624.0
+offset_bottom = 154.0
+theme = ExtResource("6_0h08k")
+theme_type_variation = &"MediumLabel"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.775063, 0.775063, 0.775063, 1)
+label_settings = SubResource("LabelSettings_k65ta")

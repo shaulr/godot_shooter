@@ -5,7 +5,7 @@ class_name SceneManager extends Node
 
 func change_scene(from, to_scene_name: String, is_door = false):
 
-	last_scene = from.name.get_file().split('.', true, 2)[0]
+	last_scene = from.scene_file_path
 
 			
 	if Game._player && Game._player.get_parent():

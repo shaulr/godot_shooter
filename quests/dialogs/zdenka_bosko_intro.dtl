@@ -1,0 +1,19 @@
+zdenka: Hello kid, who are you?
+bosko_buha: Wow, you are hot. My name is Bosko Buha. And who are you? 
+zdenka: I am Zdenka. Hot? Kid, how old are you? 12?
+bosko_buha: Nah, I am just small of stature, I am actually 16. Would you like to go with me and throw bombs at German bunkers?
+zdenka: Wow, is that your idea of a date?
+bosko_buha: I don't know. I never been on one, me being small of stature, all girls my age think I am 12. Do you like to throw bombs on bunkers?
+zdenka: Never tried it. 
+bosko_buha: It is tons of fun. I am the best bomb thrower arround. I would love to go on a bomb throwing date with you.
+zdenka: I am too old for you, I am 18. 
+bosko_buha: Nah, I like older women. What I lack in stature, I more than make up in bomb throwing skills. Go on a date with me and you will see.
+zdenka: Wow, I don't know what to say...
+bosko_buha: Say "yes". You won't be disapointed.
+- Agree to a bomb throwing date with Bosko
+	zdenka: Ok kid, let's go.
+	bosko_buha: You won't regret it.
+	do Game.bosko_joins()
+- Don't agree to a bomb throwing date with Bosko
+	zdenka: Not right now, kid, I am bussy.
+	bosko_buha: Sigh... Ok, come to talk to me when you are ready.

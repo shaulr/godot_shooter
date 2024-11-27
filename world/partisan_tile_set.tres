@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=38 format=3 uid="uid://l1hxs7318606"]
+[gd_resource type="TileSet" load_steps=41 format=3 uid="uid://l1hxs7318606"]
 
 [ext_resource type="Texture2D" uid="uid://b07qgee3rqngd" path="res://art/TilesetFloor.png" id="1_pjx57"]
 [ext_resource type="Texture2D" uid="uid://cvsqkluh7b47u" path="res://art/TilesetNature.png" id="2_83eyq"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cp0cxk28yy1xv" path="res://enemies/cow.tscn" id="9_4y0qu"]
 [ext_resource type="PackedScene" uid="uid://ctlh630u4vqq6" path="res://enemies/pig.tscn" id="10_i56yh"]
 [ext_resource type="PackedScene" uid="uid://ri5k36hqe80h" path="res://enemies/sheep.tscn" id="11_vxru3"]
+[ext_resource type="PackedScene" uid="uid://ccg05escdhvap" path="res://world/sign.tscn" id="12_ltnbi"]
+[ext_resource type="PackedScene" uid="uid://q3hywpml2k85" path="res://world/door.tscn" id="13_6mmky"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_scerk"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -3499,25 +3501,11 @@ texture_region_size = Vector2i(32, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3d0p"]
 texture = ExtResource("7_bck2r")
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-14:1/0 = 0
-15:1/0 = 0
-16:1/0 = 0
-17:1/0 = 0
-14:2/0 = 0
-15:2/0 = 0
 14:3/0 = 0
 15:3/0 = 0
 16:3/0 = 0
 14:4/0 = 0
 15:4/0 = 0
-14:5/0 = 0
-15:5/0 = 0
-14:6/0 = 0
-15:6/0 = 0
 0:0/size_in_atlas = Vector2i(7, 8)
 0:0/0 = 0
 0:0/0/z_index = 1
@@ -3531,6 +3519,12 @@ texture = ExtResource("7_bck2r")
 7:0/0 = 0
 7:0/0/y_sort_origin = 37
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.79, 34.2609, 16.7967, 33.8159, 17.2417, 54.7284, -11.6798, 53.3936)
+14:5/size_in_atlas = Vector2i(2, 2)
+14:5/0 = 0
+16:0/size_in_atlas = Vector2i(2, 2)
+16:0/0 = 0
+14:0/size_in_atlas = Vector2i(2, 3)
+14:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_p17xb"]
 resource_name = "Animals"
@@ -3538,6 +3532,11 @@ scenes/1/scene = ExtResource("8_bcq04")
 scenes/2/scene = ExtResource("9_4y0qu")
 scenes/3/scene = ExtResource("10_i56yh")
 scenes/4/scene = ExtResource("11_vxru3")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_t721d"]
+resource_name = "interactibles"
+scenes/1/scene = ExtResource("12_ltnbi")
+scenes/2/scene = ExtResource("13_6mmky")
 
 [resource]
 physics_layer_0/collision_layer = 1
@@ -3565,3 +3564,4 @@ sources/3 = SubResource("TileSetScenesCollectionSource_yt68t")
 sources/4 = SubResource("TileSetAtlasSource_telxc")
 sources/5 = SubResource("TileSetAtlasSource_f3d0p")
 sources/6 = SubResource("TileSetScenesCollectionSource_p17xb")
+sources/7 = SubResource("TileSetScenesCollectionSource_t721d")

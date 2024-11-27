@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name LevelGui extends CanvasLayer
 @onready var inventory = $inventory
 @onready var hearts = $hearts
 @onready var hotbar = $hotbar
@@ -11,3 +11,5 @@ func _input(event):
 		else:
 			inventory.open()
 	
+func set_label_text(text: String):
+	info_label.text = text
