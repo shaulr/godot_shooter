@@ -108,14 +108,13 @@ func set_player(thePlayer: Player):
 	if !current_level: return 
 	#if current_level.has_node("camera"):
 		#current_level.camera.follow_node = thePlayer
+		
 func set_bosko(bosko: Mob):
 	self.bosko = bosko
 
 func level_has_camera() -> bool:
-	if current_level:
-		var camera_instance = current_level.find_child("followcam")
-		if camera_instance: return true
-	return false
+	if Game.current_level && Game.current_level.camera: return true
+	else: return false
 
 func get_player() -> Player:
 	return _player

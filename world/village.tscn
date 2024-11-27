@@ -14,7 +14,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg1h"]
 size = Vector2(11, 11)
 
-[sub_resource type="Resource" id="Resource_ge5xo"]
+[sub_resource type="Resource" id="Resource_5xoth"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -90,4 +90,23 @@ shape = SubResource("RectangleShape2D_dpg1h")
 
 [node name="bosko_buha" parent="." instance=ExtResource("6_x66do")]
 position = Vector2(441, 192)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_ge5xo"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_5xoth"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/sign" to="NavigationRegion2D/TileMap/objects/sign" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/sign" to="NavigationRegion2D/TileMap/objects/sign" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64689" to="NavigationRegion2D/TileMap/objects/@Area2D@64689" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64689" to="NavigationRegion2D/TileMap/objects/@Area2D@64689" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64690" to="NavigationRegion2D/TileMap/objects/@Area2D@64690" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64690" to="NavigationRegion2D/TileMap/objects/@Area2D@64690" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64691" to="NavigationRegion2D/TileMap/objects/@Area2D@64691" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64691" to="NavigationRegion2D/TileMap/objects/@Area2D@64691" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64692" to="NavigationRegion2D/TileMap/objects/@Area2D@64692" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64692" to="NavigationRegion2D/TileMap/objects/@Area2D@64692" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64693" to="NavigationRegion2D/TileMap/objects/@Area2D@64693" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64693" to="NavigationRegion2D/TileMap/objects/@Area2D@64693" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64694" to="NavigationRegion2D/TileMap/objects/@Area2D@64694" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64694" to="NavigationRegion2D/TileMap/objects/@Area2D@64694" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64695" to="NavigationRegion2D/TileMap/objects/@Area2D@64695" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64695" to="NavigationRegion2D/TileMap/objects/@Area2D@64695" method="_on_body_exited"]
+[connection signal="body_entered" from="NavigationRegion2D/TileMap/objects/@Area2D@64696" to="NavigationRegion2D/TileMap/objects/@Area2D@64696" method="_on_body_entered"]
+[connection signal="body_exited" from="NavigationRegion2D/TileMap/objects/@Area2D@64696" to="NavigationRegion2D/TileMap/objects/@Area2D@64696" method="_on_body_exited"]

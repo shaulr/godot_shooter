@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_etgbd"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_dlnit"]
 
-[sub_resource type="Resource" id="Resource_kcs2j"]
+[sub_resource type="Resource" id="Resource_yyd05"]
 resource_local_to_scene = true
 script = ExtResource("2_m0rul")
 name = "Health"
@@ -19,7 +19,7 @@ scene_path = "res://droppables/health.tscn"
 [node name="bata" instance=ExtResource("1_7ep27")]
 is_friendly = true
 mob_name = "Bata"
-drop_table = Array[ExtResource("2_m0rul")]([SubResource("Resource_kcs2j"), ExtResource("4_etgbd"), ExtResource("5_dlnit")])
+drop_table = Array[ExtResource("2_m0rul")]([SubResource("Resource_yyd05"), ExtResource("4_etgbd"), ExtResource("5_dlnit")])
 
 [node name="walk" parent="." index="3"]
 texture = ExtResource("2_gptw5")
