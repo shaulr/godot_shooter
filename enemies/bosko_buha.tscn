@@ -25,5 +25,14 @@ drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_1n1lu"), ExtRe
 
 [node name="walk" parent="." index="3"]
 texture = SubResource("CompressedTexture2D_udx3o")
-hframes = 3
-vframes = 6
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(-0.5, -15)
+
+[node name="NavigationAgent2D" parent="." index="7"]
+target_desired_distance = 50.0
+path_max_distance = 500.0
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+radius = 50.0

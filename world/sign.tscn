@@ -7,6 +7,7 @@
 size = Vector2(14, 23)
 
 [node name="sign" type="Area2D"]
+texture_filter = 1
 position = Vector2(601, 401)
 script = ExtResource("1_8ma52")
 sign_text = "⇑ 		Ustasa base
@@ -20,7 +21,7 @@ position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_5o3ot")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 2
+texture_filter = 1
 position = Vector2(-1, -1)
 texture = ExtResource("2_7ivuu")
 

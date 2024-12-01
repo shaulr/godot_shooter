@@ -17,6 +17,7 @@ var isAttacking: bool = false
 @onready var sprite = $Sprite2D
 @export var inventory: Inventory
 @onready var collider = $CollisionShape2D
+var unit: Mob = null
 var hurting = false
 var isStabbing = false
 var isDead = false 

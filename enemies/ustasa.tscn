@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_56j1g"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_ossgv"]
 
-[sub_resource type="Resource" id="Resource_yyd05"]
+[sub_resource type="Resource" id="Resource_oqk8a"]
 resource_local_to_scene = true
 script = ExtResource("2_3kihx")
 name = "Health"
@@ -131,15 +131,13 @@ _data = {
 }
 
 [node name="enemy" instance=ExtResource("1_dshxn")]
-drop_table = Array[ExtResource("2_3kihx")]([SubResource("Resource_yyd05"), ExtResource("4_56j1g"), ExtResource("5_ossgv")])
+drop_table = Array[ExtResource("2_3kihx")]([SubResource("Resource_oqk8a"), ExtResource("4_56j1g"), ExtResource("5_ossgv")])
 
 [node name="hurtbox" parent="." index="1"]
 position = Vector2(-2.5, -18.5)
 
 [node name="walk" parent="." index="3"]
 texture = ExtResource("2_xu3vg")
-hframes = 3
-vframes = 6
 
 [node name="AnimationPlayer" parent="." index="5"]
 libraries = {

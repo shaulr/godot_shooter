@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_nac6r"]
 [ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="13_ywhos"]
 
-[sub_resource type="Resource" id="Resource_yyd05"]
+[sub_resource type="Resource" id="Resource_c4yhf"]
 resource_local_to_scene = true
 script = ExtResource("2_3tvbs")
 name = "Health"
@@ -27,7 +27,7 @@ scene_path = "res://droppables/health.tscn"
 size = Vector2(23, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5fy1"]
-size = Vector2(11, 27)
+size = Vector2(11, 26)
 
 [sub_resource type="Animation" id="Animation_gsknv"]
 length = 0.001
@@ -166,7 +166,7 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
-drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_yyd05"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
+drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_c4yhf"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
 gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
 
 [node name="Movement" parent="." instance=ExtResource("5_vavk2")]
@@ -207,8 +207,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, -16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_tkiwy")
-hframes = 4
-vframes = 4
+hframes = 3
+vframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -230,6 +230,9 @@ hframes = 4
 vframes = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.109804, 1, 1)
 

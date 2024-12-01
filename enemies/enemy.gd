@@ -35,6 +35,8 @@ var desired_direction = Vector2.ZERO
 var met_player: bool = false
 var rng = RandomNumberGenerator.new()
 var dropped = false
+var next_in_unit: Mob = null
+var previous_in_unit: Mob = null
 
 func _enter_tree():
 	add_to_group("game_events")
@@ -229,6 +231,10 @@ func follow(who_to_follow):
 	to_follow = 	who_to_follow
 	fsm.change_to("follow")
 	
+	
+func idle():
+	fsm.change_to("patrol")
+	
 func get_follow():
 	return to_follow
 	
@@ -268,3 +274,6 @@ func _on_investigation_location_reached():
 func _on_hurtbox_area_entered(area):
 	if is_friendly and area == Game._player:
 		CampaignManager.player_met(self)
+
+func order(order: String):
+	print_debug(mob_name + " recieved order " + order)

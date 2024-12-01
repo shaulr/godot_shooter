@@ -20,7 +20,7 @@ func _on_type_set(new_type: int):
 		sprite = Sprite2D.new()
 		add_child(sprite)
 	sprite.texture = load(path)
-	sprite.texture_filter = TEXTURE_FILTER_LINEAR 
+	sprite.texture_filter = TEXTURE_FILTER_NEAREST
 
 	
 
