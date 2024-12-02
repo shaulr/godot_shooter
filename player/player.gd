@@ -52,8 +52,17 @@ func serialize_player() -> PlayerData:
 func _input(event):
 	if event.is_action_pressed("stab"):
 		stab()
+	elif event.is_action_pressed("throw"):
+		throw_bomb()
 	#handleInput()
-	
+
+func throw_bomb():
+	const GRENADE = preload("res://guns/bomb.tscn")
+	var new_bomb = GRENADE.instantiate()
+	new_bomb.global_position = global_position
+	Game.current_level.add_child(new_bomb)
+	new_bomb.throw_at(get_global_mouse_position())
+
 func handleInput(_delta: float):
 	var moveDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDir * SPEED

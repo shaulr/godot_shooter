@@ -19,7 +19,11 @@ scene_path = "res://droppables/health.tscn"
 load_path = "res://.godot/imported/bosko_anim.png-c015a8fdb76c4f679ffeb06bdfdb9e07.ctex"
 
 [node name="bosko_buha" instance=ExtResource("1_x2opx")]
+lastVelocity = null
+knocbackPower = null
 is_friendly = true
+belongs = null
+limit = null
 mob_name = "bosko"
 drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_1n1lu"), ExtResource("4_igunq"), ExtResource("5_44olj")])
 

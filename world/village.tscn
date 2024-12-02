@@ -20,7 +20,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg1h"]
 size = Vector2(11, 11)
 
-[sub_resource type="Resource" id="Resource_if0c6"]
+[sub_resource type="Resource" id="Resource_c0lgn"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -100,23 +100,4 @@ shape = SubResource("RectangleShape2D_dpg1h")
 
 [node name="bosko_buha" parent="." instance=ExtResource("6_x66do")]
 position = Vector2(441, 192)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_if0c6"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
-
-[connection signal="body_entered" from="NavigationRegion2D/objects/sign" to="NavigationRegion2D/objects/sign" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/sign" to="NavigationRegion2D/objects/sign" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23900" to="NavigationRegion2D/objects/@Area2D@23900" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23900" to="NavigationRegion2D/objects/@Area2D@23900" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23901" to="NavigationRegion2D/objects/@Area2D@23901" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23901" to="NavigationRegion2D/objects/@Area2D@23901" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23902" to="NavigationRegion2D/objects/@Area2D@23902" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23902" to="NavigationRegion2D/objects/@Area2D@23902" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23903" to="NavigationRegion2D/objects/@Area2D@23903" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23903" to="NavigationRegion2D/objects/@Area2D@23903" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23904" to="NavigationRegion2D/objects/@Area2D@23904" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23904" to="NavigationRegion2D/objects/@Area2D@23904" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23905" to="NavigationRegion2D/objects/@Area2D@23905" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23905" to="NavigationRegion2D/objects/@Area2D@23905" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23906" to="NavigationRegion2D/objects/@Area2D@23906" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23906" to="NavigationRegion2D/objects/@Area2D@23906" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@23907" to="NavigationRegion2D/objects/@Area2D@23907" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@23907" to="NavigationRegion2D/objects/@Area2D@23907" method="_on_body_exited"]
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_c0lgn"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])

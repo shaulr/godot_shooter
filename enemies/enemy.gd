@@ -37,7 +37,7 @@ var rng = RandomNumberGenerator.new()
 var dropped = false
 var next_in_unit: Mob = null
 var previous_in_unit: Mob = null
-
+var mob_to_attack: Mob = null
 func _enter_tree():
 	add_to_group("game_events")
 	if Game.current_level && "shooting_sound" in Game.current_level:
@@ -121,8 +121,12 @@ func _physics_process(delta):
 	update_health()
 	updateAnimation()
 	pointVision()
-	if can_see_enemy and Game.get_player():
-		gun.pointGun(Game.get_player().global_position, false)
+	if can_see_enemy:
+		if !mob_to_attack && Game.get_player():
+			gun.pointGun(Game.get_player().global_position, false)
+		elif mob_to_attack:
+			gun.pointGun(mob_to_attack.global_position, false)
+
 	move_and_slide()
 
 func update_velocity():
@@ -212,12 +216,14 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 		for mob in mobs:
 			if is_enemy(mob):
 				can_see_enemy = true
+				mob_to_attack = mob
 				gun.press_trigger()
 				is_agro = true
 				if fsm.get_current_state() != "chase":
 					fsm.change_to("chase")
 	else:
 		can_see_enemy = false
+		mob_to_attack = null
 		gun.release_trigger()
 		
 func talk_to_player():
