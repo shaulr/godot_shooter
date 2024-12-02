@@ -10,7 +10,7 @@ var damage = 100
 @export var gravity = 9.8
 var target: Vector2
 var direction: Vector2
-
+@export var gun_noise_level = 500
 @onready var bombEffectsPlayer = $bombEffectsPlayer
 @onready var boomAudio = $boom_audio
 @onready var explosion_collision = $explosion_collision
@@ -28,6 +28,8 @@ func _physics_process(delta):
 	position += velocity
 	travelled_distance += speed * delta
 	if travelled_distance > bullet_range || hasHit:
+		Game.current_level.sound(gun_noise_level, global_position)
+
 		explosion_collision.disabled = false
 		hasHit = true
 		bombEffectsPlayer.visible = true

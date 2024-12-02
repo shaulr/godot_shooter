@@ -11,7 +11,7 @@ func _enter_tree():
 	print_debug("_enter_tree")
 	#await get_tree().create_timer(1).timeout
 	#Game.saver_loader.scene_loaded_callback()
-	#Game.current_level = self
+	Game.current_level = self
 
 
 func sound(level: int, pos: Vector2):
