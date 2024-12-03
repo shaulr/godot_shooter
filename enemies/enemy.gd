@@ -2,7 +2,7 @@ class_name Mob extends CharacterBody2D
 @onready var animations = $AnimationPlayer
 var isDead: bool = false
 
-@onready var navigation = $NavigationAgent2D
+var navigation: NavigationAgent2D
 @onready var walk = $walk
 @onready var death = $death
 @onready var deathAudio = $AudioStreamPlayer2D
@@ -19,6 +19,8 @@ var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
 @export var is_friendly: bool
+
+@export var initial_state: StateMachine.InitialStates
 enum WarSide {allied, axis, neutral}
 @export var belongs: WarSide
 var can_see_enemy = false
@@ -46,9 +48,13 @@ func _enter_tree():
 		Game.set_bosko(self)
 	
 func _ready(): 
+	navigation = NavigationAgent2D.new()
+	add_child(navigation)
+	navigation.debug_enabled = true
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
-
+	fsm.initial_state(initial_state)
+		
 	
 func on_save_data(saved_data:Array[SavedData]):
 	print_debug("on_save_data")
@@ -110,12 +116,12 @@ func get_direction() -> String:
 
 func _physics_process(delta):
 	if isDead: return
-	#var direction = Vector2.ZERO
-	#direction = navigation.get_next_path_position() - global_position
-	#direction = direction.normalized()
+	var direction = Vector2.ZERO
+	direction = navigation.get_next_path_position() - global_position
+	direction = direction.normalized()
 	#if is_agro:
 		#velocity = velocity.lerp(direction * speed, acceleration * delta)
-	var steering_force = desired_direction*speed - velocity
+	var steering_force = direction * speed - velocity
 	velocity = velocity  + (steering_force * STEERING_FORCE)
 	
 	update_health()
@@ -134,13 +140,14 @@ func update_velocity():
 	moveDirection = moveDirection.normalized()
 	velocity = moveDirection * speed
 
-func makePath():
-	if scene_manager.player:
-		navigation.target_position = Game.get_player().global_position
-
-
+#func makePath():
+	#if scene_manager.player:
+		#navigation.target_position = Game.get_player().global_position
+#
+#
 func _on_timer_timeout():
-	makePath()
+	pass
+	#makePath()
 
 func take_damage(damage: int):
 	if damage == -1:
@@ -254,23 +261,19 @@ func is_enemy(mob: Object) -> bool:
 		if mob == Game._player || !mob.is_friendly:
 			return false
 		return true
-		
-func sum_navpath(arr: Array):
-	var result = 0
-	var previous = Vector2.ZERO
-	if arr.size() == 0: return 0
-	for i in arr:
-		if previous != Vector2.ZERO:
-			result += previous.distance_to(i)
-		previous = i
-	return result
+
 
 func _on_shots_fired(loudness: int, sound_pos: Vector2):
 	navigation.target_position = sound_pos
 	navigation.get_next_path_position()
-	var navigation_distance = sum_navpath(navigation.get_current_navigation_path())
+	var navigation_distance = Utils.sum_navpath(navigation.get_current_navigation_path())
 	if navigation_distance != 0 and navigation_distance <= loudness:
 		fsm.change_to("investigate")
+		fsm.current_state.investigate_at(sound_pos)
+		
+func navigate_to(position: Vector2):
+	navigation.target_position = position
+	navigation.get_next_path_position()
 	
 func _on_set_desired_direction(direction: Vector2):
 	desired_direction = direction

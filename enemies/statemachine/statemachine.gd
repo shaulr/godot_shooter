@@ -6,19 +6,26 @@ var current_state: Object
 
 var history = []
 var states = {}
-var mob: CharacterBody2D
+var mob: Mob
+enum InitialStates{idle, patrolling}
 
 func _ready():
-	mob = get_parent_of_type("CharacterBody2D")
+	mob = get_parent_of_type("Mob")
 	for state in get_children():
+		if state.name == "State" : continue
 		state.fsm = self
 		states[state.name] = state
-		if current_state:
-			remove_child(state)
-		else:
-			current_state = state
-	current_state.enter()
+		#if current_state:
+			#remove_child(state)
+		#else:
+			#current_state = state
+	#if current_state: current_state.enter()
+func initial_state(state: InitialStates):
+	var state_name: String = InitialStates.find_key(state)
 
+	current_state = states[state_name]
+	current_state.enter()
+	
 func get_parent_of_type(type: String) -> Node:
 	var parent_type: String = ""
 	var parent = get_parent()
@@ -27,8 +34,11 @@ func get_parent_of_type(type: String) -> Node:
 	return parent
 
 func change_to(state_name):
+	if current_state.name == state_name: return
 	history.append(current_state.name)
-	set_state(state_name)
+	current_state.exit()
+	current_state = states[state_name]
+	current_state.enter()
 
 func back():
 	if history.size() > 0:

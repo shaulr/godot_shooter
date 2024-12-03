@@ -1,4 +1,4 @@
-extends Node
+extends State
 
 var fsm: StateMachine
 signal set_desired_direction
@@ -30,5 +30,5 @@ func give_mob_chase_direction():
 
 	
 
-func exit(next_state):
-	fsm.change_to(next_state)
+func exit():
+	pass
