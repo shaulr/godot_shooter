@@ -108,6 +108,8 @@ func updateAnimation():
 		lastDirection = direction
 		animations.play("walk" + direction)
 	
+	
+	
 func pointVision():
 	vision.look_at(vision.global_position + velocity)
 
@@ -117,11 +119,15 @@ func get_direction() -> String:
 func _physics_process(delta):
 	if isDead: return
 	var direction = Vector2.ZERO
-	direction = navigation.get_next_path_position() - global_position
-	direction = direction.normalized()
+	if !navigation.is_navigation_finished(): 
+		
+		direction = navigation.get_next_path_position() - global_position
+		direction = direction.normalized()
 	#if is_agro:
 		#velocity = velocity.lerp(direction * speed, acceleration * delta)
 	var steering_force = direction * speed - velocity
+	if steering_force.length() > 50.0 || steering_force.length() < -50.0:
+		print_debug("steering force strange")
 	velocity = velocity  + (steering_force * STEERING_FORCE)
 	
 	update_health()
@@ -279,7 +285,7 @@ func _on_set_desired_direction(direction: Vector2):
 	desired_direction = direction
 
 func _on_investigation_location_reached():
-	fsm.change_to("patrolling")
+	fsm.change_to("scan")
 
 func _on_hurtbox_area_entered(area):
 	if is_friendly and area == Game._player:

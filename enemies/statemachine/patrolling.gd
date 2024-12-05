@@ -1,6 +1,5 @@
 extends State
 
-var fsm: StateMachine
 
 signal set_desired_direction
 @export var patrol_pos_wait = 5
@@ -12,6 +11,8 @@ var active: bool = false
 var timer: Timer
 
 func enter():
+	print_debug("entered patrolling " + fsm.mob.name)
+
 	active = true
 	navigation = fsm.mob.navigation
 	patrol_position = fsm.mob.global_position
@@ -30,7 +31,7 @@ func start_patrolling():
 	give_mob_patrol_direction()
 	
 func give_mob_patrol_direction():
-	#if !active: return
+	if !active: return
 	#var patrol_towards = (patrol_position + random_vector())
 	#var desired_direction = (patrol_towards - fsm.mob.global_position).normalized()
 	#emit_signal("set_desired_direction", desired_direction)

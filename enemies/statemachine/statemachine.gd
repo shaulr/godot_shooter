@@ -34,6 +34,8 @@ func get_parent_of_type(type: String) -> Node:
 	return parent
 
 func change_to(state_name):
+	print_debug("entered %s mob: %s" %[state_name, mob.name])
+
 	if current_state.name == state_name: return
 	history.append(current_state.name)
 	current_state.exit()

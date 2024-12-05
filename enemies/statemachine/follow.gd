@@ -1,6 +1,5 @@
 extends State
 
-var fsm: StateMachine
 signal set_desired_direction
 @export var chase_update_period = 2.0
 var to_follow

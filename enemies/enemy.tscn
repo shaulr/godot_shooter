@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_nac6r"]
 [ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="13_ywhos"]
 
-[sub_resource type="Resource" id="Resource_uam7w"]
+[sub_resource type="Resource" id="Resource_0fvtw"]
 resource_local_to_scene = true
 script = ExtResource("2_3tvbs")
 name = "Health"
@@ -66,10 +66,10 @@ tracks/0/path = NodePath("death:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(0, 5), Vector2i(1, 5), Vector2i(3, 2)]
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(0, 5), Vector2i(1, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_jh06j"]
@@ -84,10 +84,10 @@ tracks/0/path = NodePath("walk:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_a8fsh"]
@@ -102,10 +102,10 @@ tracks/0/path = NodePath("walk:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qdx6f"]
@@ -120,10 +120,10 @@ tracks/0/path = NodePath("walk:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_jpepv"]
@@ -138,10 +138,10 @@ tracks/0/path = NodePath("walk:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wn5g1"]
@@ -165,7 +165,7 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
-drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_uam7w"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
+drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_0fvtw"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
 gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
 
 [node name="Movement" parent="." instance=ExtResource("5_vavk2")]
