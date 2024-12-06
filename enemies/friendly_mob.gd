@@ -10,7 +10,7 @@ func is_hostile_mob() -> bool:
 
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if isDead: return
 	
 	var steering_force = desired_direction*speed - velocity
@@ -37,8 +37,8 @@ func makePath():
 
 		
 	
-func _on_vision_is_visible(is_visible: bool, mobs: Array):
-	if is_visible and !isDead:
+func _on_vision_is_visible(seen_someone: bool, mobs: Array):
+	if seen_someone and !isDead:
 		for mob in mobs:
 			if is_enemy(mob):
 				can_see_enemy = true
@@ -72,7 +72,7 @@ func get_follow():
 	return to_follow
 	
 func is_enemy(mob: Object) -> bool:
-	return false
+	return mob.is_friendly()
 	
 
 
