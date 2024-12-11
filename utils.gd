@@ -9,3 +9,10 @@ static func sum_navpath(arr: Array):
 			result += previous.distance_to(i)
 		previous = i
 	return result
+
+static func is_friendly(node: Node):
+	if node == Game.get_player(): return true
+	if !( "is_friendly") in node: 
+		print_debug("node does not have is_friendly " + node.name)
+		return true
+	return node.is_friendly

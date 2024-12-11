@@ -14,13 +14,14 @@ var mobsKilled = 0
 @onready var game_menu = "res://UI/main_menu.tscn"
 @export var LIVES = 3
 var lives = LIVES
-var music_player = AudioStreamPlayer.new()
+#var music_player = AudioStreamPlayer.new()
 var saver_loader:  SaverLoader = SaverLoader.new()
 var saved_game: SavedGame
 var bosko: Mob
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
+	
 	
 func set_saved_data(game_to_save: SavedGame):
 	saved_game = game_to_save
@@ -40,6 +41,8 @@ func play_random_song():
 	var music_list = []
 	get_all_files("res://art/music/songs/", "mp3", music_list)
 	var current_song = music_list[randi()%music_list.size()]
+	var music_player = AudioStreamPlayer.new()
+
 	music_player.set_stream(load(current_song))
 	music_player.play()		
 
@@ -47,6 +50,7 @@ func play_random_sad_song():
 	var music_list = []
 	get_all_files("res://art/music/death/", "mp3", music_list)
 	var current_song = music_list[randi()%music_list.size()]
+	var music_player = AudioStreamPlayer.new()
 	music_player.set_stream(load(current_song))
 	music_player.play()		
 
@@ -96,6 +100,8 @@ func level_loaded(level: Node, map_size):
 	mapWidth = map_size.x
 	mapHeight = map_size.y
 	current_level = level
+	var music_player = AudioStreamPlayer.new()
+
 	if music_player == null:
 		music_player = AudioStreamPlayer.new()
 		music_player.process_mode = Node.PROCESS_MODE_ALWAYS

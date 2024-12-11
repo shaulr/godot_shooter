@@ -51,6 +51,7 @@ func _ready():
 	navigation = NavigationAgent2D.new()
 	add_child(navigation)
 	navigation.debug_enabled = true
+	#navigation.radius = 32
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
@@ -259,17 +260,11 @@ func get_follow():
 	return to_follow
 	
 func is_enemy(mob: Object) -> bool:
-	if !is_friendly:
-		if mob == Game._player || mob.is_friendly:
-			return true
-		return false
-	else:
-		if mob == Game._player || !mob.is_friendly:
-			return false
-		return true
+	return is_friendly == Utils.is_friendly(mob)
 
 
-func _on_shots_fired(loudness: int, sound_pos: Vector2):
+func _on_shots_fired(loudness: int, sound_pos: Vector2, friendly: bool):
+	if friendly == is_friendly: return
 	navigation.target_position = sound_pos
 	navigation.get_next_path_position()
 	var navigation_distance = Utils.sum_navpath(navigation.get_current_navigation_path())

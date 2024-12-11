@@ -77,7 +77,8 @@ func pointGun(aimPos: Vector2, correct_for_camera: bool):
 func shoot():
 	shooting = true
 	#Game.current_level.emit_signal("shooting_sound", gun_noise_level, global_position)
-	Game.current_level.sound(gun_noise_level, global_position)
+	var friendly: bool = get_parent() == Game.get_player() || get_parent().is_friendly
+	Game.current_level.sound(gun_noise_level, global_position, friendly)
 
 	%muzzleflashplayer.play("flash2")
 	shoot_player.play()

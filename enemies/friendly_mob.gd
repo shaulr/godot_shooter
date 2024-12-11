@@ -72,11 +72,9 @@ func get_follow():
 	return to_follow
 	
 func is_enemy(mob: Object) -> bool:
-	return mob.is_friendly()
+	return mob != Game.get_player() && !mob.is_friendly()
 	
-
-
-func _on_shots_fired(loudness: int, sound_pos: Vector2):
+func _on_shots_fired(loudness: int, sound_pos: Vector2, friendly: bool):
 	pass
 	
 

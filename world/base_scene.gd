@@ -14,8 +14,8 @@ func _enter_tree():
 	Game.current_level = self
 
 
-func sound(level: int, pos: Vector2):
-	shooting_sound.emit(level, pos)
+func sound(level: int, pos: Vector2, friendly: bool):
+	shooting_sound.emit(level, pos, friendly)
 
 func _ready():
 	level_gui = load("res://UI/level_gui.tscn").instantiate()

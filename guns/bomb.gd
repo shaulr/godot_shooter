@@ -28,7 +28,7 @@ func _physics_process(delta):
 	position += velocity
 	travelled_distance += speed * delta
 	if travelled_distance > bullet_range || hasHit:
-		Game.current_level.sound(gun_noise_level, global_position)
+		Game.current_level.sound(gun_noise_level, global_position, Utils.is_friendly(get_parent()))
 
 		explosion_collision.disabled = false
 		hasHit = true
