@@ -51,11 +51,10 @@ func _ready():
 	navigation = NavigationAgent2D.new()
 	add_child(navigation)
 	navigation.debug_enabled = true
-	#navigation.radius = 32
+	navigation.radius = 32
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
-		
 	
 func on_save_data(saved_data:Array[SavedData]):
 	print_debug("on_save_data")
@@ -109,8 +108,6 @@ func updateAnimation():
 		lastDirection = direction
 		animations.play("walk" + direction)
 	
-	
-	
 func pointVision():
 	vision.look_at(vision.global_position + velocity)
 
@@ -147,11 +144,6 @@ func update_velocity():
 	moveDirection = moveDirection.normalized()
 	velocity = moveDirection * speed
 
-#func makePath():
-	#if scene_manager.player:
-		#navigation.target_position = Game.get_player().global_position
-#
-#
 func _on_timer_timeout():
 	pass
 	#makePath()
@@ -252,7 +244,6 @@ func follow(who_to_follow):
 	to_follow = 	who_to_follow
 	fsm.change_to("follow")
 	
-	
 func idle():
 	fsm.change_to("patrol")
 	
@@ -261,7 +252,6 @@ func get_follow():
 	
 func is_enemy(mob: Object) -> bool:
 	return is_friendly == Utils.is_friendly(mob)
-
 
 func _on_shots_fired(loudness: int, sound_pos: Vector2, friendly: bool):
 	if friendly == is_friendly: return

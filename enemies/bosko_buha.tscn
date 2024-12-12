@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_cg6h1"]
 [ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="12_8tp6v"]
 
-[sub_resource type="Resource" id="Resource_tk7ig"]
+[sub_resource type="Resource" id="Resource_3n22l"]
 resource_local_to_scene = true
 script = ExtResource("2_0at5w")
 name = "Health"
@@ -203,7 +203,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("2_angxq")
 is_friendly = true
 mob_name = "bosko"
-drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_tk7ig"), ExtResource("4_igunq"), ExtResource("5_44olj")])
+drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_3n22l"), ExtResource("4_igunq"), ExtResource("5_44olj")])
 gun_table = Array[ExtResource("2_0at5w")]([ExtResource("5_44olj"), ExtResource("4_igunq")])
 
 [node name="Movement" parent="." instance=ExtResource("6_baa8x")]

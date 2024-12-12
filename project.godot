@@ -69,7 +69,7 @@ text/autopauses={}
 [display]
 
 window/size/viewport_width=1024
-window/size/viewport_height=580
+window/size/viewport_height=640
 window/size/mode=3
 window/size/borderless=true
 window/size/window_width_override=1024
@@ -179,6 +179,10 @@ throw={
 2d_physics/layer_1="objects"
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="triggers"
+
+[navigation]
+
+2d/default_edge_connection_margin=16.0
 
 [rendering]
 

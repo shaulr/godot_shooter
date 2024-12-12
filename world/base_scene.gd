@@ -6,7 +6,7 @@ var camera: Camera2D
 @onready var tilemap = $NavigationRegion2D/ground
 signal shooting_sound(noise: int, sound_pos: Vector2)
 var level_gui: LevelGui
-
+var fog: Fog
 func _enter_tree():
 	print_debug("_enter_tree")
 	#await get_tree().create_timer(1).timeout
@@ -23,7 +23,9 @@ func _ready():
 
 	camera = load("res://world/followcam.tscn").instantiate()
 	add_child(camera)
-
+	fog = load("res://world/fog.tscn").instantiate()
+	fog.init(tilemap)
+	camera.add_child(fog)
 	camera.init(tilemap)
 	Game.current_level = self
 	for child in get_children():

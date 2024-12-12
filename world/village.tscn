@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://drrta4syj3iql"]
+[gd_scene load_steps=17 format=4 uid="uid://4vr3klxi12w4"]
 
 [ext_resource type="Script" path="res://world/base_scene.gd" id="1_7hep4"]
 [ext_resource type="TileSet" uid="uid://l1hxs7318606" path="res://world/partisan_tile_set.tres" id="2_7pn7g"]
@@ -21,7 +21,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg1h"]
 size = Vector2(11, 11)
 
-[sub_resource type="Resource" id="Resource_lcbnq"]
+[sub_resource type="Resource" id="Resource_6rad1"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -30,7 +30,7 @@ maxTextureSize = Vector2(20, 20)
 drop_weight = 5.0
 scene_path = "res://droppables/health.tscn"
 
-[sub_resource type="Resource" id="Resource_b3b6l"]
+[sub_resource type="Resource" id="Resource_prhy3"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -114,27 +114,8 @@ shape = SubResource("RectangleShape2D_dpg1h")
 
 [node name="enemy" parent="." instance=ExtResource("12_hydnl")]
 position = Vector2(784, 154)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_lcbnq"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_6rad1"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
 
 [node name="bosko_buha" parent="." instance=ExtResource("6_x66do")]
 position = Vector2(391, 187)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_b3b6l"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
-
-[connection signal="body_entered" from="NavigationRegion2D/objects/sign" to="NavigationRegion2D/objects/sign" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/sign" to="NavigationRegion2D/objects/sign" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28615" to="NavigationRegion2D/objects/@Area2D@28615" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28615" to="NavigationRegion2D/objects/@Area2D@28615" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28616" to="NavigationRegion2D/objects/@Area2D@28616" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28616" to="NavigationRegion2D/objects/@Area2D@28616" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28617" to="NavigationRegion2D/objects/@Area2D@28617" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28617" to="NavigationRegion2D/objects/@Area2D@28617" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28618" to="NavigationRegion2D/objects/@Area2D@28618" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28618" to="NavigationRegion2D/objects/@Area2D@28618" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28619" to="NavigationRegion2D/objects/@Area2D@28619" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28619" to="NavigationRegion2D/objects/@Area2D@28619" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28620" to="NavigationRegion2D/objects/@Area2D@28620" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28620" to="NavigationRegion2D/objects/@Area2D@28620" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28621" to="NavigationRegion2D/objects/@Area2D@28621" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28621" to="NavigationRegion2D/objects/@Area2D@28621" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@28622" to="NavigationRegion2D/objects/@Area2D@28622" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@28622" to="NavigationRegion2D/objects/@Area2D@28622" method="_on_body_exited"]
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_prhy3"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
