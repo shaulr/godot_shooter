@@ -118,23 +118,5 @@ drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_mge6n"), ExtRe
 
 [node name="bosko_buha" parent="." instance=ExtResource("6_x66do")]
 position = Vector2(691, 118)
+has_bombs = true
 drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_tnykf"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
-
-[connection signal="body_entered" from="NavigationRegion2D/objects/sign" to="NavigationRegion2D/objects/sign" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/sign" to="NavigationRegion2D/objects/sign" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74009" to="NavigationRegion2D/objects/@Area2D@74009" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74009" to="NavigationRegion2D/objects/@Area2D@74009" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74010" to="NavigationRegion2D/objects/@Area2D@74010" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74010" to="NavigationRegion2D/objects/@Area2D@74010" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74011" to="NavigationRegion2D/objects/@Area2D@74011" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74011" to="NavigationRegion2D/objects/@Area2D@74011" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74012" to="NavigationRegion2D/objects/@Area2D@74012" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74012" to="NavigationRegion2D/objects/@Area2D@74012" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74013" to="NavigationRegion2D/objects/@Area2D@74013" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74013" to="NavigationRegion2D/objects/@Area2D@74013" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74014" to="NavigationRegion2D/objects/@Area2D@74014" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74014" to="NavigationRegion2D/objects/@Area2D@74014" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74015" to="NavigationRegion2D/objects/@Area2D@74015" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74015" to="NavigationRegion2D/objects/@Area2D@74015" method="_on_body_exited"]
-[connection signal="body_entered" from="NavigationRegion2D/objects/@Area2D@74016" to="NavigationRegion2D/objects/@Area2D@74016" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion2D/objects/@Area2D@74016" to="NavigationRegion2D/objects/@Area2D@74016" method="_on_body_exited"]

@@ -11,39 +11,42 @@ var damage = 100
 var target: Vector2
 var direction: Vector2
 @export var gun_noise_level = 500
+@export var explosion_radius: float = 100.0
 @onready var bombEffectsPlayer = $bombEffectsPlayer
 @onready var boomAudio = $boom_audio
-@onready var explosion_collision = $explosion_collision
+@onready var explosion_collision: CollisionShape2D = $explosion_collision
+@onready var collision: CollisionShape2D = $collision
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.visible = true
+	explosion_collision.shape.radius = explosion_radius
+	
+func get_explosion_radius() -> float:
+	return explosion_radius
 
 func _physics_process(delta):
 	if hasHit: return
-	if global_position.distance_to(target) < 10.0:
-		hasHit = true
+	if has_hit():
+		damage_arround()
+		return
 	
 
 	var velocity = direction * speed * delta
 	position += velocity
 	travelled_distance += speed * delta
-	if travelled_distance > bullet_range || hasHit:
-		Game.current_level.sound(gun_noise_level, global_position, Utils.is_friendly(get_parent()))
-
-		explosion_collision.disabled = false
-		hasHit = true
-		bombEffectsPlayer.visible = true
-		sprite.visible = false
-		bombEffectsPlayer.play("boom")
-		boomAudio.play()
-		await bombEffectsPlayer.animation_finished
-		queue_free()
+	
 	lastVelocity = velocity
 	sprite.rotation += delta * rotation_speed *180/PI
 
 func damage_arround():
-	explosion_collision.enabled = true
+	explosion_collision.disabled = false
 
+
+func has_hit() -> bool:
+	var distance_to_target = global_position.distance_to(target)
+	if distance_to_target < 10.0: return true
+	if travelled_distance > bullet_range: return true
+	return false
 
 func throw_at(target: Vector2):
 	self.target = target
@@ -52,5 +55,14 @@ func throw_at(target: Vector2):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if !hasHit: return
+	#if !has_hit(): return
 	if body.has_method("take_damage"): body.take_damage(damage)
+	Game.current_level.sound(gun_noise_level, global_position, Utils.is_friendly(get_parent()))
+
+	hasHit = true
+	bombEffectsPlayer.visible = true
+	sprite.visible = false
+	bombEffectsPlayer.play("boom")
+	boomAudio.play()
+	await bombEffectsPlayer.animation_finished
+	queue_free()

@@ -47,7 +47,10 @@ func _on_vision_is_visible(seen_someone: bool, mobs: Array):
 				can_see_enemy = true
 				if mob != Game.get_player():
 					mob_to_attack = mob
-				gun.press_trigger()
+				if has_bombs:
+					throw_bomb_at(mob.global_position)
+				else:
+					gun.press_trigger()
 				is_agro = true
 				if fsm.get_current_state() != "chase":
 					fsm.change_to("chase")

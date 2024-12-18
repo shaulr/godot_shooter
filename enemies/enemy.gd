@@ -19,7 +19,8 @@ var current_health = 100
 @export var lastVelocity: Vector2
 @export var knocbackPower = 50
 @export var is_friendly: bool
-
+@export var has_bombs: bool = false
+@export var has_gun: bool = true
 @export var initial_state: StateMachine.InitialStates
 enum WarSide {allied, axis, neutral}
 @export var belongs: WarSide
@@ -56,6 +57,7 @@ func _ready():
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
+	if !has_gun: gun.visible = false
 	
 func on_save_data(saved_data:Array[SavedData]):
 	print_debug("on_save_data")
@@ -226,8 +228,10 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 				can_see_enemy = true
 				if mob != Game.get_player():
 					mob_to_attack = mob
-				
-				gun.press_trigger()
+				if has_bombs:
+					throw_bomb_at(mob.global_position)
+				else:
+					gun.press_trigger()
 				is_agro = true
 				if fsm.get_current_state() != "chase":
 					fsm.change_to("chase")
@@ -237,6 +241,18 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 		gun.release_trigger()
 		if fsm.get_current_state() == "chase":
 			fsm.back()
+			
+func throw_bomb_at(position: Vector2):
+	const GRENADE = preload("res://guns/bomb.tscn")
+	var new_bomb = GRENADE.instantiate()
+	new_bomb.global_position = global_position
+	var target_distance_to_player = position.distance_to(global_position)
+	if target_distance_to_player < new_bomb.get_explosion_radius():
+		return
+	
+	Game.current_level.add_child(new_bomb)
+	
+	new_bomb.throw_at(position)			
 			
 func talk_to_player():
 	if fsm.get_current_state() == "follow":
