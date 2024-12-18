@@ -16,6 +16,7 @@ var direction: Vector2
 @onready var boomAudio = $boom_audio
 @onready var explosion_collision: CollisionShape2D = $explosion_collision
 @onready var collision: CollisionShape2D = $collision
+var exploding = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.visible = true
@@ -27,7 +28,7 @@ func get_explosion_radius() -> float:
 func _physics_process(delta):
 	if hasHit: return
 	if has_hit():
-		damage_arround()
+		explode()
 		return
 	
 
@@ -55,8 +56,14 @@ func throw_at(target: Vector2):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	#if !has_hit(): return
-	if body.has_method("take_damage"): body.take_damage(damage)
+	if !exploding: return
+	if body.has_method("take_damage") && exploding: 
+		body.take_damage(damage)
+	
+	
+func explode():
+	explosion_collision.disabled = false
+	exploding = true
 	Game.current_level.sound(gun_noise_level, global_position, Utils.is_friendly(get_parent()))
 
 	hasHit = true

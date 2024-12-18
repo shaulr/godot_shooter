@@ -49,7 +49,7 @@ func _on_vision_is_visible(seen_someone: bool, mobs: Array):
 					mob_to_attack = mob
 				if has_bombs && !mob.isDead:
 					throw_bomb_at(mob.global_position)
-				else:
+				elif has_gun:
 					gun.press_trigger()
 				is_agro = true
 				if fsm.get_current_state() != "chase":

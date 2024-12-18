@@ -10,8 +10,8 @@
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_et2eb"]
 [ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="6_2ljup"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="6_ymcs5"]
-[ext_resource type="Texture2D" uid="uid://jhhowcjgku4j" path="res://art/marko.png" id="7_n7gpy"]
 [ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="8_g00tk"]
+[ext_resource type="Texture2D" uid="uid://bw2l64btfgyyj" path="res://art/bunkers/bunker_round_top_down_destroyed.png" id="10_mmdoh"]
 [ext_resource type="PackedScene" uid="uid://bg3ibjof1cqb8" path="res://guns/bunker_gun.tscn" id="13_8gqt2"]
 
 [sub_resource type="Resource" id="Resource_vsirq"]
@@ -50,7 +50,7 @@ tracks/1/path = NodePath("death:frame_coords")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
@@ -235,8 +235,7 @@ libraries = {
 visible = false
 position = Vector2(0, -11)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_n7gpy")
-hframes = 3
+texture = ExtResource("10_mmdoh")
 vframes = 6
 
 [node name="Timer" type="Timer" parent="."]

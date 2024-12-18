@@ -203,6 +203,7 @@ script = ExtResource("2_angxq")
 character_song = "res://art/music/characters/BOŠKO BUHA - Partizanska pjesma.mp3"
 is_friendly = true
 has_bombs = true
+has_gun = false
 mob_name = "bosko"
 drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_l8332"), ExtResource("4_igunq"), ExtResource("5_44olj")])
 gun_table = Array[ExtResource("2_0at5w")]([ExtResource("5_44olj"), ExtResource("4_igunq")])

@@ -50,7 +50,7 @@ func _enter_tree():
 func _ready(): 
 	navigation = NavigationAgent2D.new()
 	add_child(navigation)
-	navigation.debug_enabled = true
+	#navigation.debug_enabled = true
 	navigation.radius = 32
 	navigation.path_desired_distance = 20
 	gun.gun_agros_enemies(true)
@@ -178,8 +178,12 @@ func die():
 	
 	animations.play("death")
 	await animations.animation_finished
-	drop_loot()
-	queue_free()
+	if speed > 0:
+		drop_loot()
+		queue_free()
+	else:
+		$sprite_top.texture = load("res://art/bunkers/bunker_round_top_down_destroyed.png")
+
 	
 func get_item_from_table(table: Array[Item]) -> Node: 
 	var total_weight: int
@@ -216,6 +220,7 @@ func get_damage() -> int:
 	return 10
 
 func knockback(enemyVeocity: Vector2):
+	if isDead: return
 	var knockbackDirection = enemyVeocity.normalized() * knocbackPower
 	velocity = knockbackDirection
 	move_and_slide()
