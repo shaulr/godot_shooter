@@ -81,7 +81,7 @@ func _on_timer_timeout():
 		if raycast.is_colliding():
 			var collider = raycast.get_collider()
 
-			if collider == Game.get_player() || collider.has_method("is_friendly"):
+			if collider == Game.get_player() || collider.has_method("is_enemy"):
 				objects_collide.append(collider)
 				if !inVision: 
 					inVision = true
@@ -89,10 +89,11 @@ func _on_timer_timeout():
 	if objects_collide.size() > 0:
 		emit_signal("is_visible", true, objects_collide)
 		return
+
 		
 	if inVision:
 		inVision = false
-		emit_signal("is_visible", false, null)
+		emit_signal("is_visible", false, objects_collide)
 
 func set_desired_location(location: Vector2):
 	desired_direction = (global_position - location).normalized()

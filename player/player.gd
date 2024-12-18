@@ -141,7 +141,6 @@ func update_health():
 		
 func die():
 	isDead = true
-
 	current_health = MAX_HEALTH
 	Game.game_over()
 

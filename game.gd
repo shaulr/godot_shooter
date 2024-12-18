@@ -41,10 +41,14 @@ func get_random_song() -> String:
 	return current_song
 
 func play_random_song():
-	
 	if current_level is BaseScene:
 		current_level.music_player.set_stream(load(get_random_song()))
 		current_level.music_player.play()		
+
+func play_song(song: String):
+	if current_level is BaseScene:
+		current_level.music_player.set_stream(load(song))
+		current_level.music_player.play()
 
 func play_random_sad_song():
 	var music_list = []

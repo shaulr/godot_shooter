@@ -31,7 +31,6 @@ func _ready():
 	music_player = AudioStreamPlayer.new()
 	add_child(music_player)
 	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
-	Game.play_random_song()
 	
 	Game.current_level = self
 	for child in get_children():

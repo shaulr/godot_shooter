@@ -1,5 +1,5 @@
 class_name FriendlyMob extends Mob
-
+@export_file var character_song: String
 
 func _enter_tree():
 	if mob_name == "bosko":
@@ -8,6 +8,9 @@ func _enter_tree():
 func is_hostile_mob() -> bool:
 	return false	
 
+func play_character_song():
+	if character_song && character_song.length() > 0:
+		Game.play_song(character_song)
 	
 
 func _physics_process(_delta):
@@ -40,7 +43,7 @@ func makePath():
 func _on_vision_is_visible(seen_someone: bool, mobs: Array):
 	if seen_someone and !isDead:
 		for mob in mobs:
-			if is_enemy(mob):
+			if Utils.is_friendly(mob) != is_friendly:
 				can_see_enemy = true
 				if mob != Game.get_player():
 					mob_to_attack = mob
@@ -63,6 +66,7 @@ func talk_to_player():
 func follow(who_to_follow):
 	to_follow = 	who_to_follow
 	fsm.change_to("follow")
+	Game.play_song(character_song)
 	
 	
 func idle():
@@ -72,7 +76,7 @@ func get_follow():
 	return to_follow
 	
 func is_enemy(mob: Object) -> bool:
-	return mob != Game.get_player() && !mob.is_friendly()
+	return mob != Game.get_player() || !mob.is_friendly()
 	
 func _on_shots_fired(loudness: int, sound_pos: Vector2, friendly: bool):
 	pass

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biv08ahatiwcy"
+path="res://.godot/imported/BOŠKO BUHA - Partizanska pjesma.mp3-17b2b48c87a097ac4b64a0fffdd08a1a.mp3str"
+
+[deps]
+
+source_file="res://art/music/characters/BOŠKO BUHA - Partizanska pjesma.mp3"
+dest_files=["res://.godot/imported/BOŠKO BUHA - Partizanska pjesma.mp3-17b2b48c87a097ac4b64a0fffdd08a1a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

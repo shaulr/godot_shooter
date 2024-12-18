@@ -5,7 +5,7 @@ signal set_desired_direction
 var to_follow
 
 func enter():
-	start_following()
+	start_following()  
 	set_desired_direction.connect(fsm.mob._on_set_desired_direction)
 	
 func start_following():

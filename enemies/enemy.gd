@@ -52,6 +52,7 @@ func _ready():
 	add_child(navigation)
 	navigation.debug_enabled = true
 	navigation.radius = 32
+	navigation.path_desired_distance = 20
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
@@ -220,10 +221,12 @@ func knockback(enemyVeocity: Vector2):
 func _on_vision_is_visible(is_visible: bool, mobs: Array):
 	if is_visible and !isDead:
 		for mob in mobs:
+			if mob.isDead: continue
 			if is_enemy(mob):
 				can_see_enemy = true
 				if mob != Game.get_player():
 					mob_to_attack = mob
+				
 				gun.press_trigger()
 				is_agro = true
 				if fsm.get_current_state() != "chase":
@@ -232,7 +235,9 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 		can_see_enemy = false
 		mob_to_attack = null
 		gun.release_trigger()
-		
+		if fsm.get_current_state() == "chase":
+			fsm.back()
+			
 func talk_to_player():
 	if fsm.get_current_state() == "follow":
 		return
@@ -251,7 +256,7 @@ func get_follow():
 	return to_follow
 	
 func is_enemy(mob: Object) -> bool:
-	return is_friendly == Utils.is_friendly(mob)
+	return is_friendly != Utils.is_friendly(mob)
 
 func _on_shots_fired(loudness: int, sound_pos: Vector2, friendly: bool):
 	if friendly == is_friendly: return
