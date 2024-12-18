@@ -1,0 +1,281 @@
+[gd_scene load_steps=16 format=3 uid="uid://bg3ibjof1cqb8"]
+
+[ext_resource type="Script" path="res://guns/gun.gd" id="1_6dfre"]
+[ext_resource type="Texture2D" uid="uid://dnemt0weqew8q" path="res://art/MG 42.png" id="2_pjf5k"]
+[ext_resource type="Texture2D" uid="uid://bii5tj25qre50" path="res://art/muzzle_flash.png" id="3_dntbe"]
+[ext_resource type="AudioStream" uid="uid://b3wiwwpbknu8o" path="res://art/shoot1911.mp3" id="4_gytf5"]
+[ext_resource type="AudioStream" uid="uid://gilana2ls6g4" path="res://art/reload_lever_action.mp3" id="5_y7nhw"]
+
+[sub_resource type="Animation" id="Animation_gxaah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mruio"]
+resource_name = "flash1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_7s54k"]
+resource_name = "flash2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_7gusr"]
+resource_name = "flash3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4os4a"]
+resource_name = "flash4"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_dlrcs"]
+resource_name = "flash5"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vf7hh"]
+_data = {
+"RESET": SubResource("Animation_gxaah"),
+"flash1": SubResource("Animation_mruio"),
+"flash2": SubResource("Animation_7s54k"),
+"flash3": SubResource("Animation_7gusr"),
+"flash4": SubResource("Animation_4os4a"),
+"flash5": SubResource("Animation_dlrcs")
+}
+
+[sub_resource type="Animation" id="Animation_nmria"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%shootingPoint/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(139, -0.033)]
+}
+
+[sub_resource type="Animation" id="Animation_ctjki"]
+resource_name = "knocback"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%shootingPoint/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(139, -0.033), Vector2(139, -0.033), Vector2(138, -0.033)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4n0o"]
+_data = {
+"RESET": SubResource("Animation_nmria"),
+"knocback": SubResource("Animation_ctjki")
+}
+
+[node name="bunker_gun" type="Area2D"]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_6dfre")
+item_path = "res://droppables/mg-42.tscn"
+
+[node name="weaponPivot" type="Marker2D" parent="."]
+position = Vector2(0.00023824, 1)
+
+[node name="sprite" type="Sprite2D" parent="weaponPivot"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-0.000238419, 10)
+texture = ExtResource("2_pjf5k")
+
+[node name="shootingPoint" type="Marker2D" parent="weaponPivot/sprite"]
+unique_name_in_owner = true
+position = Vector2(32, -9)
+
+[node name="Sprite2D" type="Sprite2D" parent="weaponPivot/sprite/shootingPoint"]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(9.99976, -1.00238)
+scale = Vector2(0.226448, 0.225242)
+texture = ExtResource("3_dntbe")
+hframes = 4
+vframes = 5
+frame = 4
+
+[node name="muzzleflashplayer" type="AnimationPlayer" parent="weaponPivot/sprite/shootingPoint"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_vf7hh")
+}
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+autostart = true
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_gytf5")
+
+[node name="knockbackPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_l4n0o")
+}
+
+[node name="RepeatAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_y7nhw")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

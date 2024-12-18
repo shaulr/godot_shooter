@@ -3,7 +3,6 @@ class_name Mob extends CharacterBody2D
 var isDead: bool = false
 
 var navigation: NavigationAgent2D
-@onready var walk = $walk
 @onready var death = $death
 @onready var deathAudio = $AudioStreamPlayer2D
 @onready var healthbar = $healthbar
@@ -12,7 +11,7 @@ var navigation: NavigationAgent2D
 @onready var collision_shape = %CollisionShape2D
 const  STEERING_FORCE = 0.1
 var to_follow
-var speed = 30
+@export var speed = 30
 var acceleration = 7
 const MAX_HEALTH = 100
 var current_health = 100
@@ -30,7 +29,7 @@ var lastDirection = "down"
 var desired_direction = Vector2.ZERO
 @export var limit = 0.5
 @export var mob_name = "enemy"
-@onready var fsm = $Statemachine
+@onready var fsm: StateMachine = $Statemachine
 @onready var health_type = preload("res://droppables/health.tscn")
 
 @export var drop_table: Array[Item]
@@ -120,16 +119,17 @@ func get_direction() -> String:
 func _physics_process(delta):
 	if isDead: return
 	var direction = Vector2.ZERO
-	if !navigation.is_navigation_finished(): 
-		
-		direction = navigation.get_next_path_position() - global_position
-		direction = direction.normalized()
-	#if is_agro:
-		#velocity = velocity.lerp(direction * speed, acceleration * delta)
-	var steering_force = direction * speed - velocity
-	if steering_force.length() > 50.0 || steering_force.length() < -50.0:
-		print_debug("steering force strange")
-	velocity = velocity  + (steering_force * STEERING_FORCE)
+	if speed > 0:
+		if !navigation.is_navigation_finished(): 
+			
+			direction = navigation.get_next_path_position() - global_position
+			direction = direction.normalized()
+		#if is_agro:
+			#velocity = velocity.lerp(direction * speed, acceleration * delta)
+		var steering_force = direction * speed - velocity
+		if steering_force.length() > 50.0 || steering_force.length() < -50.0:
+			print_debug("steering force strange")
+		velocity = velocity  + (steering_force * STEERING_FORCE)
 	
 	update_health()
 	updateAnimation()
@@ -139,8 +139,8 @@ func _physics_process(delta):
 			gun.pointGun(Game.get_player().global_position, false)
 		elif mob_to_attack:
 			gun.pointGun(mob_to_attack.global_position, false)
-
-	move_and_slide()
+	if speed > 0:
+		move_and_slide()
 
 func update_velocity():
 	var moveDirection =  desired_direction - position
@@ -233,7 +233,7 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 				else:
 					gun.press_trigger()
 				is_agro = true
-				if fsm.get_current_state() != "chase":
+				if fsm.get_current_state() != "chase" && speed > 0:
 					fsm.change_to("chase")
 	else:
 		can_see_enemy = false

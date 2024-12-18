@@ -1,64 +1,30 @@
-[gd_scene load_steps=25 format=3 uid="uid://d1axmrpcvvycj"]
+[gd_scene load_steps=25 format=3 uid="uid://dqv1108wg05h5"]
 
-[ext_resource type="Script" path="res://droppables/item.gd" id="2_0at5w"]
-[ext_resource type="Script" path="res://enemies/friendly_mob.gd" id="2_angxq"]
-[ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_7jr4j"]
-[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_igunq"]
-[ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_44olj"]
-[ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="6_baa8x"]
-[ext_resource type="Texture2D" uid="uid://nvqay58a0xwc" path="res://art/bosko_anim.png" id="6_s1s7q"]
-[ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="8_owset"]
-[ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="9_8cpbc"]
-[ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="10_l4cxi"]
-[ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_cg6h1"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_arsp1"]
+[ext_resource type="Texture2D" uid="uid://b5l6xr6m04ldu" path="res://art/bunkers/bunker_round_bottom.png" id="2_do70f"]
+[ext_resource type="Script" path="res://droppables/item.gd" id="2_s8dk5"]
+[ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="2_shxfo"]
+[ext_resource type="Texture2D" uid="uid://bxlryeiqe755b" path="res://art/bunkers/bunker_round_top_down.png" id="3_2pwx8"]
+[ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_u3afw"]
+[ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_lfi6e"]
+[ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_et2eb"]
+[ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="6_2ljup"]
+[ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="6_ymcs5"]
+[ext_resource type="Texture2D" uid="uid://jhhowcjgku4j" path="res://art/marko.png" id="7_n7gpy"]
+[ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="8_g00tk"]
+[ext_resource type="PackedScene" uid="uid://bg3ibjof1cqb8" path="res://guns/bunker_gun.tscn" id="13_8gqt2"]
 
-[sub_resource type="Resource" id="Resource_l8332"]
+[sub_resource type="Resource" id="Resource_vsirq"]
 resource_local_to_scene = true
-script = ExtResource("2_0at5w")
+script = ExtResource("2_s8dk5")
 name = "Health"
-texture = ExtResource("3_7jr4j")
+texture = ExtResource("3_u3afw")
 maxTextureSize = Vector2(20, 20)
 drop_weight = 5.0
 scene_path = "res://droppables/health.tscn"
 
-[sub_resource type="GDScript" id="GDScript_hn8s3"]
-script/source = "extends Node
-
-var directions: Array[Vector2]
-var raycasts: Array[RayCast2D]
-var raycast_length = 1000
-@onready var parent = get_parent()
-
-func _ready():
-	directions.append(Vector2.UP.normalized())
-	directions.append((Vector2.UP + Vector2.RIGHT).normalized())
-	directions.append(Vector2.RIGHT.normalized())
-	directions.append((Vector2.DOWN + Vector2.RIGHT).normalized())
-	directions.append(Vector2.DOWN.normalized())
-	directions.append((Vector2.DOWN + Vector2.LEFT).normalized())
-	directions.append(Vector2.LEFT.normalized())
-	directions.append((Vector2.UP + Vector2.LEFT).normalized())
-	for direction in directions:
-		var raycast = RayCast2D.new()
-		raycast.target_position = direction * raycast_length
-		raycast.enabled = true
-		raycast.exclude_parent = true
-		raycast.collide_with_bodies = true
-		raycast.collide_with_areas = false
-		parent.add_child.call_deferred(raycast)
-		raycasts.append(raycast)
-
-
-#func _on_timer_timeout():
-	#for raycast in raycasts:
-		#if raycast.is_colliding():
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nguij"]
 size = Vector2(23, 43)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nl0oo"]
-load_path = "res://.godot/imported/bosko_anim.png-c015a8fdb76c4f679ffeb06bdfdb9e07.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5fy1"]
 size = Vector2(11, 26)
@@ -68,7 +34,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("walk:frame_coords")
+tracks/0/path = NodePath("sprite_bottom:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -115,7 +81,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("walk:frame_coords")
+tracks/0/path = NodePath("sprite_bottom:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +99,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("walk:frame_coords")
+tracks/0/path = NodePath("sprite_bottom:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -151,7 +117,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("walk:frame_coords")
+tracks/0/path = NodePath("sprite_bottom:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -169,7 +135,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("walk:frame_coords")
+tracks/0/path = NodePath("sprite_bottom:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -192,23 +158,19 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywqus"]
 size = Vector2(27, 42)
 
-[node name="bosko_buha" type="CharacterBody2D" groups=["game_events"]]
+[node name="bunker" type="CharacterBody2D" groups=["game_events"]]
 texture_filter = 1
 position = Vector2(-1, 0)
 collision_layer = 17
 collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("2_angxq")
-character_song = "res://art/music/characters/BOŠKO BUHA - Partizanska pjesma.mp3"
-is_friendly = true
-has_bombs = true
-mob_name = "bosko"
-drop_table = Array[ExtResource("2_0at5w")]([SubResource("Resource_l8332"), ExtResource("4_igunq"), ExtResource("5_44olj")])
-gun_table = Array[ExtResource("2_0at5w")]([ExtResource("5_44olj"), ExtResource("4_igunq")])
+script = ExtResource("1_arsp1")
+speed = 0
+drop_table = Array[ExtResource("2_s8dk5")]([SubResource("Resource_vsirq"), ExtResource("4_lfi6e"), ExtResource("5_et2eb")])
+gun_table = Array[ExtResource("2_s8dk5")]([ExtResource("5_et2eb"), ExtResource("4_lfi6e")])
 
-[node name="Movement" parent="." instance=ExtResource("6_baa8x")]
-script = SubResource("GDScript_hn8s3")
+[node name="Movement" parent="." instance=ExtResource("6_2ljup")]
 
 [node name="hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -14)
@@ -242,17 +204,26 @@ allow_lesser = true
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="walk" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
-scale = Vector2(0.5, 0.5)
-texture = SubResource("CompressedTexture2D_nl0oo")
-hframes = 3
-vframes = 6
+[node name="sprite_bottom" type="Sprite2D" parent="."]
+z_as_relative = false
+position = Vector2(-51, -45)
+texture = ExtResource("2_do70f")
+centered = false
+
+[node name="gun" parent="." instance=ExtResource("13_8gqt2")]
+z_index = 1
+position = Vector2(1, 27)
+rotation = 1.54636
+
+[node name="sprite_top" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-2, 2)
+texture = ExtResource("3_2pwx8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
-position = Vector2(-0.5, -15)
+position = Vector2(-0.5, -14.5)
 shape = SubResource("RectangleShape2D_w5fy1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -264,7 +235,7 @@ libraries = {
 visible = false
 position = Vector2(0, -11)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_s1s7q")
+texture = ExtResource("7_n7gpy")
 hframes = 3
 vframes = 6
 
@@ -273,7 +244,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_owset")
+stream = ExtResource("8_g00tk")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 9
@@ -282,13 +253,10 @@ collision_layer = 9
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_ywqus")
 
-[node name="vision" parent="." instance=ExtResource("9_8cpbc")]
+[node name="vision" parent="." instance=ExtResource("2_shxfo")]
 position = Vector2(1, -19)
 
-[node name="gun" parent="." instance=ExtResource("10_l4cxi")]
-position = Vector2(1, -15)
-
-[node name="Statemachine" parent="." instance=ExtResource("11_cg6h1")]
+[node name="Statemachine" parent="." instance=ExtResource("6_ymcs5")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

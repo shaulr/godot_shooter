@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://nb4y328svfk2"]
+[gd_scene load_steps=8 format=3 uid="uid://nb4y328svfk2"]
 
 [ext_resource type="Script" path="res://enemies/statemachine/follow.gd" id="1_saevw"]
+[ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="1_wnogh"]
 [ext_resource type="Script" path="res://enemies/statemachine/patrolling.gd" id="2_455cx"]
 [ext_resource type="Script" path="res://enemies/statemachine/investigate.gd" id="3_1l2il"]
 [ext_resource type="Script" path="res://enemies/statemachine/chase.gd" id="4_us68y"]
@@ -8,7 +9,7 @@
 [ext_resource type="Script" path="res://enemies/statemachine/scan.gd" id="6_4askg"]
 
 [node name="Statemachine" type="Node"]
-script = ExtResource("1_saevw")
+script = ExtResource("1_wnogh")
 
 [node name="patrolling" type="Node" parent="."]
 script = ExtResource("2_455cx")

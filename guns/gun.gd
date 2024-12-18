@@ -13,12 +13,13 @@ var gun_direction = "down"
 var agros_enemies = false
 var gun_noise_level = 300
 @export var item: Collectible
+@export_file var item_path = "res://droppables/mp-40.tscn"
 var sprite_scale_factor: float
 var muzzle_position: Vector2
 var shooting: bool = false
 	
 func _ready():
-	item = preload("res://droppables/mp-40.tscn").instantiate()
+	item = load(item_path).instantiate()
 	equip_item(item)
 	
 func scale():

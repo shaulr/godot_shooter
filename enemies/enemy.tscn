@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=23 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_ii8wy"]
 [ext_resource type="Script" path="res://droppables/item.gd" id="2_3tvbs"]
@@ -11,9 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="9_mt60k"]
 [ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="10_ds0ea"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_nac6r"]
-[ext_resource type="Script" path="res://enemies/statemachine/statemachine.gd" id="13_ywhos"]
 
-[sub_resource type="Resource" id="Resource_jbpnw"]
+[sub_resource type="Resource" id="Resource_1bu28"]
 resource_local_to_scene = true
 script = ExtResource("2_3tvbs")
 name = "Health"
@@ -165,7 +164,7 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
-drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_jbpnw"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
+drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_1bu28"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
 gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
 
 [node name="Movement" parent="." instance=ExtResource("5_vavk2")]
@@ -249,7 +248,6 @@ position = Vector2(1, -19)
 position = Vector2(1, -15)
 
 [node name="Statemachine" parent="." instance=ExtResource("11_nac6r")]
-script = ExtResource("13_ywhos")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

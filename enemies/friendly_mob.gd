@@ -47,7 +47,7 @@ func _on_vision_is_visible(seen_someone: bool, mobs: Array):
 				can_see_enemy = true
 				if mob != Game.get_player():
 					mob_to_attack = mob
-				if has_bombs:
+				if has_bombs && !mob.isDead:
 					throw_bomb_at(mob.global_position)
 				else:
 					gun.press_trigger()
