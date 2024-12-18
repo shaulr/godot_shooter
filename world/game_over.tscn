@@ -5,6 +5,7 @@
 
 [node name="game_over" type="CanvasLayer"]
 process_mode = 3
+layer = 101
 script = ExtResource("1_s1w6g")
 
 [node name="you_died" type="Label" parent="."]

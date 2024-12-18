@@ -66,7 +66,7 @@ theme = ExtResource("1_wtb0y")
 text = "GUERILLA: PARTISANS"
 horizontal_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_vuvkm")
 volume_db = 2.713
 

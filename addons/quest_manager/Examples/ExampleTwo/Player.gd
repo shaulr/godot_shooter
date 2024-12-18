@@ -72,14 +72,3 @@ func talk():
 		elif  npc.family_member == 1:
 			QuestManager.progress_quest_by_name(QuestManager.active_quest,"Mother")
 		get_parent().get_node("UI").set_text(npc.get_dialogue(1))
-
-
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://qbvh6hu3w3wb"]
+[gd_scene load_steps=28 format=3 uid="uid://qbvh6hu3w3wb"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbln7"]
 [ext_resource type="Texture2D" uid="uid://cfml0uj7xry2y" path="res://art/partizanka.png" id="2_10twl"]
@@ -6,8 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="3_ydtyk"]
 [ext_resource type="AudioStream" uid="uid://dsed0il4pmi0u" path="res://art/344039__reitanna__whimpering-oh-god.wav" id="4_kny1r"]
 [ext_resource type="AudioStream" uid="uid://ccol3kghbblmg" path="res://art/368385__madamvicious__insane-girl-laughter.wav" id="5_6foc1"]
+[ext_resource type="Shader" path="res://player/silhouette.gdshader" id="5_63jrl"]
+[ext_resource type="Script" path="res://player/player_sprite.gd" id="5_ino6p"]
 [ext_resource type="PackedScene" uid="uid://ud2g711yuawe" path="res://guns/knife.tscn" id="6_k7sc5"]
 [ext_resource type="Script" path="res://player/dash.gd" id="7_7hp41"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvekw"]
+shader = ExtResource("5_63jrl")
+shader_parameter/silouhette_color = Color(100, 0, 0, 0.493)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wogj1"]
 size = Vector2(9.5, 17.75)
@@ -17,7 +23,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +39,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +55,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,7 +71,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,7 +87,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -93,16 +99,17 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oi05h"]
 resource_name = "walkdown"
-length = 0.3
+length = 0.9
 loop_mode = 1
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
@@ -110,17 +117,17 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_bisj5"]
 resource_name = "walkleft"
-length = 0.6
+length = 0.9
 loop_mode = 1
-step = 0.2
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
+"times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
@@ -128,17 +135,17 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1rtf1"]
 resource_name = "walkright"
-length = 0.8
+length = 0.9
 loop_mode = 1
-step = 0.2
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
+"times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
@@ -146,17 +153,17 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_r68rb"]
 resource_name = "walkup"
-length = 0.6
+length = 0.9
 loop_mode = 1
-step = 0.2
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("CharacterSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
+"times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3)]
@@ -183,7 +190,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/path = NodePath("CharacterSprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -201,7 +208,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/path = NodePath("CharacterSprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -246,8 +253,9 @@ allow_greater = true
 allow_lesser = true
 show_percentage = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CharacterSprite" type="Sprite2D" parent="."]
 clip_children = 2
+light_mask = 0
 z_index = 1
 z_as_relative = false
 y_sort_enabled = true
@@ -259,6 +267,21 @@ offset = Vector2(0, -8)
 hframes = 3
 vframes = 4
 frame = 1
+region_filter_clip_enabled = true
+script = ExtResource("5_ino6p")
+
+[node name="siluhette" type="Sprite2D" parent="CharacterSprite"]
+clip_children = 2
+z_index = 101
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_hvekw")
+texture = ExtResource("2_10twl")
+offset = Vector2(0, -8)
+hframes = 3
+vframes = 4
+frame = 10
 region_filter_clip_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

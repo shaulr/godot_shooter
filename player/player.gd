@@ -14,7 +14,7 @@ var isAttacking: bool = false
 @onready var hurtimer = $hurttimer
 @onready var gun = $gun
 @onready var knife = $knife
-@onready var sprite = $Sprite2D
+@onready var sprite = $CharacterSprite
 @export var inventory: Inventory
 @onready var collider = $CollisionShape2D
 var unit: Mob = null

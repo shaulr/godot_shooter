@@ -14,7 +14,6 @@ var mobsKilled = 0
 @onready var game_menu = "res://UI/main_menu.tscn"
 @export var LIVES = 3
 var lives = LIVES
-#var music_player = AudioStreamPlayer.new()
 var saver_loader:  SaverLoader = SaverLoader.new()
 var saved_game: SavedGame
 var bosko: Mob
@@ -35,24 +34,25 @@ func load_level(level: String):
 		#Game._player.get_parent().remove_child(Game._player)
 	#get_tree().change_scene_to_file(level)
 	scene_manager.change_scene(Game.current_level, level)
-
-
-func play_random_song():
+func get_random_song() -> String:
 	var music_list = []
 	get_all_files("res://art/music/songs/", "mp3", music_list)
 	var current_song = music_list[randi()%music_list.size()]
-	var music_player = AudioStreamPlayer.new()
+	return current_song
 
-	music_player.set_stream(load(current_song))
-	music_player.play()		
+func play_random_song():
+	
+	if current_level is BaseScene:
+		current_level.music_player.set_stream(load(get_random_song()))
+		current_level.music_player.play()		
 
 func play_random_sad_song():
 	var music_list = []
 	get_all_files("res://art/music/death/", "mp3", music_list)
 	var current_song = music_list[randi()%music_list.size()]
-	var music_player = AudioStreamPlayer.new()
-	music_player.set_stream(load(current_song))
-	music_player.play()		
+	#var music_player = AudioStreamPlayer.new()
+	if current_level is BaseScene:
+		current_level.play_song(current_song)		
 
 func mob_killed():
 	mobsKilled += 1
@@ -68,6 +68,7 @@ func mob_killed():
 func game_over():
 	var game_over_instance = game_over_node.instantiate()
 	current_level.add_child(game_over_instance)
+	game_over_instance.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	lives -= 1
 	

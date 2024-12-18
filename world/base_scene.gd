@@ -7,6 +7,7 @@ var camera: Camera2D
 signal shooting_sound(noise: int, sound_pos: Vector2)
 var level_gui: LevelGui
 var fog: Fog
+var music_player: AudioStreamPlayer
 func _enter_tree():
 	print_debug("_enter_tree")
 	#await get_tree().create_timer(1).timeout
@@ -27,6 +28,11 @@ func _ready():
 	fog.init(tilemap)
 	camera.add_child(fog)
 	camera.init(tilemap)
+	music_player = AudioStreamPlayer.new()
+	add_child(music_player)
+	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	Game.play_random_song()
+	
 	Game.current_level = self
 	for child in get_children():
 		if child is Player: 
@@ -39,7 +45,9 @@ func _ready():
 			add_child(Game._player)
 		position_player()
 
-
+func play_song(song: String):
+	music_player.set_stream(load(song))
+	music_player.play()
 
 func position_player():
 	if scene_manager.last_scene:

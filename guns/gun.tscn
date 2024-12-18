@@ -229,6 +229,9 @@ script = ExtResource("1_beq65")
 position = Vector2(0.00023824, 1)
 
 [node name="sprite" type="Sprite2D" parent="weaponPivot"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 texture_filter = 1
 position = Vector2(11.0002, 0.997379)
 texture = ExtResource("2_nxe2a")
