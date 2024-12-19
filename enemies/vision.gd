@@ -8,7 +8,7 @@ var vision_raycasts: Array[RayCast2D]
 signal is_visible(visible: bool)
 var inVision = false;
 var desired_direction = Vector2.ZERO
-
+@onready var light = $pivot_point/PointLight2D
 
 func _ready():
 	add_raycasts(30, -30, 6, 200, pivot_point, vision_raycasts)
@@ -98,3 +98,6 @@ func _on_timer_timeout():
 func set_desired_location(location: Vector2):
 	desired_direction = (global_position - location).normalized()
 	
+func off():
+	light.enabled = false
+	queue_free()

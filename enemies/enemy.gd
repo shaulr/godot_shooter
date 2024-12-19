@@ -40,7 +40,8 @@ var dropped = false
 var next_in_unit: Mob = null
 var previous_in_unit: Mob = null
 var mob_to_attack: Mob = null
-@export var explosion_scene: PackedScene
+
+@export var smoke_scene: PackedScene
 func _enter_tree():
 	add_to_group("game_events")
 	if Game.current_level && "shooting_sound" in Game.current_level:
@@ -184,11 +185,12 @@ func die():
 		queue_free()
 	else:
 		$sprite_top.texture = load("res://art/bunkers/bunker_round_top_down_destroyed.png")
-		var _explosion = explosion_scene.instantiate()
-		_explosion.position = global_position
-		_explosion.rotation = global_rotation
-		_explosion.emitting = true
-		add_child(_explosion)
+		var _smoke = smoke_scene.instantiate()
+		_smoke.position = global_position
+		_smoke.rotation = global_rotation
+		_smoke.emitting = true
+		vision.off()
+		Game.current_level.add_child(_smoke)
 	
 func get_item_from_table(table: Array[Item]) -> Node: 
 	var total_weight: int

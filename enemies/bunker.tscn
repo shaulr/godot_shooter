@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_u3afw"]
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_lfi6e"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_et2eb"]
-[ext_resource type="PackedScene" uid="uid://cojgddp4lcr75" path="res://effects/explosion.tscn" id="6_1t7qk"]
+[ext_resource type="PackedScene" uid="uid://djiq25c025cx8" path="res://effects/smoke.tscn" id="6_0rsi8"]
 [ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="6_2ljup"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="6_ymcs5"]
-[ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="8_g00tk"]
 [ext_resource type="Texture2D" uid="uid://bw2l64btfgyyj" path="res://art/bunkers/bunker_round_top_down_destroyed.png" id="10_mmdoh"]
+[ext_resource type="AudioStream" uid="uid://dt0bfl3pr52sa" path="res://art/large-realistic-explosion-08-190269.mp3" id="12_p3iqs"]
 [ext_resource type="PackedScene" uid="uid://bg3ibjof1cqb8" path="res://guns/bunker_gun.tscn" id="13_8gqt2"]
 
 [sub_resource type="Resource" id="Resource_ivbg4"]
@@ -170,7 +170,7 @@ script = ExtResource("1_arsp1")
 speed = 0
 drop_table = Array[ExtResource("2_s8dk5")]([SubResource("Resource_ivbg4"), ExtResource("4_lfi6e"), ExtResource("5_et2eb")])
 gun_table = Array[ExtResource("2_s8dk5")]([ExtResource("5_et2eb"), ExtResource("4_lfi6e")])
-explosion_scene = ExtResource("6_1t7qk")
+smoke_scene = ExtResource("6_0rsi8")
 
 [node name="Movement" parent="." instance=ExtResource("6_2ljup")]
 
@@ -245,7 +245,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_g00tk")
+stream = ExtResource("12_p3iqs")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 9

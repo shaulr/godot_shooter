@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://djiq25c025cx8"]
+
+[ext_resource type="Texture2D" uid="uid://dcthgq5n38ic4" path="res://art/PNG/Black smoke/blackSmoke19.png" id="1_lvr37"]
+
+[sub_resource type="Curve" id="Curve_gs487"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0760234, -317.149), 0.0, 0.0, 0, 0, Vector2(0.467836, 360), 0.0, 0.0, 0, 0, Vector2(0.991228, -317.149), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_lul14"]
+_data = [Vector2(0, 0.0758086), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0mc8x"]
+offsets = PackedFloat32Array(0.00662252, 1)
+colors = PackedColorArray(1, 0.347833, 0.09, 1, 1, 1, 1, 0.25098)
+
+[node name="Smoke" type="CPUParticles2D"]
+z_index = 3
+amount = 15
+lifetime = 2.0
+randomness = 0.58
+lifetime_randomness = 0.47
+texture = ExtResource("1_lvr37")
+spread = 120.08
+gravity = Vector2(0, -98)
+radial_accel_min = -3.21
+radial_accel_max = 26.74
+damping_min = 6.007
+damping_max = 95.722
+angle_min = -338.8
+angle_max = 462.0
+angle_curve = SubResource("Curve_gs487")
+scale_amount_curve = SubResource("Curve_lul14")
+color_ramp = SubResource("Gradient_0mc8x")
+hue_variation_max = 0.46
