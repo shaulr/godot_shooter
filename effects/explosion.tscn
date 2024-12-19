@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cojgddp4lcr75"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g16hp"]
+
+[sub_resource type="Curve" id="Curve_sufyr"]
+max_value = 340.45
+_data = [Vector2(0.216374, 0.833214), 0.0, 0.0, 0, 0, Vector2(0.932748, 0.156807), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_x4wnu"]
+offsets = PackedFloat32Array(0.0596026, 1)
+
+[node name="Explosion" type="CPUParticles2D"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+randomness = 0.63
+lifetime_randomness = 1.0
+texture = SubResource("CanvasTexture_g16hp")
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 412.21
+initial_velocity_max = 412.21
+angular_velocity_min = 177.11
+angular_velocity_max = 177.11
+radial_accel_min = 8.56
+radial_accel_max = 8.56
+damping_min = 11.765
+damping_max = 11.765
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_sufyr")
+color = Color(0.976847, 0.147283, 1.92523e-07, 1)
+color_ramp = SubResource("Gradient_x4wnu")
+hue_variation_min = 0.13
+hue_variation_max = 0.13

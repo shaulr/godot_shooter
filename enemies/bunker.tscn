@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqv1108wg05h5"]
+[gd_scene load_steps=26 format=3 uid="uid://dqv1108wg05h5"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_arsp1"]
 [ext_resource type="Texture2D" uid="uid://b5l6xr6m04ldu" path="res://art/bunkers/bunker_round_bottom.png" id="2_do70f"]
@@ -8,13 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_u3afw"]
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="4_lfi6e"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="5_et2eb"]
+[ext_resource type="PackedScene" uid="uid://cojgddp4lcr75" path="res://effects/explosion.tscn" id="6_1t7qk"]
 [ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="6_2ljup"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="6_ymcs5"]
 [ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="8_g00tk"]
 [ext_resource type="Texture2D" uid="uid://bw2l64btfgyyj" path="res://art/bunkers/bunker_round_top_down_destroyed.png" id="10_mmdoh"]
 [ext_resource type="PackedScene" uid="uid://bg3ibjof1cqb8" path="res://guns/bunker_gun.tscn" id="13_8gqt2"]
 
-[sub_resource type="Resource" id="Resource_vsirq"]
+[sub_resource type="Resource" id="Resource_ivbg4"]
 resource_local_to_scene = true
 script = ExtResource("2_s8dk5")
 name = "Health"
@@ -167,8 +168,9 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_arsp1")
 speed = 0
-drop_table = Array[ExtResource("2_s8dk5")]([SubResource("Resource_vsirq"), ExtResource("4_lfi6e"), ExtResource("5_et2eb")])
+drop_table = Array[ExtResource("2_s8dk5")]([SubResource("Resource_ivbg4"), ExtResource("4_lfi6e"), ExtResource("5_et2eb")])
 gun_table = Array[ExtResource("2_s8dk5")]([ExtResource("5_et2eb"), ExtResource("4_lfi6e")])
+explosion_scene = ExtResource("6_1t7qk")
 
 [node name="Movement" parent="." instance=ExtResource("6_2ljup")]
 
@@ -253,7 +255,8 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_ywqus")
 
 [node name="vision" parent="." instance=ExtResource("2_shxfo")]
-position = Vector2(1, -19)
+position = Vector2(0, 21)
+rotation = 1.60221
 
 [node name="Statemachine" parent="." instance=ExtResource("6_ymcs5")]
 

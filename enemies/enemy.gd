@@ -40,6 +40,7 @@ var dropped = false
 var next_in_unit: Mob = null
 var previous_in_unit: Mob = null
 var mob_to_attack: Mob = null
+@export var explosion_scene: PackedScene
 func _enter_tree():
 	add_to_group("game_events")
 	if Game.current_level && "shooting_sound" in Game.current_level:
@@ -50,7 +51,7 @@ func _enter_tree():
 func _ready(): 
 	navigation = NavigationAgent2D.new()
 	add_child(navigation)
-	#navigation.debug_enabled = true
+	navigation.debug_enabled = true
 	navigation.radius = 32
 	navigation.path_desired_distance = 20
 	gun.gun_agros_enemies(true)
@@ -183,7 +184,11 @@ func die():
 		queue_free()
 	else:
 		$sprite_top.texture = load("res://art/bunkers/bunker_round_top_down_destroyed.png")
-
+		var _explosion = explosion_scene.instantiate()
+		_explosion.position = global_position
+		_explosion.rotation = global_rotation
+		_explosion.emitting = true
+		add_child(_explosion)
 	
 func get_item_from_table(table: Array[Item]) -> Node: 
 	var total_weight: int
@@ -239,6 +244,7 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 					gun.press_trigger()
 				is_agro = true
 				if fsm.get_current_state() != "chase" && speed > 0:
+					to_follow = mob
 					fsm.change_to("chase")
 	else:
 		can_see_enemy = false

@@ -22,7 +22,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg1h"]
 size = Vector2(11, 11)
 
-[sub_resource type="Resource" id="Resource_qm3e3"]
+[sub_resource type="Resource" id="Resource_1kil6"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -31,7 +31,7 @@ maxTextureSize = Vector2(20, 20)
 drop_weight = 5.0
 scene_path = "res://droppables/health.tscn"
 
-[sub_resource type="Resource" id="Resource_kfdgn"]
+[sub_resource type="Resource" id="Resource_vspay"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -40,7 +40,7 @@ maxTextureSize = Vector2(20, 20)
 drop_weight = 5.0
 scene_path = "res://droppables/health.tscn"
 
-[sub_resource type="Resource" id="Resource_n70a8"]
+[sub_resource type="Resource" id="Resource_c6pbc"]
 resource_local_to_scene = true
 script = ExtResource("7_yvoxm")
 name = "Health"
@@ -124,12 +124,17 @@ shape = SubResource("RectangleShape2D_dpg1h")
 
 [node name="enemy" parent="." instance=ExtResource("12_hydnl")]
 position = Vector2(695, 225)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_qm3e3"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_1kil6"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
 
 [node name="bosko_buha" parent="." instance=ExtResource("6_x66do")]
 position = Vector2(691, 118)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_kfdgn"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_vspay"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
 
 [node name="Bunker" parent="." instance=ExtResource("13_862tk")]
 position = Vector2(989, 204)
-drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_n70a8"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_c6pbc"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])
+
+[node name="Bunker2" parent="." instance=ExtResource("13_862tk")]
+position = Vector2(992, 358)
+rotation = -5.24122
+drop_table = Array[ExtResource("7_yvoxm")]([SubResource("Resource_c6pbc"), ExtResource("9_5mj3u"), ExtResource("10_6q4aa")])

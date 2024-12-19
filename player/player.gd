@@ -129,6 +129,20 @@ func updateAnimation():
 		animations.play("walk" + direction)
 		lastAnimDirection = direction
 		
+func location_behind() -> Vector2:
+	var direction = velocity.normalized()
+
+	if velocity.x < 0:
+		return Vector2(global_position.x + 32, global_position.y)
+	elif velocity.x > 0:
+		return Vector2(global_position.x - 32, global_position.y)
+	elif velocity.y < 0:
+		return Vector2(global_position.x , global_position.y + 32)
+	elif velocity.y > 0:
+		return Vector2(global_position.x , global_position.y - 32)
+	return Vector2(global_position.x - 32, global_position.y )
+
+		
 func update_health():
 	var healthbar = $health_bar
 	healthbar.value = current_health  

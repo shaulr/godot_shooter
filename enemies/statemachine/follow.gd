@@ -21,7 +21,10 @@ func start_following():
 	
 func give_mob_chase_direction():
 	var desired_direction = Vector2.ZERO
-	fsm.mob.navigation.target_position = to_follow.global_position
+	if to_follow.has_method("location_behind"):
+		fsm.mob.navigation.target_position = to_follow.location_behind()
+	else:
+		fsm.mob.navigation.target_position = to_follow.global_position
 	desired_direction = fsm.mob.navigation.get_next_path_position() - fsm.mob.global_position
 	desired_direction = desired_direction.normalized()
 

@@ -2,16 +2,17 @@ extends State
 
 signal set_desired_direction
 @export var chase_update_period = 0.1
-var navigation: NavigationAgent2D
+var to_follow
 
 func enter():
 	start_chasing()
-	fsm.mob.add_child(navigation)
+	to_follow = fsm.mob.get_follow()
+
 	set_desired_direction.connect(fsm.mob._on_set_desired_direction)
 
 func start_chasing():
-	navigation = NavigationAgent2D.new()
 	var timer: Timer = Timer.new()
+
 	add_child(timer)
 	timer.one_shot = false
 	timer.wait_time = chase_update_period
@@ -20,12 +21,9 @@ func start_chasing():
 	give_mob_chase_direction()
 	
 func give_mob_chase_direction():
-	var desired_direction = Vector2.ZERO
-	navigation.target_position = Game.get_player().global_position
-	desired_direction = navigation.get_next_path_position() - fsm.mob.global_position
-	desired_direction = desired_direction.normalized()
-
-	emit_signal("set_desired_direction", desired_direction)
+	if !is_instance_valid(to_follow): return
+	if to_follow.has_method("location_behind"): emit_signal("set_desired_direction", to_follow.location_behind())
+	else: emit_signal("set_desired_direction", to_follow.global_position)
 
 	
 

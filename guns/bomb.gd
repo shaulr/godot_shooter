@@ -16,6 +16,7 @@ var direction: Vector2
 @onready var boomAudio = $boom_audio
 @onready var explosion_collision: CollisionShape2D = $explosion_collision
 @onready var collision: CollisionShape2D = $collision
+@export var explosion_scene: PackedScene
 var exploding = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,6 +65,11 @@ func _on_body_entered(body: Node2D) -> void:
 func explode():
 	explosion_collision.disabled = false
 	exploding = true
+	var _explosion = explosion_scene.instantiate()
+	_explosion.position = global_position
+	_explosion.rotation = global_rotation
+	_explosion.emitting = true
+	Game.current_level.add_child(_explosion)
 	Game.current_level.sound(gun_noise_level, global_position, Utils.is_friendly(get_parent()))
 
 	hasHit = true

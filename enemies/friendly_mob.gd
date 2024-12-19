@@ -52,8 +52,9 @@ func _on_vision_is_visible(seen_someone: bool, mobs: Array):
 				elif has_gun:
 					gun.press_trigger()
 				is_agro = true
-				if fsm.get_current_state() != "chase":
-					fsm.change_to("chase")
+				#if fsm.get_current_state() != "chase":
+					#to_follow = mob
+					#fsm.change_to("chase")
 	else:
 		can_see_enemy = false
 		mob_to_attack = null
