@@ -16,6 +16,8 @@ quest_file_path="res://quests/tutorial.quest"
 config/name="Shooter"
 run/main_scene="res://UI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://art/logo.png"
 config/icon="res://icon.svg"
 
 [autoload]

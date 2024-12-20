@@ -76,6 +76,7 @@ func pointGun(aimPos: Vector2, correct_for_camera: bool):
 	look_at(aimPos + cameraPos)
 		
 func shoot():
+	if shooting: return
 	shooting = true
 	#Game.current_level.emit_signal("shooting_sound", gun_noise_level, global_position)
 	var friendly: bool = get_parent() == Game.get_player() || get_parent().is_friendly
