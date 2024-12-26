@@ -229,7 +229,7 @@ offsets = PackedFloat32Array(0.00495049, 0.0891089, 0.960396, 0.965347)
 colors = PackedColorArray(1, 1, 1, 0.172549, 1, 0, 0, 0.701961, 1, 0.745098, 0.745098, 0.305882, 1, 0.373134, 0.373134, 0.813169)
 
 [node name="player" type="CharacterBody2D" groups=["game_events"]]
-z_index = 1
+z_index = 2
 z_as_relative = false
 y_sort_enabled = true
 texture_filter = 1
