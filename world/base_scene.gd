@@ -38,12 +38,13 @@ func _ready():
 			Game._player = child
 	if Game.saver_loader.saved_game:
 		return		
+	
 	if is_instance_valid(Game._player):
 		if Game._player.get_parent() != self:
 
 			add_child(Game._player)
 		position_player()
-
+		
 func play_song(song: String):
 	music_player.set_stream(load(song))
 	music_player.play()
@@ -59,6 +60,7 @@ func position_player():
 			Game._player.global_position = entrance.global_position
 		elif entrance is Marker2D and entrance.name == "any": 
 			Game._player.global_position = entrance.global_position
+			
 func find_door(node: Node, level: String) -> Door:
 	for N in node.get_children():
 		if N is Door && N.scene_to_load == level:

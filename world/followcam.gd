@@ -8,8 +8,8 @@ func init(tilemap: TileMapLayer):
 	var mapRect = tilemap.get_used_rect()
 	var titleSize = tilemap.tile_set.tile_size
 	var worldSizeInPixels = mapRect.size * titleSize
-	limit_right = worldSizeInPixels.x
-	limit_bottom = worldSizeInPixels.y
+	limit_right = worldSizeInPixels.x * tilemap.scale.x
+	limit_bottom = worldSizeInPixels.y * tilemap.scale.y
 	follow_node = Game.get_player()
 	inited = true
 

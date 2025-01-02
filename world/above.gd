@@ -10,7 +10,9 @@ func _check_if_elevated() -> bool:
 
 	for tile in get_used_cells_by_id():
 		if abs(tile.x - tile_under.x)  <= 1 && abs(tile.y - tile_under.y) <= 1:
-			return true
+			var tile_data = get_cell_tile_data(tile)
+			if tile_data && tile_data.get_custom_data("above"):
+				return true
 
 	return false
 
@@ -20,7 +22,6 @@ func _set_mask_and_collision(layer: int, value: bool):
 	
 func _physics_process(delta: float) -> void:
 	var make_above_ground: bool = _check_if_elevated()
-	if make_above_ground:
-		print_debug("on the bridge")
+
 	_set_mask_and_collision(ground_layer, !make_above_ground)
 	_set_mask_and_collision(above_layer, make_above_ground)
