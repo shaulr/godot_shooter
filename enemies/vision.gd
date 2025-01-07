@@ -9,11 +9,13 @@ signal is_visible(visible: bool)
 var inVision = false;
 var desired_direction = Vector2.ZERO
 @onready var light = $pivot_point/PointLight2D
-
+var parent: Mob
 func _ready():
 	add_raycasts(30, -30, 6, 200, pivot_point, vision_raycasts)
-	add_raycasts(90, 360 + 90, 8, 30, movement, danger_raycasts)
+	add_raycasts(90, 360 + 90, 8, 20, movement, danger_raycasts)
 	add_directions()
+	if get_parent() is Mob:
+		parent = get_parent()
 	
 func add_directions():
 	directions.append(Vector2.UP.normalized())
@@ -42,7 +44,7 @@ func add_raycasts(start_angle: int, end_angle: int, cnt: int, len: int, parent: 
 func calculate_direction():
 	var intrest_vector = [0, 0, 0, 0, 0, 0, 0, 0]
 	var danger_vector = [0, 0, 0, 0, 0, 0, 0, 0]
-
+	desired_direction = parent.get_desired_location() 
 	for i in directions.size():
 		intrest_vector[i] = desired_direction.dot(directions[i])
 		if danger_raycasts[i].is_colliding():
@@ -69,8 +71,7 @@ func calculate_direction():
 			temp_max = desired_vector[i]
 			desired_calculated_vector = directions[i]
 	
-	if get_parent().has_method("set_desired_vector"):
-		get_parent().set_desired_vector(desired_calculated_vector)
+	parent.set_desired_vector(desired_calculated_vector)
 	
 		
 func _on_timer_timeout():

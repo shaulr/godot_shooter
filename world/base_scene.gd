@@ -44,6 +44,8 @@ func _ready():
 
 			add_child(Game._player)
 		position_player()
+	
+	Game.spawn_mobs("res://enemies/domobran.tscn", Vector2i(560, 0), Vector2i(1200, 896), 5)
 		
 func play_song(song: String):
 	music_player.set_stream(load(song))

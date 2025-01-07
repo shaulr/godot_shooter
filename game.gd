@@ -142,3 +142,19 @@ func start():
 func bosko_joins():
 	if bosko:
 		bosko.follow(_player)
+		
+func spawn_mobs(mob_path: String, from: Vector2i, to: Vector2i, count: int):
+	for i in range(count):
+		spawn_mob(mob_path, from, to)
+		
+func spawn_mob(mob_path: String, from: Vector2i, to: Vector2i):
+	var mob = load(mob_path).instantiate()
+	current_level.add_child(mob)
+	mob.global_position = random_position(from, to)
+	while mob.test_move(mob.transform, Vector2(1,1)) == true:
+		mob.global_position = random_position(from, to)
+
+func random_position(from: Vector2i, to: Vector2i) -> Vector2:
+	var x = randi_range(from.x, to.x)
+	var y = randi_range(from.y, to.y)
+	return Vector2(x,y)	

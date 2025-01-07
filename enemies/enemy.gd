@@ -9,7 +9,8 @@ var navigation: NavigationAgent2D
 @onready var vision = $vision
 @onready var gun = $gun
 @onready var collision_shape = %CollisionShape2D
-const  STEERING_FORCE = 0.1
+#@onready var movement: Movement = $Movement
+const  STEERING_FORCE = 0.05
 var to_follow
 @export var speed = 30
 var acceleration = 7
@@ -40,8 +41,8 @@ var dropped = false
 var next_in_unit: Mob = null
 var previous_in_unit: Mob = null
 var mob_to_attack: Mob = null
-
 @export var smoke_scene: PackedScene
+var desired_vector: Vector2
 func _enter_tree():
 	add_to_group("game_events")
 	if Game.current_level && "shooting_sound" in Game.current_level:
@@ -53,12 +54,14 @@ func _ready():
 	navigation = NavigationAgent2D.new()
 	add_child(navigation)
 	navigation.debug_enabled = true
-	navigation.radius = 32
+	navigation.radius = 10
 	navigation.path_desired_distance = 20
 	gun.gun_agros_enemies(true)
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
 	if !has_gun: gun.visible = false
+
+
 	
 func on_save_data(saved_data:Array[SavedData]):
 	print_debug("on_save_data")
@@ -117,22 +120,40 @@ func pointVision():
 
 func get_direction() -> String:
 	return lastDirection
-
-func _physics_process(delta):
-	if isDead: return
+	
+func get_desired_location() -> Vector2:
+	return (navigation.get_next_path_position() - global_position).normalized()
+	
+func update_speed(delta: float):
+	if navigation.distance_to_target() < 20.0: 
+		speed = 0
+		fsm.change_to("scan")
+		return
 	var direction = Vector2.ZERO
 	if speed > 0:
 		if !navigation.is_navigation_finished(): 
-			
-			direction = navigation.get_next_path_position() - global_position
-			direction = direction.normalized()
+			#direction = navigation.get_next_path_position() - global_position
+			direction = desired_vector.normalized()
+			#direction = movement.pick_direction(direction)	
+			#vision.set_desired_location(navigation.get_next_path_position() - global_position)
 		#if is_agro:
 			#velocity = velocity.lerp(direction * speed, acceleration * delta)
-		var steering_force = direction * speed - velocity
+		var steering_force = direction * speed  * STEERING_FORCE
 		if steering_force.length() > 50.0 || steering_force.length() < -50.0:
 			print_debug("steering force strange")
-		velocity = velocity  + (steering_force * STEERING_FORCE)
+			steering_force /= 2.0
+		
+		velocity += steering_force 
+		if velocity.length() > speed: 
+			velocity = velocity.normalized() * speed
+		
+func set_desired_vector(desired: Vector2):
+	desired_vector = desired
+		
+func _physics_process(delta):
+	if isDead: return
 	
+	update_speed(delta)
 	update_health()
 	updateAnimation()
 	pointVision()

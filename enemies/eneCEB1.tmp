@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwpqdm50ftu1j"]
+[gd_scene load_steps=23 format=3 uid="uid://dwpqdm50ftu1j"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_ii8wy"]
 [ext_resource type="Script" path="res://droppables/item.gd" id="2_3tvbs"]
 [ext_resource type="Resource" uid="uid://dqc5plt052as2" path="res://droppables/mp-40.tres" id="3_i2sxh"]
 [ext_resource type="Texture2D" uid="uid://3mtbs4xbjh1a" path="res://art/first_aid.png" id="3_t5iu1"]
 [ext_resource type="Resource" uid="uid://cy0eadxal8imn" path="res://droppables/mauser.tres" id="4_vnoff"]
+[ext_resource type="PackedScene" uid="uid://r0kotk8c7hjf" path="res://AI/movement.tscn" id="5_vavk2"]
 [ext_resource type="Texture2D" uid="uid://jhhowcjgku4j" path="res://art/marko.png" id="7_a4jvi"]
 [ext_resource type="AudioStream" uid="uid://dvyu5sdj3b74n" path="res://art/scream.mp3" id="8_f43mc"]
 [ext_resource type="PackedScene" uid="uid://cbdpa8nwvq3rk" path="res://enemies/vision.tscn" id="9_mt60k"]
@@ -165,6 +166,8 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
 drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_h2ay0"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
 gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
+
+[node name="Movement" parent="." instance=ExtResource("5_vavk2")]
 
 [node name="hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -14.5)

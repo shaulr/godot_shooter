@@ -28,6 +28,7 @@ func start_investigating():
 func investigate_at(position: Vector2):
 	investigation_position = position
 	give_mob_investigate_direction()
+	start_investigating()
 		
 func give_mob_investigate_direction():
 	if !active: return

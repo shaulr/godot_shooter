@@ -9,7 +9,7 @@ func _check_if_elevated() -> bool:
 	tile_under.y = tile_under.y / scale.y
 
 	for tile in get_used_cells_by_id():
-		if abs(tile.x - tile_under.x)  <= 1 && abs(tile.y - tile_under.y) <= 1:
+		if abs(tile.x - tile_under.x)  <= 3 && abs(tile.y - tile_under.y) <= 3:
 			var tile_data = get_cell_tile_data(tile)
 			if tile_data && tile_data.get_custom_data("above"):
 				return true
