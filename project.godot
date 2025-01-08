@@ -42,7 +42,8 @@ directories/dch_directory={
 directories/dtl_directory={
 "bata_zdenka_intro": "res://quests/dialogs/bata_zdenka_intro.dtl",
 "zdenka_bosko_intro": "res://quests/dialogs/zdenka_bosko_intro.dtl",
-"zdenka_marko": "res://quests/dialogs/zdenka_marko.dtl"
+"zdenka_marko": "res://quests/dialogs/zdenka_marko.dtl",
+"zdenka_village_intro": "res://quests/dialogs/zdenka_village_intro.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://quests/dialogs/dialog_style.tres"]

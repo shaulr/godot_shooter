@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1mcmbcrw00tk"]
+[gd_scene load_steps=26 format=3 uid="uid://c1mcmbcrw00tk"]
 
 [ext_resource type="Script" path="res://guns/bomb.gd" id="1_cbbdx"]
 [ext_resource type="PackedScene" uid="uid://cojgddp4lcr75" path="res://effects/explosion.tscn" id="2_8yubg"]
 [ext_resource type="Texture2D" uid="uid://b1ibp54vhya7o" path="res://art/potato_masher.png" id="2_21yjr"]
 [ext_resource type="Texture2D" uid="uid://cpi3ynhrkwjem" path="res://art/explosion_anim.png" id="3_y6kbj"]
 [ext_resource type="AudioStream" uid="uid://brdshstxyxdy1" path="res://art/554289__klankbeeld__mortar-grenade-shell-006.wav" id="4_7adpx"]
+[ext_resource type="Texture2D" uid="uid://byaj6dr2k3s04" path="res://art/point_light.png" id="6_sx5b3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8o7j"]
 atlas = ExtResource("3_y6kbj")
@@ -159,5 +160,11 @@ disabled = true
 [node name="explosion_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8i5lm")
 disabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.380392, 0.384314, 1)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("6_sx5b3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -17,11 +17,13 @@ var direction: Vector2
 @onready var explosion_collision: CollisionShape2D = $explosion_collision
 @onready var collision: CollisionShape2D = $collision
 @export var explosion_scene: PackedScene
+@onready var explosion_light = $PointLight2D
 var exploding = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.visible = true
 	explosion_collision.shape.radius = explosion_radius
+	explosion_light.enabled = false
 	
 func get_explosion_radius() -> float:
 	return explosion_radius
@@ -69,6 +71,7 @@ func explode():
 	_explosion.position = global_position
 	_explosion.rotation = global_rotation
 	_explosion.emitting = true
+	flash()
 	Game.current_level.add_child(_explosion)
 	Game.current_level.sound(gun_noise_level, global_position, Utils.is_friendly(get_parent()))
 
@@ -79,3 +82,9 @@ func explode():
 	boomAudio.play()
 	await bombEffectsPlayer.animation_finished
 	queue_free()
+
+
+func flash():
+	explosion_light.enabled = true
+	await get_tree().create_timer(0.1).timeout
+	explosion_light.enabled = false

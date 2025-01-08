@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqrp0uplcicmw"]
+[gd_scene load_steps=17 format=3 uid="uid://bqrp0uplcicmw"]
 
 [ext_resource type="Script" path="res://guns/gun.gd" id="1_beq65"]
 [ext_resource type="Texture2D" uid="uid://bvomximw6ud2i" path="res://art/mp-40.png" id="2_nxe2a"]
 [ext_resource type="Texture2D" uid="uid://bii5tj25qre50" path="res://art/muzzle_flash.png" id="3_b1wrm"]
 [ext_resource type="AudioStream" uid="uid://b3wiwwpbknu8o" path="res://art/shoot1911.mp3" id="3_rxcwr"]
+[ext_resource type="Texture2D" uid="uid://byaj6dr2k3s04" path="res://art/point_light.png" id="4_vinxn"]
 [ext_resource type="AudioStream" uid="uid://gilana2ls6g4" path="res://art/reload_lever_action.mp3" id="5_h6cvo"]
 
 [sub_resource type="Animation" id="Animation_gxaah"]
@@ -260,6 +261,13 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_vf7hh")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="weaponPivot/sprite/shootingPoint"]
+enabled = false
+color = Color(1, 0.243137, 0.266667, 1)
+energy = 5.57
+shadow_enabled = true
+texture = ExtResource("4_vinxn")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

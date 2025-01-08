@@ -133,13 +133,13 @@ _data = {
 initial_state = 1
 drop_table = Array[ExtResource("2_3kihx")]([SubResource("Resource_oqk8a"), ExtResource("4_56j1g"), ExtResource("5_ossgv")])
 
-[node name="hurtbox" parent="." index="1"]
+[node name="hurtbox" parent="." index="0"]
 position = Vector2(-2.5, -18.5)
 
-[node name="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_0i3ua")
 }
 
-[node name="death" parent="." index="6"]
+[node name="death" parent="." index="5"]
 frame = 12

@@ -4,8 +4,7 @@ extends Node
 
 var camera
 @onready  var _player: Player 
-var mapWidth
-var mapHeight
+
 const MAX_MOBS = 100
 const INITIAL_MOBS = 4
 var mobsKilled = 0
@@ -17,6 +16,7 @@ var lives = LIVES
 var saver_loader:  SaverLoader = SaverLoader.new()
 var saved_game: SavedGame
 var bosko: Mob
+var is_night = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().process_frame
@@ -34,6 +34,9 @@ func load_level(level: String):
 		#Game._player.get_parent().remove_child(Game._player)
 	#get_tree().change_scene_to_file(level)
 	scene_manager.change_scene(Game.current_level, level)
+
+	
+	
 func get_random_song() -> String:
 	var music_list = []
 	get_all_files("res://art/music/songs/", "mp3", music_list)
@@ -62,9 +65,9 @@ func mob_killed():
 	mobsKilled += 1
 	if mobsKilled % 5 == 0:
 		scene_manager.player.doing_good()
-	if mobsKilled < MAX_MOBS:
-		if current_level.has_method("spawn_mob"):
-			current_level.spawn_mob()
+	#if mobsKilled < MAX_MOBS:
+		#if current_level.has_method("spawn_mob"):
+			#current_level.spawn_mob()
 	else:
 		mobsKilled = 0
 		get_tree().reload_current_scene()
@@ -101,9 +104,7 @@ func get_all_files(path: String, file_ext := "", files := []):
 		print("An error occurred when trying to access %s." % path)
 	return files
 
-func level_loaded(level: Node, map_size):
-	mapWidth = map_size.x
-	mapHeight = map_size.y
+func level_loaded(level: BaseScene):
 	current_level = level
 	var music_player = AudioStreamPlayer.new()
 
@@ -112,6 +113,7 @@ func level_loaded(level: Node, map_size):
 		music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	level.add_child(music_player)
 	CampaignManager.level_loaded(level)
+	create_global_light()
 
 func set_player(thePlayer: Player):
 	scene_manager.player = thePlayer
@@ -149,8 +151,8 @@ func spawn_mobs(mob_path: String, from: Vector2i, to: Vector2i, count: int):
 		
 func spawn_mob(mob_path: String, from: Vector2i, to: Vector2i):
 	var mob = load(mob_path).instantiate()
-	current_level.add_child(mob)
 	mob.global_position = random_position(from, to)
+	current_level.add_child(mob)
 	while mob.test_move(mob.transform, Vector2(1,1)) == true:
 		mob.global_position = random_position(from, to)
 
@@ -158,3 +160,46 @@ func random_position(from: Vector2i, to: Vector2i) -> Vector2:
 	var x = randi_range(from.x, to.x)
 	var y = randi_range(from.y, to.y)
 	return Vector2(x,y)	
+	
+func create_global_light():
+	if "global_light" in current_level && !current_level.global_light:
+		var global_light = DirectionalLight2D.new()
+		global_light.height = 0
+		global_light.color = Color("ff77019b")
+		global_light.blend_mode = Light2D.BLEND_MODE_SUB
+		if is_night: 
+			global_light.energy = 3
+		else:
+			global_light.energy = 0
+
+		current_level.add_child(global_light)
+		current_level.global_light = global_light	
+	
+func change_to_night():
+	create_global_light()
+	get_tree().create_tween().tween_property(current_level.global_light, "energy", 3.0, 2)
+	play_ambient_sound("res://art/sounds/howlingwolf.ogg")
+	await current_level.ambient_sound_player.finished
+	play_ambient_sound("res://art/sounds/night_ambient.ogg")
+	
+	
+func change_to_day():
+	create_global_light()
+	get_tree().create_tween().tween_property(current_level.global_light, "energy", 0.0, 2)
+	#current_level.remove_child(current_level.global_light)
+	#current_level.global_light = null
+	play_ambient_sound("res://art/sounds/morningcrow.ogg")
+	await current_level.ambient_sound_player.finished
+	play_ambient_sound("res://art/sounds/nature-soundscape.ogg")
+
+func play_ambient_sound(sound: String):
+	if !current_level.ambient_sound_player:
+		current_level.ambient_sound_player = AudioStreamPlayer.new()
+		current_level.add_child(current_level.ambient_sound_player)
+		current_level.ambient_sound_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	current_level.ambient_sound_player.set_stream(load(sound)) 
+	current_level.ambient_sound_player.play()
+	current_level.ambient_sound_player.finished.connect(_on_sound_finished)
+
+func _on_sound_finished():
+	current_level.ambient_sound_player.play()

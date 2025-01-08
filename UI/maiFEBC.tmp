@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://biuq55wee55k"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_t0gcb"]
+[ext_resource type="Theme" uid="uid://cx2oiw205t1xm" path="res://UI/partisan_theme.tres" id="1_wtb0y"]
+[ext_resource type="Texture2D" uid="uid://csriqcjmo12gg" path="res://art/osmi-mart.jpg" id="3_ow8et"]
+[ext_resource type="AudioStream" uid="uid://cwrqmv2o60y7d" path="res://art/music/songs/Po Šumama i Gorama   Instrumental   Partizanska.mp3" id="4_vuvkm"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0gcb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ow8et")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -259.0
+offset_right = 235.0
+grow_vertical = 0
+
+[node name="start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_wtb0y")
+theme_type_variation = &"FlatButton"
+text = "START"
+
+[node name="load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_wtb0y")
+text = "LOAD"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_wtb0y")
+text = "QUIT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -504.0
+offset_right = 504.0
+offset_bottom = 172.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_wtb0y")
+text = "GUERILLA: PARTISANS"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vuvkm")
+volume_db = 2.713
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -17,7 +17,7 @@ var gun_noise_level = 300
 var sprite_scale_factor: float
 var muzzle_position: Vector2
 var shooting: bool = false
-	
+@onready var muzzle_light = $weaponPivot/sprite/shootingPoint/PointLight2D
 func _ready():
 	item = load(item_path).instantiate()
 	equip_item(item)
@@ -80,6 +80,7 @@ func shoot():
 	shooting = true
 	#Game.current_level.emit_signal("shooting_sound", gun_noise_level, global_position)
 	var friendly: bool = get_parent() == Game.get_player() || get_parent().is_friendly
+	flash_light()
 	Game.current_level.sound(gun_noise_level, global_position, friendly)
 
 	%muzzleflashplayer.play("flash2")
@@ -95,6 +96,7 @@ func shoot():
 		repeat_player.play()
 		await repeat_player.finished
 	shooting = false
+	
 		
 func press_trigger():
 	if !shooting: 
@@ -103,6 +105,12 @@ func press_trigger():
 	
 func release_trigger():
 	trigger_pressed = false
+	
+func flash_light():
+	muzzle_light.enabled = true
+	await get_tree().create_timer(0.05).timeout
+	muzzle_light.enabled = false
+
 
 func gun_knock():
 	knocback_anim.play("knocback")

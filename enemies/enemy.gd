@@ -60,6 +60,7 @@ func _ready():
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
 	if !has_gun: gun.visible = false
+	
 
 
 	
@@ -126,7 +127,6 @@ func get_desired_location() -> Vector2:
 	
 func update_speed(delta: float):
 	if navigation.distance_to_target() < 20.0: 
-		speed = 0
 		fsm.change_to("scan")
 		return
 	var direction = Vector2.ZERO

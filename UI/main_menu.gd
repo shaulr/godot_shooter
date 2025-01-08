@@ -1,5 +1,4 @@
 extends Control
-@export var first_level ="res://world/test_level.tscn"
 
 var center : Vector2
 @onready var node = $TextureRect
@@ -13,7 +12,6 @@ func _ready():
 	center = Vector2(visible_rect.x/2, visible_rect.y/2)
 	audio_player.play()
 	#Game.play_random_song()
-	Game.level_loaded(self, get_viewport_rect().size)
 
 
 

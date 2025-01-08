@@ -8,11 +8,15 @@ signal shooting_sound(noise: int, sound_pos: Vector2)
 var level_gui: LevelGui
 var fog: Fog
 var music_player: AudioStreamPlayer
+var global_light: DirectionalLight2D
+var ambient_sound_player: AudioStreamPlayer
+ 
 func _enter_tree():
 	print_debug("_enter_tree")
 	#await get_tree().create_timer(1).timeout
 	#Game.saver_loader.scene_loaded_callback()
 	Game.current_level = self
+	
 
 
 func sound(level: int, pos: Vector2, friendly: bool):
@@ -44,8 +48,7 @@ func _ready():
 
 			add_child(Game._player)
 		position_player()
-	
-	Game.spawn_mobs("res://enemies/domobran.tscn", Vector2i(560, 0), Vector2i(1200, 896), 5)
+	Game.level_loaded(self)
 		
 func play_song(song: String):
 	music_player.set_stream(load(song))

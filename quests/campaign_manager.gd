@@ -24,6 +24,7 @@ func _ready():
 
 func level_loaded(level: Node):
 	current_level = level
+	QuestManager.progress_quest_by_name("Tutorial", "level_loaded")
 	
 func start(quest: String):
 	self.quest_name = quest
@@ -60,18 +61,24 @@ func next_step(step):
 			print(step)
 			if step.callable.begins_with("Dialogic.start"):
 				in_conversation = true
-				
-			QuestManager.progress_quest(step.quest_id,step.id)
+				QuestManager.progress_quest(step.quest_id,step.id)
 		QuestManager.ACTION_STEP:
 			print(step)
 
 func step_updated(step):
 	print_debug("step_updated" + step.details)
-	QuestManager.progress_quest(step.quest_id,step.id)
+	#if step.step_type == QuestManager.INCREMENTAL_STEP:
+		#
+		#if step.collected >= step.required:
+			#QuestManager.complete_step(step.quest_id, step)
+	#else:
+	if step.step_type == QuestManager.CALLABLE_STEP:
+		QuestManager.progress_quest(step.quest_id,step.id)
 	
 func step_complete(step):
 	print_debug("step complete" + step.details)
 	
+		
 func player_met(mob):
 	if "mob_name" in mob:
 		print_debug(mob.mob_name)
@@ -84,13 +91,17 @@ func player_met(mob):
 				QuestManager.progress_quest(current_step.quest_id,current_step.id)
 
 func _on_dialogic_timeline_ended():
-	if !current_step.has('item_name'):
-		return
-	if current_step.item_name == "conversation" && in_conversation:
-		QuestManager.progress_quest(current_step.quest_id,"conversation")
-		in_conversation = false
+	#if !current_step.has('item_name'):
+		#return
+	#if current_step.item_name == "conversation" && in_conversation:
+	QuestManager.progress_quest(current_step.quest_id, current_step.id)
+	in_conversation = false
 
 
 func introduce_player_to(mob: Mob):
 	if mob.mob_name == "bosko":
 		Dialogic.start("zdenka_bosko_intro")
+
+
+func _dialog_ended():
+	QuestManager.progress_quest_by_name("Intro", "")
