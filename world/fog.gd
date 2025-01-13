@@ -5,7 +5,7 @@ var worldSizeInPixels: Vector2
 func init(tilemap: TileMapLayer):
 	var mapRect = tilemap.get_used_rect()
 	var titleSize = tilemap.tile_set.tile_size
-	var worldSizeInPixels: Vector2 = mapRect.size * titleSize
+	worldSizeInPixels = mapRect.size * titleSize
 	
 #func _ready() -> void:
 	#parallaxLayer.set_mirroring(worldSizeInPixels)

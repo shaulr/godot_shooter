@@ -37,7 +37,7 @@ func add_quest(quest_name:String,resource:QuestResource=current_resource) -> voi
 	active_quest = quest_name
 	var quest_id = get_quest_id(quest_name)
 	var step = get_current_step(quest_id,true)
-	step_updated.emit(step)
+	step_updated.emit(step) 
 
 func load_quest_resource(quest_res:QuestResource) -> void:
 	current_resource = quest_res

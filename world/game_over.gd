@@ -16,6 +16,7 @@ func _on_restart_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	queue_free()
+	Game.start()
 	
 func get_random_subtitle():
 	var slogans = [ "Another defeat for proletariat", 

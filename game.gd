@@ -12,6 +12,7 @@ var mobsKilled = 0
 @onready var ingame_menu_node = preload("res://UI/in_game_menu.tscn")
 @onready var game_menu = "res://UI/main_menu.tscn"
 @export var LIVES = 3
+@export var START_QUEST = "Tutorial"
 var lives = LIVES
 var saver_loader:  SaverLoader = SaverLoader.new()
 var saved_game: SavedGame
@@ -78,6 +79,11 @@ func game_over():
 	game_over_instance.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	lives -= 1
+	var dialog_state: Dictionary = Dialogic.get_full_state()
+	if dialog_state && dialog_state.current_timeline:
+		Dialogic.end_timeline()
+	CampaignManager.player_died(START_QUEST)
+
 	
 func in_game_menu():
 	var in_game_menu_instance = ingame_menu_node.instantiate()
@@ -122,8 +128,8 @@ func set_player(thePlayer: Player):
 	#if current_level.has_node("camera"):
 		#current_level.camera.follow_node = thePlayer
 		
-func set_bosko(bosko: Mob):
-	self.bosko = bosko
+func set_bosko(mybosko: Mob):
+	self.bosko = mybosko
 
 func level_has_camera() -> bool:
 	if Game.current_level && Game.current_level.camera: return true
@@ -138,7 +144,8 @@ func save():
 	pass
 
 func start():
-	CampaignManager.start("Tutorial")
+	var dialog_state = Dialogic.get_full_state()
+	CampaignManager.start(START_QUEST)
 	
 	
 func bosko_joins():

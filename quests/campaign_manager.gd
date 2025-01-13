@@ -33,6 +33,8 @@ func start(quest: String):
 	
 	QuestManager.add_quest(quest_name,quest_resource)
 
+func player_died(current_quest: String):
+	QuestManager.remove_quest(current_quest)
 	
 func quest_complete(quest):
 	state = WIN
@@ -41,7 +43,7 @@ func quest_complete(quest):
 	print_debug("quest_complete" + quest)
 	#get_tree().paused = true
 	
-func quest_failed(n):
+func quest_failed(_n):
 	state = LOSE
 	$GameOver.show()
 	#get_tree().paused = true

@@ -11,7 +11,7 @@ func _ready():
 	var mapRect = tilemap.get_used_rect()
 	var titleSize = tilemap.tile_set.tile_size
 	var worldSizeInPixels = mapRect.size * titleSize
-	Game.level_loaded(self, worldSizeInPixels)
+	Game.level_loaded(self)
 	#for i in range(INITIAL_MOBS):
 		#spawn_mob()
 	level_gui.hearts.set_max_hearts(Game.LIVES)

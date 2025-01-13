@@ -17,7 +17,7 @@ func _ready():
 	patrol_position = global_position
 	start_patrolling()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_dead: return
 	var steering_force = desired_direction*speed - velocity
 	velocity = velocity  + (steering_force * STEERING_FORCE)

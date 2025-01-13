@@ -26,8 +26,7 @@ func initial_state(state: InitialStates):
 	current_state = states[state_name]
 	current_state.enter()
 	
-func get_parent_of_type(type: String) -> Node:
-	var parent_type: String = ""
+func get_parent_of_type(_type: String) -> Node:
 	var parent = get_parent()
 	while !parent.has_method("is_hostile_mob"):
 		parent = parent.get_parent()

@@ -125,7 +125,7 @@ func get_direction() -> String:
 func get_desired_location() -> Vector2:
 	return (navigation.get_next_path_position() - global_position).normalized()
 	
-func update_speed(delta: float):
+func update_speed(_delta: float):
 	if navigation.distance_to_target() < 20.0: 
 		fsm.change_to("scan")
 		return
@@ -214,15 +214,15 @@ func die():
 		Game.current_level.add_child(_smoke)
 	
 func get_item_from_table(table: Array[Item]) -> Node: 
-	var total_weight: int
+	var total_weight: int = 0
 	for item in table:
 		total_weight += item.drop_weight
 	if total_weight < 1: total_weight = 1
-	var rng = randi() % total_weight
+	var rnd = randi() % total_weight
 	var current_weight = 0
 	for item in table:
 		current_weight += item.drop_weight
-		if rng <= current_weight && item.scene_path != null:
+		if rnd <= current_weight && item.scene_path != null:
 			var scene = load(item.scene_path)
 			var node = scene.instantiate()
 			return node
@@ -253,8 +253,8 @@ func knockback(enemyVeocity: Vector2):
 	velocity = knockbackDirection
 	move_and_slide()
 	
-func _on_vision_is_visible(is_visible: bool, mobs: Array):
-	if is_visible and !isDead:
+func _on_vision_is_visible(vision_is_visible: bool, mobs: Array):
+	if vision_is_visible and !isDead:
 		for mob in mobs:
 			if mob.isDead: continue
 			if is_enemy(mob):
@@ -276,7 +276,7 @@ func _on_vision_is_visible(is_visible: bool, mobs: Array):
 		if fsm.get_current_state() == "chase":
 			fsm.back()
 			
-func throw_bomb_at(position: Vector2):
+func throw_bomb_at(throw_position: Vector2):
 	const GRENADE = preload("res://guns/bomb.tscn")
 	var new_bomb = GRENADE.instantiate()
 	new_bomb.global_position = global_position
@@ -286,7 +286,7 @@ func throw_bomb_at(position: Vector2):
 	
 	Game.current_level.add_child(new_bomb)
 	
-	new_bomb.throw_at(position)			
+	new_bomb.throw_at(throw_position)			
 			
 func talk_to_player():
 	if fsm.get_current_state() == "follow":
@@ -317,8 +317,8 @@ func _on_shots_fired(loudness: int, sound_pos: Vector2, friendly: bool):
 		fsm.change_to("investigate")
 		fsm.current_state.investigate_at(sound_pos)
 		
-func navigate_to(position: Vector2):
-	navigation.target_position = position
+func navigate_to(navigate_position: Vector2):
+	navigation.target_position = navigate_position
 	navigation.get_next_path_position()
 	
 func _on_set_desired_direction(direction: Vector2):
@@ -331,5 +331,5 @@ func _on_hurtbox_area_entered(area):
 	if is_friendly and area == Game._player:
 		CampaignManager.player_met(self)
 
-func order(order: String):
-	print_debug(mob_name + " recieved order " + order)
+func order(recieved_order: String):
+	print_debug(mob_name + " recieved order " + recieved_order)

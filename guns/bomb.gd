@@ -52,8 +52,8 @@ func has_hit() -> bool:
 	if travelled_distance > bullet_range: return true
 	return false
 
-func throw_at(target: Vector2):
-	self.target = target
+func throw_at(throw_target: Vector2):
+	self.target = throw_target
 	direction = global_position.direction_to(target)
 	bombEffectsPlayer.visible = false
 

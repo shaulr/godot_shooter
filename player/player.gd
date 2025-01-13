@@ -130,7 +130,6 @@ func updateAnimation():
 		lastAnimDirection = direction
 		
 func location_behind() -> Vector2:
-	var direction = velocity.normalized()
 
 	if velocity.x < 0:
 		return Vector2(global_position.x + 32, global_position.y)
