@@ -16,6 +16,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7yh1g"]
 shader = ExtResource("12_r3sc2")
 shader_parameter/silouhette_color = Color(0, 1, 0, 0.5)
+shader_parameter/is_night = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg1h"]
 size = Vector2(11, 11)
@@ -93,5 +94,14 @@ disable_mode = 1
 scene_to_load = "res://world/house_scene.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_dpg1h")
+
+[node name="door2" parent="." instance=ExtResource("6_hys8x")]
+position = Vector2(1211, 432)
+disable_mode = 1
+scene_to_load = "res://world/gaj_0_1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door2"]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_dpg1h")

@@ -3003,8 +3003,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-23.0365, -8.36555, 23.9105, -8.74012, 23.411, 23.5983, -22.9116, 23.7232)])
 agent_radius = 0.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qn1kw"]
-polygon = PackedVector2Array(-32.5178, -12.7695, 0.44545, -16.6301, 3.41511, -29.9936, 28.6572, -30.5875, 31.3299, -11.5817, 30.736, 30.8845, -29.2512, 30.5875)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cv6ph"]
+polygon = PackedVector2Array(1.99775, -15.6074, 2.49718, -30.4656, 28.4678, -31.0899, 28.9673, -13.235, 33.2154, 0.840897, 20.4388, 0.61802, 20.6154, -2.11893, 18.9379, -4.85587, 15.3181, -4.6793, 13.464, -3.00181, 13.1991, 0.441442, -30.6927, 0.2803, -29.0921, -14.4836, -16.1713, -14.9507)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kxyav"]
 
@@ -3660,7 +3660,7 @@ texture = ExtResource("3_dfh1s")
 29:0/size_in_atlas = Vector2i(4, 4)
 29:0/next_alternative_id = 2
 29:0/0 = 0
-29:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qn1kw")
+29:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_cv6ph")
 29:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.2265, -9.28143, 29.6534, -9.12412, 29.968, 29.8894, -31.3838, 29.732)
 0:7/size_in_atlas = Vector2i(3, 3)
 0:7/0 = 0

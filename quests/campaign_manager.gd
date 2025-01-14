@@ -24,7 +24,12 @@ func _ready():
 
 func level_loaded(level: Node):
 	current_level = level
-	QuestManager.progress_quest_by_name("Tutorial", "level_loaded")
+	
+	if current_step:
+		if ! "item_name" in current_step:
+			return
+		if current_step.item_name == "level_loaded":
+			QuestManager.progress_quest_by_name("Tutorial", "level_loaded")
 	
 func start(quest: String):
 	self.quest_name = quest
@@ -38,8 +43,8 @@ func player_died(current_quest: String):
 	
 func quest_complete(quest):
 	state = WIN
-	$Complete.text += "\n Money " + str(quest.quest_rewards.money)
-	$Complete.show()
+	#$Complete.text += "\n Money " + str(quest.quest_rewards.money)
+	#$Complete.show()
 	print_debug("quest_complete" + quest)
 	#get_tree().paused = true
 	

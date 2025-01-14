@@ -15,10 +15,12 @@
 resource_local_to_scene = true
 shader = ExtResource("5_63jrl")
 shader_parameter/silouhette_color = Color(0, 1, 0, 0.5)
+shader_parameter/is_night = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvekw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtna3"]
 shader = ExtResource("5_63jrl")
-shader_parameter/silouhette_color = Color(100, 0, 0, 0.493)
+shader_parameter/silouhette_color = Color(0.435576, 0.904264, 0.996444, 0.5)
+shader_parameter/is_night = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wogj1"]
 size = Vector2(9.5, 17.75)
@@ -262,11 +264,11 @@ show_percentage = false
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 clip_children = 2
-light_mask = 0
 z_index = 2
 z_as_relative = false
 y_sort_enabled = true
 texture_filter = 1
+use_parent_material = true
 position = Vector2(-1, -10)
 scale = Vector2(0.448205, 0.456543)
 texture = ExtResource("2_10twl")
@@ -278,12 +280,14 @@ region_filter_clip_enabled = true
 script = ExtResource("5_ino6p")
 
 [node name="siluhette" type="Sprite2D" parent="CharacterSprite"]
+visible = false
 clip_children = 2
+light_mask = 0
 z_index = 101
 z_as_relative = false
 y_sort_enabled = true
 texture_filter = 1
-material = SubResource("ShaderMaterial_hvekw")
+material = SubResource("ShaderMaterial_gtna3")
 texture = ExtResource("2_10twl")
 offset = Vector2(0, -8)
 hframes = 3

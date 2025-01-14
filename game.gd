@@ -13,6 +13,7 @@ var mobsKilled = 0
 @onready var game_menu = "res://UI/main_menu.tscn"
 @export var LIVES = 3
 @export var START_QUEST = "Tutorial"
+var current_quest: String
 var lives = LIVES
 var saver_loader:  SaverLoader = SaverLoader.new()
 var saved_game: SavedGame
@@ -120,6 +121,7 @@ func level_loaded(level: BaseScene):
 	level.add_child(music_player)
 	CampaignManager.level_loaded(level)
 	create_global_light()
+	set_day_night()
 
 func set_player(thePlayer: Player):
 	scene_manager.player = thePlayer
@@ -188,9 +190,20 @@ func change_to_night():
 	play_ambient_sound("res://art/sounds/howlingwolf.ogg")
 	await current_level.ambient_sound_player.finished
 	play_ambient_sound("res://art/sounds/night_ambient.ogg")
-	
+	is_night = true
+
+func set_day_night():
+	create_global_light()
+	if is_night:
+		current_level.global_light.energy = 3.0
+		play_ambient_sound("res://art/sounds/night_ambient.ogg")
+	else:
+		current_level.global_light.energy = 0.0
+		play_ambient_sound("res://art/sounds/nature-soundscape.ogg")		
+
 	
 func change_to_day():
+	is_night = false
 	create_global_light()
 	get_tree().create_tween().tween_property(current_level.global_light, "energy", 0.0, 2)
 	#current_level.remove_child(current_level.global_light)
