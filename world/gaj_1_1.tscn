@@ -96,6 +96,14 @@ scene_to_load = "res://world/gaj_2_1.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door3"]
 shape = SubResource("RectangleShape2D_mxx3i")
 
+[node name="Door4" type="Area2D" parent="."]
+position = Vector2(544, 576)
+script = ExtResource("5_jehrs")
+scene_to_load = "res://world/house_marko.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door4"]
+shape = SubResource("RectangleShape2D_mxx3i")
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(569, 548)
 color = Color(1, 0.631373, 0.368627, 1)

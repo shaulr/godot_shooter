@@ -33,7 +33,7 @@ func _ready():
 		fog = load("res://world/fog.tscn").instantiate()
 		fog.init(tilemap)
 		camera.add_child(fog)
-	camera.init(tilemap)
+	camera.init(tilemap, inside)
 	music_player = AudioStreamPlayer.new()
 	add_child(music_player)
 	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
