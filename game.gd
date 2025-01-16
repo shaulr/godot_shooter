@@ -194,7 +194,7 @@ func change_to_night():
 
 func set_day_night():
 	create_global_light()
-	if is_night:
+	if is_night && ! current_level.inside: 
 		current_level.global_light.energy = 3.0
 		play_ambient_sound("res://art/sounds/night_ambient.ogg")
 	else:

@@ -10,6 +10,7 @@ var fog: Fog
 var music_player: AudioStreamPlayer
 var global_light: DirectionalLight2D
 var ambient_sound_player: AudioStreamPlayer
+@export var inside: bool = false
  
 func _enter_tree():
 	print_debug("_enter_tree")
@@ -25,12 +26,13 @@ func sound(level: int, pos: Vector2, friendly: bool):
 func _ready():
 	level_gui = load("res://UI/level_gui.tscn").instantiate()
 	add_child(level_gui)
-
 	camera = load("res://world/followcam.tscn").instantiate()
 	add_child(camera)
-	fog = load("res://world/fog.tscn").instantiate()
-	fog.init(tilemap)
-	camera.add_child(fog)
+	
+	if !inside:
+		fog = load("res://world/fog.tscn").instantiate()
+		fog.init(tilemap)
+		camera.add_child(fog)
 	camera.init(tilemap)
 	music_player = AudioStreamPlayer.new()
 	add_child(music_player)

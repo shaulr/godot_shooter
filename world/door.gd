@@ -22,6 +22,7 @@ func position_player():
 	var bodies_in_area = get_overlapping_bodies()
 	if (bodies_in_area.size() > 0):
 		move_out_of_range(bodies_in_area)
+		return
 	elif on_bottom_edge_of_the_map():
 		Game.get_player().global_position.y = door_position.y - 40
 		Game.get_player().global_position.x = door_position.x
@@ -56,7 +57,7 @@ func on_right_edge_of_the_map() -> bool:
 func on_left_edge_of_the_map() -> bool:
 	var world_size = get_rect_of_level()
 	var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
-	return player_right_pos <= world_size.x				
+	return player_right_pos <= 10			
 		
 func get_rect_of_collider() -> Vector2:
 	if collider.shape is RectangleShape2D:
