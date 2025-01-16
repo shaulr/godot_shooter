@@ -6,7 +6,7 @@ uniform bool is_night = true;
 //render_mode blend_mix;
 
 void fragment() {
-	
+
 
 	vec4 screen_color = texture(screen_texture, SCREEN_UV);
 	vec4 sprite_color = texture(TEXTURE, UV);

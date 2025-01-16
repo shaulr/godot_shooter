@@ -15,6 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ddrrd"]
 shader = ExtResource("4_f5y16")
 shader_parameter/silouhette_color = Color(0, 1, 0, 0.5)
+shader_parameter/is_night = true
 
 [node name="forrest_1_1" type="Node"]
 script = ExtResource("1_38of3")

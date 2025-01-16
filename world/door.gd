@@ -10,15 +10,53 @@ func _ready():
 	
 func _on_body_entered(body):
 	if body is Player:
+		var player_pos = Game.get_player().global_position
+		var door_pos = global_position
+		print_debug(Game.get_player().global_position)
+
 		scene_manager.change_scene(Game.current_level, scene_to_load)
 
 func position_player():
-	Game.get_player().global_position = global_position
+	var door_position = global_position
+	Game.get_player().global_position = door_position
 	var bodies_in_area = get_overlapping_bodies()
 	if (bodies_in_area.size() > 0):
 		move_out_of_range(bodies_in_area)
+	elif on_bottom_edge_of_the_map():
+		Game.get_player().global_position.y = door_position.y - 40
+		Game.get_player().global_position.x = door_position.x
+	elif on_right_edge_of_the_map():
+		Game.get_player().global_position.x = door_position.x - 40
+		Game.get_player().global_position.y = door_position.y		
+	elif on_left_edge_of_the_map():
+		Game.get_player().global_position.x = door_position.x + 40
+		Game.get_player().global_position.y = door_position.y		
+		print_debug(Game.get_player().global_position)
+		#var x = Game.get_player().global_position.x
+		#var collider_width = get_rect_of_collider().x
+		#var player_width = Game.get_player().get_size().x
+		#
+		#Game.get_player().global_position.x +=  (collider_width + player_width) * 2	
+		#var bodies_in_area_of_door = get_overlapping_areas()
+		#if (bodies_in_area_of_door.size() > 0):
+			#move_out_of_range(bodies_in_area_of_door)	
 	else: 
 		Game.get_player().global_position.y += Game.get_player().get_size().y * 2
+		
+func on_bottom_edge_of_the_map() -> bool:
+	var world_size = get_rect_of_level()
+	var player_below_pos = Game.get_player().global_position.y + Game.get_player().get_size().y * 2
+	return player_below_pos >= world_size.y		
+	
+func on_right_edge_of_the_map() -> bool:
+	var world_size = get_rect_of_level()
+	var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
+	return player_right_pos >= world_size.x		
+		
+func on_left_edge_of_the_map() -> bool:
+	var world_size = get_rect_of_level()
+	var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
+	return player_right_pos <= world_size.x				
 		
 func get_rect_of_collider() -> Vector2:
 	if collider.shape is RectangleShape2D:
@@ -30,7 +68,13 @@ func get_rect_of_collider() -> Vector2:
 	else:
 		return rect_size
 
-	
+func get_rect_of_level() -> Vector2:
+	var mapRect = Game.current_level.tilemap.get_used_rect()
+	var titleSize = Game.current_level.tilemap.tile_set.tile_size
+	titleSize.x *= Game.current_level.tilemap.scale.x
+	titleSize.y *= Game.current_level.tilemap.scale.y
+	var worldSizeInPixels = mapRect.size * titleSize
+	return worldSizeInPixels
 	
 func move_out_of_range(bodies):
 	var current_position = global_position

@@ -72,7 +72,7 @@ func mob_killed():
 			#current_level.spawn_mob()
 	else:
 		mobsKilled = 0
-		get_tree().reload_current_scene()
+		
 		
 func game_over():
 	var game_over_instance = game_over_node.instantiate()
