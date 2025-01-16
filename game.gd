@@ -191,15 +191,23 @@ func change_to_night():
 	await current_level.ambient_sound_player.finished
 	play_ambient_sound("res://art/sounds/night_ambient.ogg")
 	is_night = true
-
+	_player.light.enabled = true
+	
 func set_day_night():
 	create_global_light()
-	if is_night && ! current_level.inside: 
+	
+	if current_level.inside:
+		current_level.global_light.energy = 0.0
+		_player.light.enabled = false
+		play_ambient_sound("res://art/sounds/fireplace.mp3")
+	elif is_night: 
 		current_level.global_light.energy = 3.0
+		_player.light.enabled = true
 		play_ambient_sound("res://art/sounds/night_ambient.ogg")
 	else:
 		current_level.global_light.energy = 0.0
 		play_ambient_sound("res://art/sounds/nature-soundscape.ogg")		
+		_player.light.enabled = false
 
 	
 func change_to_day():
@@ -211,6 +219,7 @@ func change_to_day():
 	play_ambient_sound("res://art/sounds/morningcrow.ogg")
 	await current_level.ambient_sound_player.finished
 	play_ambient_sound("res://art/sounds/nature-soundscape.ogg")
+	_player.light.enabled = false
 
 func play_ambient_sound(sound: String):
 	if !current_level.ambient_sound_player:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://qbvh6hu3w3wb"]
+[gd_scene load_steps=30 format=3 uid="uid://qbvh6hu3w3wb"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbln7"]
 [ext_resource type="Texture2D" uid="uid://cfml0uj7xry2y" path="res://art/partizanka.png" id="2_10twl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://player/player_sprite.gd" id="5_ino6p"]
 [ext_resource type="PackedScene" uid="uid://ud2g711yuawe" path="res://guns/knife.tscn" id="6_k7sc5"]
 [ext_resource type="Script" path="res://player/dash.gd" id="7_7hp41"]
+[ext_resource type="Texture2D" uid="uid://byaj6dr2k3s04" path="res://art/point_light.png" id="11_x5a4h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y3vqs"]
 resource_local_to_scene = true
@@ -348,6 +349,9 @@ position = Vector2(0, -8)
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 128
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("11_x5a4h")
 
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_area_2d_area_entered"]
