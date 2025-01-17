@@ -200,7 +200,7 @@ func set_day_night():
 	if current_level.inside:
 		current_level.global_light.energy = 0.0
 		_player.light.enabled = false
-		play_ambient_sound("res://art/sounds/fireplace.mp3")
+		#play_ambient_sound("res://art/sounds/fireplace.mp3")
 	elif is_night: 
 		current_level.global_light.energy = 3.0
 		_player.light.enabled = true

@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://benc5o2mncmw3"]
+
+[ext_resource type="Texture2D" uid="uid://bggqmapil4xpb" path="res://art/fireplace.png" id="1_b22ic"]
+[ext_resource type="AudioStream" uid="uid://bp8nrhv7pi0xn" path="res://art/sounds/fireplace.mp3" id="2_wddnm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edknp"]
+size = Vector2(62, 43)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8kun"]
+texture = ExtResource("1_b22ic")
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:2/size_in_atlas = Vector2i(6, 5)
+2:2/animation_columns = 4
+2:2/0 = 0
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6l1vd"]
+sources/0 = SubResource("TileSetAtlasSource_a8kun")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khmlt"]
+atlas = ExtResource("1_b22ic")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrxl0"]
+atlas = ExtResource("1_b22ic")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tbqc"]
+atlas = ExtResource("1_b22ic")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xpjg"]
+atlas = ExtResource("1_b22ic")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2yi6"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khmlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrxl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tbqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xpjg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fireplace" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(40, -36.5)
+shape = SubResource("RectangleShape2D_edknp")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray(0, 0, 2, 0, 253, 255, 0, 0, 2, 0, 2, 0, 0, 0)
+tile_set = SubResource("TileSet_6l1vd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(40, -32)
+sprite_frames = SubResource("SpriteFrames_e2yi6")
+autoplay = "default"
+frame_progress = 0.874084
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wddnm")
+autoplay = true
+stream_paused = true
+parameters/looping = true
