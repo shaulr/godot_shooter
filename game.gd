@@ -122,6 +122,7 @@ func level_loaded(level: BaseScene):
 	CampaignManager.level_loaded(level)
 	create_global_light()
 	set_day_night()
+	scene_manager.on_level_loaded(level.scene_file_path)
 
 func set_player(thePlayer: Player):
 	scene_manager.player = thePlayer

@@ -19,7 +19,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ak6yo"]
 
-[sub_resource type="Resource" id="Resource_edebk"]
+[sub_resource type="Resource" id="Resource_y87fj"]
 resource_local_to_scene = true
 script = ExtResource("8_0hs1a")
 name = "Health"
@@ -102,4 +102,4 @@ shape = SubResource("RectangleShape2D_ak6yo")
 
 [node name="bata" parent="." instance=ExtResource("7_bk76d")]
 position = Vector2(61, 678)
-drop_table = Array[ExtResource("8_0hs1a")]([SubResource("Resource_edebk"), ExtResource("10_5pgy7"), ExtResource("11_2w43l")])
+drop_table = Array[ExtResource("8_0hs1a")]([SubResource("Resource_y87fj"), ExtResource("10_5pgy7"), ExtResource("11_2w43l")])

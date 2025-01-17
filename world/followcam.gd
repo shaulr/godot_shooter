@@ -43,7 +43,8 @@ func _process(delta):
 	#set_limit(SIDE_BOTTOM, level_size.y)
 	
 func update_global_position():
-	global_position = follow_node.global_position 
+	if follow_node != null:
+		global_position = follow_node.global_position 
 	#var delta = get_process_delta_time()
 	#
 	#global_position += lerp(

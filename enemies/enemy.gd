@@ -86,8 +86,8 @@ func on_pre_load():
 	queue_free()
 	
 func on_load(savedData: SavedData):
-	if savedData is SavedCollectibleData:
-		var data = savedData as SavedCollectibleData
+	if savedData is MobData:
+		var data = savedData as MobData
 		global_position = data.position
 		speed = data.speed
 		acceleration = data.acceleration
