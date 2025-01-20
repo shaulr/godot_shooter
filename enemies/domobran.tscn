@@ -135,19 +135,19 @@ initial_state = 1
 belongs = 1
 drop_table = Array[ExtResource("2_l07yk")]([SubResource("Resource_oqk8a"), ExtResource("4_1i68h"), ExtResource("5_3ceh1")])
 
-[node name="hurtbox" parent="." index="1"]
+[node name="hurtbox" parent="." index="0"]
 position = Vector2(-2.5, -18.5)
 
-[node name="walk" parent="." index="3"]
+[node name="walk" parent="." index="2"]
 texture = ExtResource("6_8wl5v")
 
-[node name="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_0i3ua")
 }
 
-[node name="death" parent="." index="6"]
+[node name="death" parent="." index="5"]
 frame = 12
 
-[node name="gun" parent="." index="11"]
+[node name="gun" parent="." index="10"]
 item_path = "res://droppables/mauser.tscn"

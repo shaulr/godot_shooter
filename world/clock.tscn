@@ -47,7 +47,6 @@ frame_progress = 0.448317
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_7a2k7")
 autoplay = true
-stream_paused = true
 parameters/looping = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

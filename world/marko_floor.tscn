@@ -4023,7 +4023,7 @@ sources/3 = SubResource("TileSetAtlasSource_w3afa")
 sources/4 = SubResource("TileSetAtlasSource_7fhft")
 sources/5 = SubResource("TileSetAtlasSource_gt0oe")
 
-[sub_resource type="Resource" id="Resource_isob2"]
+[sub_resource type="Resource" id="Resource_br3e4"]
 resource_local_to_scene = true
 script = ExtResource("11_37vde")
 name = "Health"
@@ -4085,4 +4085,4 @@ tile_set = ExtResource("8_qqlsi")
 z_index = 1
 position = Vector2(425, 97)
 is_friendly = true
-drop_table = Array[ExtResource("11_37vde")]([SubResource("Resource_isob2"), ExtResource("13_d5e3d"), ExtResource("14_auamp")])
+drop_table = Array[ExtResource("11_37vde")]([SubResource("Resource_br3e4"), ExtResource("13_d5e3d"), ExtResource("14_auamp")])

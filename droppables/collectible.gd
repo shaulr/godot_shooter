@@ -34,7 +34,7 @@ func on_save_data(saved_data:Array[SavedData]):
 	data.healing = healing
 	#data.drop_chance = drop_chance
 	data.is_consumable = is_consumable
-	data.item = item
+	#data.item = item
 	saved_data.append(data)
 	
 func on_pre_load():
@@ -46,7 +46,7 @@ func on_load(savedData: SavedData):
 		var data = savedData as SavedCollectibleData
 		global_position = data.position
 		healing = data.healing
-		drop_chance = item.drop_chance
+		#drop_chance = item.drop_chance
 		is_consumable = data.is_consumable
 		item = data.item		
 

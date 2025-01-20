@@ -22,9 +22,11 @@ func start_chasing():
 	
 func give_mob_chase_direction():
 	if !is_instance_valid(to_follow): return
-	if to_follow.has_method("location_behind"): emit_signal("set_desired_direction", to_follow.location_behind())
-	else: emit_signal("set_desired_direction", to_follow.global_position)
-
+	#if to_follow.has_method("location_behind"): 
+		#emit_signal("set_desired_direction", to_follow.location_behind())
+	#else: 
+	#emit_signal("set_desired_direction", to_follow.global_position)
+	fsm.mob.navigation.target_position = to_follow.global_position
 	
 
 func exit():
