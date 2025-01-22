@@ -17,7 +17,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedIn
 outlines = Array[PackedVector2Array]([PackedVector2Array(50, 17, 751, 17, 751, 528, 33, 527)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[sub_resource type="Resource" id="Resource_wjcqv"]
+[sub_resource type="Resource" id="Resource_ntsay"]
 resource_local_to_scene = true
 script = ExtResource("4_44a2c")
 name = "Health"
@@ -53,7 +53,7 @@ layer_2/name = "mobs"
 
 [node name="bata" parent="." instance=ExtResource("3_a5cd2")]
 position = Vector2(56, 268)
-drop_table = Array[ExtResource("4_44a2c")]([SubResource("Resource_wjcqv"), ExtResource("6_3qfwn"), ExtResource("7_s82fc")])
+drop_table = Array[ExtResource("4_44a2c")]([SubResource("Resource_ntsay"), ExtResource("6_3qfwn"), ExtResource("7_s82fc")])
 
 [node name="player" parent="." instance=ExtResource("4_4db5e")]
 material = SubResource("ShaderMaterial_57jfy")

@@ -60,6 +60,11 @@ func _ready():
 	vision.look_at(vision.global_position + Vector2(0, 1))
 	fsm.initial_state(initial_state)
 	if !has_gun: gun.visible = false
+	else: equip_gun()
+	
+func equip_gun():
+	var gun_from_table = get_item_from_table(gun_table)
+	gun.equip_item(gun_from_table)
 	
 
 

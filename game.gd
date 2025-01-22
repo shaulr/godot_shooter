@@ -36,6 +36,7 @@ func load_level(level: String):
 		#Game._player.get_parent().remove_child(Game._player)
 	#get_tree().change_scene_to_file(level)
 	scene_manager.change_scene(Game.current_level, level)
+	
 
 	
 	

@@ -66,11 +66,6 @@ scale = Vector2(0.5, 0.5)
 tile_set = ExtResource("2_386qr")
 navigation_enabled = false
 
-[node name="entrance_markers" type="Node" parent="."]
-
-[node name="start" type="Marker2D" parent="entrance_markers"]
-position = Vector2(439, 185)
-
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(-5, 393)
 script = ExtResource("5_w04et")
