@@ -62,11 +62,12 @@ func position_player():
 		if door:
 			door.position_player()
 			return
-	for entrance in entrance_markers.get_children():
-		if entrance is Marker2D and entrance.name == scene_manager.last_scene:
-			Game._player.global_position = entrance.global_position
-		elif entrance is Marker2D and entrance.name == "any": 
-			Game._player.global_position = entrance.global_position
+	if entrance_markers != null:
+		for entrance in entrance_markers.get_children():
+			if entrance is Marker2D and entrance.name == scene_manager.last_scene:
+				Game._player.global_position = entrance.global_position
+			elif entrance is Marker2D and entrance.name == "any": 
+				Game._player.global_position = entrance.global_position
 			
 func find_door(node: Node, level: String) -> Door:
 	for N in node.get_children():

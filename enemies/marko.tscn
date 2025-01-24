@@ -121,6 +121,7 @@ _data = {
 [node name="marko" instance=ExtResource("1_deig2")]
 is_friendly = true
 initial_state = 1
+mob_name = "Marko"
 drop_table = Array[ExtResource("2_mlj5h")]([ExtResource("5_yox4l")])
 gun_table = Array[ExtResource("2_mlj5h")]([ExtResource("5_yox4l")])
 

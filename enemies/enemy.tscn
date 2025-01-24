@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bqrp0uplcicmw" path="res://guns/gun.tscn" id="10_ds0ea"]
 [ext_resource type="PackedScene" uid="uid://nb4y328svfk2" path="res://enemies/statemachine/statemachine.tscn" id="11_nac6r"]
 
-[sub_resource type="Resource" id="Resource_6jg43"]
+[sub_resource type="Resource" id="Resource_0127y"]
 resource_local_to_scene = true
 script = ExtResource("2_3tvbs")
 name = "Health"
@@ -24,7 +24,7 @@ scene_path = "res://droppables/health.tscn"
 size = Vector2(11, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5fy1"]
-size = Vector2(11, 26)
+size = Vector2(15, 26)
 
 [sub_resource type="Animation" id="Animation_gsknv"]
 length = 0.001
@@ -163,7 +163,7 @@ collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ii8wy")
-drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_6jg43"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
+drop_table = Array[ExtResource("2_3tvbs")]([SubResource("Resource_0127y"), ExtResource("3_i2sxh"), ExtResource("4_vnoff")])
 gun_table = Array[ExtResource("2_3tvbs")]([ExtResource("4_vnoff"), ExtResource("3_i2sxh")])
 
 [node name="hurtbox" type="CollisionShape2D" parent="."]

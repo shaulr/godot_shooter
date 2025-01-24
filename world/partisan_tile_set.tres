@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=87 format=3 uid="uid://l1hxs7318606"]
+[gd_resource type="TileSet" load_steps=85 format=3 uid="uid://l1hxs7318606"]
 
 [ext_resource type="Texture2D" uid="uid://b07qgee3rqngd" path="res://art/TilesetFloor.png" id="1_pjx57"]
 [ext_resource type="Texture2D" uid="uid://cvsqkluh7b47u" path="res://art/TilesetNature.png" id="2_83eyq"]
@@ -3734,11 +3734,6 @@ texture_region_size = Vector2i(32, 64)
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_70v7d")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tqvpq"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k0o1w"]
-polygon = PackedVector2Array(9.83334, 52.75, -7.66666, 52.4167, -8.16666, 42.5833, -16.1667, 33.0833, 10.5, 36.25)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0w3ed"]
 polygon = PackedVector2Array(-5.16666, 13.9167, -4.5, 8, 3.33334, 8, 5.33334, 14.0833)
 
@@ -3747,18 +3742,7 @@ polygon = PackedVector2Array(9.83334, 52.75, -12.5, 53.5833, -12, 45.5833, -10.5
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3d0p"]
 texture = ExtResource("7_bck2r")
-14:3/0 = 0
-15:3/0 = 0
 16:3/0 = 0
-14:4/0 = 0
-15:4/0 = 0
-0:0/size_in_atlas = Vector2i(7, 8)
-0:0/0 = 0
-0:0/0/z_index = 1
-0:0/0/y_sort_origin = 37
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_k0o1w")
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9.45511, 41.1576, 8.12028, 39.1553, 9.45512, 46.9419, 13.2372, 52.9486, 8.12028, 51.6138, 5.00565, 50.9464, 4.5607, 55.1734, -0.111237, 52.9486, -10.5675, 52.9486, -7.67533, 48.7217)
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tqvpq")
 15:7/size_in_atlas = Vector2i(2, 3)
 15:7/0 = 0
 15:7/0/z_index = 1
@@ -3775,9 +3759,13 @@ texture = ExtResource("7_bck2r")
 16:0/size_in_atlas = Vector2i(2, 2)
 16:0/0 = 0
 16:0/0/y_sort_origin = 6
+16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 12, 12, -12, 12)
 14:0/size_in_atlas = Vector2i(2, 3)
 14:0/0 = 0
 14:0/0/y_sort_origin = 6
+14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 20, -8, 20)
+14:3/size_in_atlas = Vector2i(2, 2)
+14:3/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_p17xb"]
 resource_name = "Animals"
