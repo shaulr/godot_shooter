@@ -73,7 +73,7 @@ func next_step(step):
 			print(step)
 
 func step_updated(step):
-	print_debug("step_updated" + step.details)
+	print_debug("step_updated " + step.details)
 	#if step.step_type == QuestManager.INCREMENTAL_STEP:
 		#
 		#if step.collected >= step.required:

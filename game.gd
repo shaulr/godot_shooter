@@ -148,7 +148,7 @@ func save():
 	pass
 
 func start():
-	var dialog_state = Dialogic.get_full_state()
+	#var dialog_state = Dialogic.get_full_state()
 	CampaignManager.start(START_QUEST)
 	
 	
@@ -234,3 +234,9 @@ func play_ambient_sound(sound: String):
 
 func _on_sound_finished():
 	current_level.ambient_sound_player.play()
+
+func turn_hostile(mob_name: String):
+	for child in current_level.get_children():
+		if child is Mob:
+			if child.mob_name == mob_name:
+				child.turn_enemy()

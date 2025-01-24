@@ -66,9 +66,6 @@ func equip_gun():
 	var gun_from_table = get_item_from_table(gun_table)
 	gun.equip_item(gun_from_table)
 	
-
-
-	
 func on_save_data(saved_data:Array[SavedData]):
 	print_debug("on_save_data")
 	var data = MobData.new() as MobData
@@ -338,3 +335,6 @@ func _on_hurtbox_area_entered(area):
 
 func order(recieved_order: String):
 	print_debug(mob_name + " recieved order " + recieved_order)
+
+func turn_enemy():
+	is_friendly = false
