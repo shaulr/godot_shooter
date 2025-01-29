@@ -329,34 +329,53 @@ func call_function(autoloadfunction:String,params:Array) -> void:
 		auto_load.propagate_call(callable,params)
 	else:
 		auto_load.propagate_call(callable)
-
+	
 func extract_params(command: String) -> Array:
+	var ret = Array()
+	var i: int = 0
+	var prev_comma: int = 0
+	var open_quotes: bool = false
+	
 	var first = command.find("(")
 	var end = command.rfind(")")
 	var len = end - first
 	var params = command.substr(first + 1, len - 1)
 	if params.strip_edges(true, true).length() == 0:
 		return []
-	var ret =  Array(params.split(","))
-
-	for i in range(ret.size()):
-		if is_string(ret[i]):
-			ret[i] = strip_quotes(ret[i].strip_edges(true, true))
-		elif is_float(ret[i]):
-			ret[i] = float(ret[i].strip_edges(true, true))
-		elif ret[i].length() == 0:
-			ret[i] = null
-		else:
-			ret[i] = int(ret[i].strip_edges(true, true))		
-		
+	
+	for ch in range(params.length()):
+		var char = params.substr(ch, 1)
+		if char == "(":
+			open_quotes = true
+		elif char == ")":
+			open_quotes = false
+		elif char == "," && !open_quotes:
+			var param: String = params.substr(prev_comma, ch - prev_comma).strip_edges(true, true)
+			prev_comma = ch + 1
+			process_and_append_param(param, ret)
+		elif ch == params.length() - 1:
+			var param: String = params.substr(prev_comma).strip_edges(true, true)
+			process_and_append_param(param, ret)
 	return ret
-
+	
+func process_and_append_param(param: String, array: Array):
+	if param.is_valid_int():
+		array.append(int(param.strip_edges(true, true)))		
+	elif param.is_valid_float():
+		array.append(float(param.strip_edges(true, true)))
+	elif is_function_call(param):
+		var expression = Expression.new()
+		expression.parse(param)
+		array.append(expression.execute())
+	elif is_string(param):
+		array.append(strip_quotes(param.strip_edges(true, true)))
+		
+func is_function_call(param: String) -> bool:
+	return param.find("(") >= 0 && param.find(")") >= 0
+	
 func is_string(param: String) -> bool:
 	return param.find("\"") >= 0
-
-func is_float(param: String) -> bool:
-	return param.find(".") >= 0
-
+	
 func strip_quotes(param: String):
 	var delimiter: String
 	if param.find("\"") >= 0:
