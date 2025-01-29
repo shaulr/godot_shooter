@@ -331,20 +331,42 @@ func call_function(autoloadfunction:String,params:Array) -> void:
 		auto_load.propagate_call(callable)
 
 func extract_params(command: String) -> Array:
-	var packed_array: PackedStringArray
+	var first = command.find("(")
+	var end = command.rfind(")")
+	var len = end - first
+	var params = command.substr(first + 1, len - 1)
+	if params.strip_edges(true, true).length() == 0:
+		return []
+	var ret =  Array(params.split(","))
+
+	for i in range(ret.size()):
+		if is_string(ret[i]):
+			ret[i] = strip_quotes(ret[i].strip_edges(true, true))
+		elif is_float(ret[i]):
+			ret[i] = float(ret[i].strip_edges(true, true))
+		elif ret[i].length() == 0:
+			ret[i] = null
+		else:
+			ret[i] = int(ret[i].strip_edges(true, true))		
+		
+	return ret
+
+func is_string(param: String) -> bool:
+	return param.find("\"") >= 0
+
+func is_float(param: String) -> bool:
+	return param.find(".") >= 0
+
+func strip_quotes(param: String):
 	var delimiter: String
-	if command.find("\"") >= 0:
+	if param.find("\"") >= 0:
 		delimiter = "\""
-	elif command.find("\'") >= 0:
+	elif param.find("\'") >= 0:
 		delimiter = "\'"
 	else:
-		return []
-	var first = command.find(delimiter)
-	var end = command.rfind(delimiter)
+		return param
+	var first = param.find(delimiter)
+	var end = param.rfind(delimiter)
 	var len = end - first
-	var params = command.substr(first + delimiter.length(), len - delimiter.length())
-	var ret =  Array(params.split(","))
-	for i in range(ret.size()):
-		ret[i] = ret[i].strip_edges(true, true)
 
-	return ret
+	return param.substr(first + delimiter.length(), len - delimiter.length())

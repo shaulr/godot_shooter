@@ -28,8 +28,15 @@ func level_loaded(level: Node):
 	if current_step:
 		if ! "item_name" in current_step:
 			return
-		if current_step.item_name == "level_loaded":
-			QuestManager.progress_quest_by_name("Tutorial", "level_loaded")
+		var expected_level = ""
+		
+		var scene_loaded = level.scene_file_path
+		if current_step.item_name == "level_loaded": 
+			if current_step.meta_data && current_step.meta_data.level_path:
+				var step_meta_data = current_step.meta_data
+				expected_level = step_meta_data.level_path
+				if expected_level == scene_loaded:
+					QuestManager.progress_quest_by_name("Tutorial", "level_loaded")
 	
 func start(quest: String):
 	self.quest_name = quest

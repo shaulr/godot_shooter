@@ -156,11 +156,13 @@ func bosko_joins():
 	if bosko:
 		bosko.follow(_player)
 		
-func spawn_mobs(mob_path: String, from: Vector2i, to: Vector2i, count: int):
+func spawn_mobs(mob_path: String, fromx: int, fromy: int, tox: int, toy: int, count: int):
 	for i in range(count):
-		spawn_mob(mob_path, from, to)
+		spawn_mob(mob_path, fromx, fromy, tox, toy)
 		
-func spawn_mob(mob_path: String, from: Vector2i, to: Vector2i):
+func spawn_mob(mob_path: String, fromx: int, fromy: int, tox: int, toy: int):
+	var from = Vector2i(fromx, fromy)
+	var to = Vector2i(tox, toy)
 	var mob = load(mob_path).instantiate()
 	mob.global_position = random_position(from, to)
 	current_level.add_child(mob)
