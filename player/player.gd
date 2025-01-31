@@ -106,7 +106,8 @@ func use_item(item: Collectible):
 	
 func _physics_process(delta):
 	if isDead: return
-	gun.pointGun(get_viewport().get_mouse_position(), true)
+	gun.look_at(get_global_mouse_position())
+
 	update_health() 
 	updateAnimation()
 	handleInput(delta)
