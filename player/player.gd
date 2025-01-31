@@ -185,6 +185,7 @@ func _on_hurtbox_area_entered(area):
 				return
 		elif area.is_collectible:
 			area.collect(inventory)
+			CampaignManager.item_collected(area)
 			return
 	if isStabbing:
 		if area.get_parent().has_method("get_direction"):
@@ -225,9 +226,8 @@ func _draw():
 func equip(item: Collectible):
 	gun.equip(item)
 	
-
-
-
+func no_gun():
+	gun.unequip()
 
 #
 #
@@ -240,6 +240,8 @@ func equip(item: Collectible):
 
 
 
-func _on_hitbox_body_entered(body):
+
+
+func _on_talk_area_body_entered(body: Node2D) -> void:
 	if "is_friendly" in body && body.is_friendly:
-		CampaignManager.player_met(body)# Replace with function body.
+		CampaignManager.player_met(body)

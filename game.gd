@@ -242,3 +242,6 @@ func turn_hostile(mob_name: String):
 		if child is Mob:
 			if child.mob_name == mob_name:
 				child.turn_enemy()
+
+func disarm_player():
+	_player.no_gun()

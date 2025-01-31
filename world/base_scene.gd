@@ -17,7 +17,6 @@ func _enter_tree():
 	#await get_tree().create_timer(1).timeout
 	#Game.saver_loader.scene_loaded_callback()
 	Game.current_level = self
-	
 
 
 func sound(level: int, pos: Vector2, friendly: bool):
@@ -26,6 +25,8 @@ func sound(level: int, pos: Vector2, friendly: bool):
 func _ready():
 	level_gui = load("res://UI/level_gui.tscn").instantiate()
 	add_child(level_gui)
+	info(CampaignManager.get_quest_info())
+
 	camera = load("res://world/followcam.tscn").instantiate()
 	add_child(camera)
 	
@@ -46,10 +47,10 @@ func _ready():
 		return		
 	
 	if is_instance_valid(Game._player):
-		if Game._player.get_parent() != self:
-
-			add_child(Game._player)
 		position_player()
+		if Game._player.get_parent() != self:
+			add_child(Game._player)
+		
 	Game.level_loaded(self)
 		
 func play_song(song: String):
@@ -62,6 +63,8 @@ func position_player():
 		if door:
 			door.position_player()
 			return
+		else:
+			print_debug("************COULD NOT FIND DOOR*******************")
 	if entrance_markers != null:
 		for entrance in entrance_markers.get_children():
 			if entrance is Marker2D and entrance.name == scene_manager.last_scene:
@@ -74,9 +77,14 @@ func find_door(node: Node, level: String) -> Door:
 		if N is Door && N.scene_to_load == level:
 			return N
 		elif N.get_child_count() > 0:
-			find_door(N, level)
+			var door = find_door(N, level)
+			if door != null: return door
 	return null
 			
 func _unhandled_input(event):
 	if event.is_action("in_game_menu"):
 		Game.in_game_menu()
+
+func info(text: String):
+	level_gui.set_quest_info(text)
+	

@@ -59,3 +59,15 @@ theme_type_variation = &"MediumLabel"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.775063, 0.775063, 0.775063, 1)
 label_settings = SubResource("LabelSettings_k65ta")
+autowrap_mode = 2
+
+[node name="quest_info" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 298.0
+offset_bottom = 274.0
+theme = ExtResource("6_0h08k")
+theme_type_variation = &"TinyLabel"
+theme_override_colors/font_color = Color(0, 0.858824, 0, 1)
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3

@@ -64,6 +64,7 @@ MediumLabel/constants/shadow_offset_y = 0
 MediumLabel/constants/shadow_outline_size = 0
 MediumLabel/font_sizes/font_size = 32
 MediumLabel/fonts/font = ExtResource("2_31dcg")
+SmallLabel/font_sizes/font_size = 12
 TinyLabel/base_type = &"Label"
 TinyLabel/colors/font_color = Color(1, 1, 1, 1)
 TinyLabel/constants/shadow_offset_x = 1

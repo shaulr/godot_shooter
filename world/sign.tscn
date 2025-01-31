@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://world/sign.gd" id="1_8ma52"]
 [ext_resource type="Texture2D" uid="uid://wye6tpos0yeb" path="res://art/signs/signpost_crossroads.png" id="2_7ivuu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o3ot"]
-size = Vector2(14, 23)
+[sub_resource type="CircleShape2D" id="CircleShape2D_lx5fn"]
+radius = 24.0052
 
 [node name="sign" type="Area2D"]
 texture_filter = 1
@@ -18,7 +18,7 @@ sign_text = "⇑ 		Ustasa base
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1.5)
-shape = SubResource("RectangleShape2D_5o3ot")
+shape = SubResource("CircleShape2D_lx5fn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -24,13 +24,13 @@ func position_player():
 		move_out_of_range(bodies_in_area)
 		return
 	elif on_bottom_edge_of_the_map():
-		Game.get_player().global_position.y = door_position.y - 40
+		Game.get_player().global_position.y = door_position.y - (Game.get_player().get_size().y * 2 + 20)
 		Game.get_player().global_position.x = door_position.x
 	elif on_right_edge_of_the_map():
-		Game.get_player().global_position.x = door_position.x - 40
+		Game.get_player().global_position.x = door_position.x - (Game.get_player().get_size().x * 2 + 20)
 		Game.get_player().global_position.y = door_position.y		
 	elif on_left_edge_of_the_map():
-		Game.get_player().global_position.x = door_position.x + 40
+		Game.get_player().global_position.x = door_position.x + (Game.get_player().get_size().x * 2)
 		Game.get_player().global_position.y = door_position.y		
 		print_debug(Game.get_player().global_position)
 		#var x = Game.get_player().global_position.x
@@ -46,18 +46,24 @@ func position_player():
 		
 func on_bottom_edge_of_the_map() -> bool:
 	var world_size = get_rect_of_level()
-	var player_below_pos = Game.get_player().global_position.y + Game.get_player().get_size().y * 2
-	return player_below_pos >= world_size.y		
-	
+	var door_y = global_position.y
+	return world_size.y - door_y <= 20
+	#var player_below_pos = Game.get_player().global_position.y + Game.get_player().get_size().y * 2
+	#return player_below_pos <= world_size.y	+ 20 + Game.get_player().get_size().y	
+	#
 func on_right_edge_of_the_map() -> bool:
 	var world_size = get_rect_of_level()
-	var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
-	return player_right_pos >= world_size.x		
+	var door_x = global_position.x
+	return world_size.x - door_x <= 20
+
+	#var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
+	#return player_right_pos >= world_size.x	+ 20	
 		
 func on_left_edge_of_the_map() -> bool:
 	var world_size = get_rect_of_level()
-	var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
-	return player_right_pos <= 10			
+	return global_position.x < 20
+	#var player_right_pos = Game.get_player().global_position.x + Game.get_player().get_size().x * 2
+	#return player_right_pos <= 20
 		
 func get_rect_of_collider() -> Vector2:
 	if collider.shape is RectangleShape2D:

@@ -112,7 +112,7 @@ func zoom_to_tilemap() -> Vector2:
 		new_zoom = float(viewport_size[0]) / level_size.x
 		
 	#new_zoom = clamp(new_zoom, 0.0, 1.5)
-		
+	if new_zoom < 1: new_zoom *= 2
 	return Vector2(new_zoom, new_zoom)
 
 func get_tilemap_info():

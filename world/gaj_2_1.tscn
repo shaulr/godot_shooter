@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dx5rlcyubw52y"]
+[gd_scene load_steps=9 format=4 uid="uid://dx5rlcyubw52y"]
 
 [ext_resource type="Script" path="res://world/base_scene.gd" id="1_u4bqm"]
 [ext_resource type="TileSet" uid="uid://l1hxs7318606" path="res://world/partisan_tile_set.tres" id="2_opa8f"]
@@ -12,6 +12,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(3, -6, 643, -5, 1213, -9, 1216, 912, 3, 916)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itkxr"]
+size = Vector2(49, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q37s"]
+size = Vector2(67.5, 8)
 
 [node name="forrest_2_1" type="Node"]
 script = ExtResource("1_u4bqm")
@@ -75,17 +79,19 @@ scene_to_load = "res://world/gaj_1_1.tscn"
 shape = SubResource("RectangleShape2D_itkxr")
 
 [node name="Door2" type="Area2D" parent="."]
-position = Vector2(578, 909)
+position = Vector2(575, 914)
 script = ExtResource("5_v4jbk")
 scene_to_load = "res://world/gaj_2_2.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2"]
+position = Vector2(-2, 7)
 shape = SubResource("RectangleShape2D_itkxr")
 
 [node name="Door3" type="Area2D" parent="."]
-position = Vector2(578, -1)
+position = Vector2(580, -7)
 script = ExtResource("5_v4jbk")
 scene_to_load = "res://world/gaj_2_0.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door3"]
-shape = SubResource("RectangleShape2D_itkxr")
+position = Vector2(9.25, 0)
+shape = SubResource("RectangleShape2D_5q37s")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqrp0uplcicmw"]
+[gd_scene load_steps=16 format=3 uid="uid://bqrp0uplcicmw"]
 
 [ext_resource type="Script" path="res://guns/gun.gd" id="1_beq65"]
-[ext_resource type="Texture2D" uid="uid://bvomximw6ud2i" path="res://art/mp-40.png" id="2_nxe2a"]
 [ext_resource type="Texture2D" uid="uid://bii5tj25qre50" path="res://art/muzzle_flash.png" id="3_b1wrm"]
 [ext_resource type="AudioStream" uid="uid://b3wiwwpbknu8o" path="res://art/shoot1911.mp3" id="3_rxcwr"]
 [ext_resource type="Texture2D" uid="uid://byaj6dr2k3s04" path="res://art/point_light.png" id="4_vinxn"]
@@ -237,7 +236,6 @@ z_as_relative = false
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(11.0002, 0.997379)
-texture = ExtResource("2_nxe2a")
 
 [node name="shootingPoint" type="Marker2D" parent="weaponPivot/sprite"]
 unique_name_in_owner = true

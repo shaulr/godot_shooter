@@ -13,14 +13,15 @@ var gun_direction = "down"
 var agros_enemies = false
 var gun_noise_level = 300
 @export var item: Collectible
-@export_file var item_path = "res://droppables/mp-40.tscn"
+@export_file var item_path = ""
 var sprite_scale_factor: float
 var muzzle_position: Vector2
 var shooting: bool = false
 @onready var muzzle_light = $weaponPivot/sprite/shootingPoint/PointLight2D
 func _ready():
-	item = load(item_path).instantiate()
-	equip_item(item)
+	if item_path.length() > 0:
+		item = load(item_path).instantiate()
+		equip_item(item)
 	
 func scale():
 	var area_size = item.item.maxTextureSize * 3/4
@@ -76,6 +77,7 @@ func pointGun(aimPos: Vector2, correct_for_camera: bool):
 	look_at(aimPos + cameraPos)
 		
 func shoot():
+	if item == null: return
 	if shooting: return
 	shooting = true
 	#Game.current_level.emit_signal("shooting_sound", gun_noise_level, global_position)
@@ -123,7 +125,12 @@ func equip(item_to_equip: Collectible):
 		timer.wait_time = 0.1
 	equip_item(item)
 
+func unequip():
+	item = null
+	sprite.texture = null
+
 func equip_item(item_to_equip: Collectible):
+	item = item_to_equip
 	sprite.texture = item_to_equip.item.texture
 	scale()
 	find_muzzle()

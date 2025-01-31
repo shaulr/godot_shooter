@@ -75,7 +75,7 @@ scene_to_load = "res://world/gaj_1_2.tscn"
 shape = SubResource("RectangleShape2D_qkpac")
 
 [node name="Door2" type="Area2D" parent="."]
-position = Vector2(626, 18)
+position = Vector2(613, -12)
 script = ExtResource("5_5a6xn")
 scene_to_load = "res://world/gaj_2_1.tscn"
 

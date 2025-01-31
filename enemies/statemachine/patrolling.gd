@@ -11,7 +11,7 @@ var active: bool = false
 var timer: Timer
 
 func enter():
-	print_debug("entered patrolling " + fsm.mob.name)
+	#print_debug("entered patrolling " + fsm.mob.name)
 
 	active = true
 	navigation = fsm.mob.navigation
