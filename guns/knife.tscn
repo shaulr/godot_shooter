@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://guns/knife.gd" id="1_4bn6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnyjn"]
-size = Vector2(11, 56)
+size = Vector2(35.4903, 74.4902)
 
 [sub_resource type="Animation" id="Animation_3fjrr"]
 length = 0.001
@@ -196,7 +196,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/Area2D"]
-position = Vector2(46.5, 0.999987)
+position = Vector2(49.2164, -8.24514)
 shape = SubResource("RectangleShape2D_gnyjn")
 
 [node name="Sprite2D" type="Sprite2D" parent="pivot/Area2D"]

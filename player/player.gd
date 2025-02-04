@@ -22,7 +22,7 @@ var hurting = false
 var isStabbing = false
 var isDead = false 
 @onready var light = $PointLight2D
-
+var enemy_direction: Vector2 = Vector2(0, 0)
 func _enter_tree():
 	Game.set_player(self)
 	Game.saver_loader.player_loaded_callback(self)
@@ -77,11 +77,33 @@ func stab():
 	isStabbing = true
 	gun.visible = false
 	knife.visible = true
-	knife.stab(lastAnimDirection)
+	if enemy_direction.length() > 0:
+		knife.stab(vector_to_direction(enemy_direction))
+	else:
+		knife.stab(lastAnimDirection)
 	await knife.stabPlayer.animation_finished
 	knife.visible = false
 	gun.visible = true
-	isStabbing = false
+	isStabbing = false   
+
+func vector_to_direction(vector: Vector2) -> String:
+	var ret = "down"
+	var player_pos = Game.get_player().global_position
+	#var direction_vector =  Game.get_player().global_position 
+	var calc_vector = vector - player_pos 
+	var angle = rad_to_deg(calc_vector.angle())
+	#var radians = Game.get_player().global_position.angle_to_point(vector)
+	#var angle = rad_to_deg(radians)
+
+	if angle < 0: angle += 360
+	
+	if angle < 315 && angle >= 225:
+		ret =  "up"
+	elif angle < 225 && angle >= 135:
+		ret =  "left"
+	elif angle <= 45 || angle <= 315:
+		ret =  "right"
+	return ret
 
 func take_damage(damage: int):
 	hurting = true
@@ -244,5 +266,8 @@ func no_gun():
 
 
 func _on_talk_area_body_entered(body: Node2D) -> void:
-	if "is_friendly" in body && body.is_friendly:
-		CampaignManager.player_met(body)
+	if "is_friendly" in body:
+		if body.is_friendly:
+			CampaignManager.player_met(body)
+		else:
+			enemy_direction = body.global_position

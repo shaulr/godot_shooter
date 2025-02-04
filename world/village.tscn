@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://4vr3klxi12w4"]
+[gd_scene load_steps=12 format=4 uid="uid://bgae8n6pddopr"]
 
 [ext_resource type="Script" path="res://world/base_scene.gd" id="1_7hep4"]
 [ext_resource type="TileSet" uid="uid://l1hxs7318606" path="res://world/partisan_tile_set.tres" id="2_7pn7g"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://world/ground.gd" id="4_gw8ad"]
 [ext_resource type="PackedScene" uid="uid://ccg05escdhvap" path="res://world/sign.tscn" id="5_uiyg0"]
 [ext_resource type="PackedScene" uid="uid://q3hywpml2k85" path="res://world/door.tscn" id="6_hys8x"]
-[ext_resource type="PackedScene" uid="uid://dtmvvmihdruxj" path="res://droppables/mauser.tscn" id="8_w0sa6"]
 [ext_resource type="Shader" path="res://player/silhouette.gdshader" id="12_r3sc2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vt5ap"]
@@ -93,9 +92,9 @@ sign_text = "⇑ 		Ustasa base
 
 [node name="sign_2" parent="." instance=ExtResource("5_uiyg0")]
 position = Vector2(7, 441)
-type = 3
 sign_text = "Wellcome to Neteka
 "
+type = 3
 
 [node name="door" parent="." instance=ExtResource("6_hys8x")]
 position = Vector2(176, 80)
@@ -114,6 +113,3 @@ scene_to_load = "res://world/gaj_0_1.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door2"]
 position = Vector2(0, 4.75)
 shape = SubResource("RectangleShape2D_rnx0n")
-
-[node name="collectible" parent="." instance=ExtResource("8_w0sa6")]
-position = Vector2(451, 144)

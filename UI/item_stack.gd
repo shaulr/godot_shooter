@@ -7,9 +7,9 @@ var inventory_slot: InventorySlot
 
 func update():
 	if !inventory_slot || !inventory_slot.item: return
-
-	item.visible = true
-	item.texture = inventory_slot.item.texture
+	if item != null:
+		item.visible = true
+		item.texture = inventory_slot.item.texture
 	
 	if inventory_slot.amount == 0:
 		amount_label.visible = false
