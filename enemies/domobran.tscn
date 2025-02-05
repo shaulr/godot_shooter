@@ -131,9 +131,9 @@ _data = {
 }
 
 [node name="enemy2" instance=ExtResource("1_aup2x")]
-drop_table = [SubResource("Resource_oqk8a"), ExtResource("4_1i68h"), ExtResource("5_3ceh1")]
 initial_state = 1
 belongs = 1
+drop_table = Array[ExtResource("2_l07yk")]([SubResource("Resource_oqk8a"), ExtResource("4_1i68h"), ExtResource("5_3ceh1")])
 
 [node name="hurtbox" parent="." index="0"]
 position = Vector2(-2.5, -18.5)

@@ -187,7 +187,8 @@ func _ready():
 	inventory.use_item.connect(use_item)
 	gun.gun_agros_enemies(true)
 	light.enabled = Game.is_night
-
+	
+	
 func restart_application():
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 	

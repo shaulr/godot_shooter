@@ -92,9 +92,9 @@ sign_text = "⇑ 		Ustasa base
 
 [node name="sign_2" parent="." instance=ExtResource("5_uiyg0")]
 position = Vector2(7, 441)
+type = 3
 sign_text = "Wellcome to Neteka
 "
-type = 3
 
 [node name="door" parent="." instance=ExtResource("6_hys8x")]
 position = Vector2(176, 80)
